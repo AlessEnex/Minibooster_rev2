@@ -1,0 +1,84 @@
+{
+  "configs": [
+    {
+      "code": "T2_10_0",
+      "mt": {
+        "dorin": { "name": "MT CD0 36-2,4H+CD0 36-2,4H", "price": 31931 },
+        "bitzer": { "name": "MT 2MTE-5Z+2MTE-5Z", "price": 34485.48 }
+      },
+      "lt36": { "dorin": null, "bitzer": null },
+      "lt60": { "dorin": null, "bitzer": null }
+    },
+    {
+      "code": "T2_15_0",
+      "mt": {
+        "dorin": { "name": "MT CD0 38-3,0H+CD4 55-4,7M", "price": 32125 },
+        "bitzer": { "name": "MT 2MTE-5Z+2KTE-7Z", "price": 34695 }
+      },
+      "lt36": { "dorin": null, "bitzer": null },
+      "lt60": { "dorin": null, "bitzer": null }
+    },
+    {
+      "code": "T2_10_3",
+      "mt": {
+        "dorin": { "name": "MT CD0 36-2,4H+CD0 36-2,4H", "price": 36187 },
+        "bitzer": { "name": "MT 2MTE-5Z+2MTE-5Z", "price": 39081.96 }
+      },
+      "lt36": {
+        "dorin": { "name": "CD0 18-1,5M", "price": 2200 },
+        "bitzer": { "name": "2NSL-05Z", "price": 2354 }
+      },
+      "lt60": {
+        "dorin": { "name": "CD0 18-1,5M", "price": 3250 },
+        "bitzer": { "name": "CD0 18-1,5M", "price": 3477.5 }
+      }
+    },
+    {
+      "code": "T2_15_3",
+      "mt": {
+        "dorin": { "name": "MT CD0 38-3,0H+CD4 55-4,7M", "price": 36381 },
+        "bitzer": { "name": "MT 2MTE-5Z+2KTE-7Z", "price": 39291.48 }
+      },
+      "lt36": {
+        "dorin": { "name": "CD0 18-1,5M", "price": 2400 },
+        "bitzer": { "name": "2NSL-05Z", "price": 2568 }
+      },
+      "lt60": {
+        "dorin": { "name": "CD0 18-1,5M", "price": 3450 },
+        "bitzer": { "name": "CD0 18-1,5M", "price": 3691.5 }
+      }
+    },
+    {
+      "code": "T2_20_3",
+      "mt": {
+        "dorin": { "name": "MT CD4 75-4,7H+CD4 75-4,7H", "price": 38801 },
+        "bitzer": { "name": "MT 4PTE-10Z+4MTE-10Z", "price": 41905.08 }
+      },
+      "lt36": {
+        "dorin": { "name": "CD0 18-1,5M", "price": 850 },
+        "bitzer": { "name": "2NSL-05Z", "price": 909.5 }
+      },
+      "lt60": {
+        "dorin": { "name": "CD0 18-1,5M", "price": 1900 },
+        "bitzer": { "name": "CD0 18-1,5M", "price": 2033 }
+      }
+    }
+  ],
+  "optionals": [
+    { "id": "carel", "name": "Carel", "price": 1860, "category": "onboard" },
+    { "id": "danfoss_782", "name": "Danfoss 782", "price": 2800, "category": "onboard" },
+    { "id": "heat_recovery", "name": "Heat Recovery", "price": 700, "category": "onboard" },
+    { "id": "ducting", "name": "Ducting", "price": 2200, "category": "onboard" },
+    { "id": "cladding_indoor", "name": "Cladding indoor", "price": 2300, "category": "onboard" },
+    { "id": "cladding_outdoor", "name": "Cladding outdoor", "price": 400, "category": "onboard" },
+    { "id": "muffler_sp", "name": "Muffler spare parts", "price": 1410, "category": "spare" },
+    { "id": "ccmt_sp", "name": "CCMT spare parts", "price": 1200, "category": "spare" },
+    { "id": "gascooler_spare", "name": "3W gascooler Spare", "price": 1150, "category": "spare" },
+    { "id": "diff_mt", "name": "Differential MT", "price": 1600, "category": "spare" },
+    { "id": "diff_mt_lt", "name": "Differentials MT/LT", "price": 1640, "category": "spare" },
+    { "id": "mx_coil", "name": "MX coil", "price": 650, "category": "spare" },
+    { "id": "carton_572a", "name": "572A en carton", "price": 1100, "category": "spare" },
+    { "id": "carton_300t", "name": "300T en carton", "price": 1850, "category": "spare" },
+    { "id": "carton_782a", "name": "782A en carton", "price": 1850, "category": "spare" }
+  ]
+}

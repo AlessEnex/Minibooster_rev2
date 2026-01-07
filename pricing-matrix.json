@@ -1,0 +1,1375 @@
+
+{
+  "configs": [
+    {
+      "code": "T2_10_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 36-2,4H+CD0 36-2,4H",
+          "price": 31931
+        },
+        "bitzer": {
+          "name": "MT 2MTE-5Z+2MTE-5Z",
+          "price": 34485.48
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "0",
+          "price": null
+        },
+        "bitzer": null
+      },
+      "lt60": {
+        "dorin": {
+          "name": "0",
+          "price": null
+        },
+        "bitzer": {
+          "name": "0",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "T2_15_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H+CD4 55-4,7M",
+          "price": 32125
+        },
+        "bitzer": {
+          "name": "MT 2MTE-5Z+2KTE-7Z",
+          "price": 34695
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "0",
+          "price": null
+        },
+        "bitzer": {
+          "name": "0",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "0",
+          "price": null
+        },
+        "bitzer": {
+          "name": "0",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "T2_20_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H+CD4 75-4,7H",
+          "price": 34545
+        },
+        "bitzer": {
+          "name": "MT 4PTE-10Z+4MTE-10Z",
+          "price": 37308.6
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "0",
+          "price": null
+        },
+        "bitzer": {
+          "name": "0",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "0",
+          "price": null
+        },
+        "bitzer": {
+          "name": "0",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "T2_25_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H+CD4 90-6,4H",
+          "price": 34868
+        },
+        "bitzer": {
+          "name": "MT 4MTE-10Z+4MTE-10Z",
+          "price": 37657.44
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "0",
+          "price": null
+        },
+        "bitzer": {
+          "name": "0",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "0",
+          "price": null
+        },
+        "bitzer": {
+          "name": "0",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "T2_30_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H+CD4 90-7,3H",
+          "price": 34961
+        },
+        "bitzer": {
+          "name": "MT 4MTE-10Z+4KTE-12Z",
+          "price": 37757.88
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "0",
+          "price": null
+        },
+        "bitzer": {
+          "name": "0",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "0",
+          "price": null
+        },
+        "bitzer": {
+          "name": "0",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "T2_35_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H+CD4 120-9,2H",
+          "price": 35210
+        },
+        "bitzer": {
+          "name": "MT 4MTE-10Z+4KTE-12Z",
+          "price": 38026.8
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "0",
+          "price": null
+        },
+        "bitzer": {
+          "name": "0",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "0",
+          "price": null
+        },
+        "bitzer": {
+          "name": "0",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "T2_40_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 120-9,2H+CD4 120-9,2H",
+          "price": 35444
+        },
+        "bitzer": {
+          "name": "MT 4KTE-12Z+4KTE-12Z",
+          "price": 38279.52
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "0",
+          "price": null
+        },
+        "bitzer": {
+          "name": "0",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "0",
+          "price": null
+        },
+        "bitzer": {
+          "name": "0",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "T2_10_3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 36-2,4H+CD0 36-2,4H",
+          "price": 36187
+        },
+        "bitzer": {
+          "name": "MT 2MTE-5Z+2MTE-5Z",
+          "price": 39081.96
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 2200
+        },
+        "bitzer": {
+          "name": "2NSL-05Z",
+          "price": 2354
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 3250
+        },
+        "bitzer": {
+          "name": "CD0 18-1,5M",
+          "price": 3477.5
+        }
+      }
+    },
+    {
+      "code": "T2_15_3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H+CD4 55-4,7M",
+          "price": 36381
+        },
+        "bitzer": {
+          "name": "MT 2MTE-5Z+2KTE-7Z",
+          "price": 39291.48
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 2400
+        },
+        "bitzer": {
+          "name": "2NSL-05Z",
+          "price": 2568
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 3450
+        },
+        "bitzer": {
+          "name": "CD0 18-1,5M",
+          "price": 3691.5
+        }
+      }
+    },
+    {
+      "code": "T2_20_3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H+CD4 75-4,7H",
+          "price": 38801
+        },
+        "bitzer": {
+          "name": "MT 4PTE-10Z+4MTE-10Z",
+          "price": 41905.08
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 850
+        },
+        "bitzer": {
+          "name": "2NSL-05Z",
+          "price": 909.5
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 1900
+        },
+        "bitzer": {
+          "name": "CD0 18-1,5M",
+          "price": 2033
+        }
+      }
+    },
+    {
+      "code": "T2_25_3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H+CD4 90-6,4H",
+          "price": 39124
+        },
+        "bitzer": {
+          "name": "MT 4MTE-10Z+4MTE-10Z",
+          "price": 42253.92
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 450
+        },
+        "bitzer": {
+          "name": "2NSL-05Z",
+          "price": 481.5
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 1550
+        },
+        "bitzer": {
+          "name": "CD0 18-1,5M",
+          "price": 1658.5
+        }
+      }
+    },
+    {
+      "code": "T2_30_3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H+CD4 90-7,3H",
+          "price": 39217
+        },
+        "bitzer": {
+          "name": "MT 4MTE-10Z+4KTE-12Z",
+          "price": 42354.36
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 850
+        },
+        "bitzer": {
+          "name": "2NSL-05Z",
+          "price": 909.5
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 1950
+        },
+        "bitzer": {
+          "name": "CD0 18-1,5M",
+          "price": 2086.5
+        }
+      }
+    },
+    {
+      "code": "T2_35_3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H+CD4 120-9,2H",
+          "price": 39466
+        },
+        "bitzer": {
+          "name": "MT 4MTE-10Z+4KTE-12Z",
+          "price": 42623.28
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 600
+        },
+        "bitzer": {
+          "name": "2NSL-05Z",
+          "price": 642
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 1700
+        },
+        "bitzer": {
+          "name": "CD0 18-1,5M",
+          "price": 1819
+        }
+      }
+    },
+    {
+      "code": "T2_40_3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 120-9,2H+CD4 120-9,2H",
+          "price": 39700
+        },
+        "bitzer": {
+          "name": "MT 4KTE-12Z+4KTE-12Z",
+          "price": 42876
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 1550
+        },
+        "bitzer": {
+          "name": "2NSL-05Z",
+          "price": 1658.5
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 2600
+        },
+        "bitzer": {
+          "name": "CD0 18-1,5M",
+          "price": 2782
+        }
+      }
+    },
+    {
+      "code": "T2_10_4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 36-2,4H+CD0 36-2,4H",
+          "price": 36239
+        },
+        "bitzer": {
+          "name": "MT 2MTE-5Z+2MTE-5Z",
+          "price": 39138.12
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 101 B",
+          "price": 2300
+        },
+        "bitzer": {
+          "name": "2MSL-07Z",
+          "price": 2461
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 2250
+        },
+        "bitzer": {
+          "name": "CD0 30-1,9M",
+          "price": 2407.5
+        }
+      }
+    },
+    {
+      "code": "T2_15_4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H+CD4 55-4,7M",
+          "price": 36433
+        },
+        "bitzer": {
+          "name": "MT 2MTE-5Z+2KTE-7Z",
+          "price": 39347.64
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 101 B",
+          "price": 2500
+        },
+        "bitzer": {
+          "name": "2MSL-07Z",
+          "price": 2675
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 2450
+        },
+        "bitzer": {
+          "name": "CD0 30-1,9M",
+          "price": 2621.5
+        }
+      }
+    },
+    {
+      "code": "T2_20_4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H+CD4 75-4,7H",
+          "price": 38853
+        },
+        "bitzer": {
+          "name": "MT 4PTE-10Z+4MTE-10Z",
+          "price": 41961.24
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 101 B",
+          "price": 950
+        },
+        "bitzer": {
+          "name": "2MSL-07Z",
+          "price": 1016.5
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 900
+        },
+        "bitzer": {
+          "name": "CD0 30-1,9M",
+          "price": 963
+        }
+      }
+    },
+    {
+      "code": "T2_25_4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H+CD4 90-6,4H",
+          "price": 39176
+        },
+        "bitzer": {
+          "name": "MT 4MTE-10Z+4MTE-10Z",
+          "price": 42310.08
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 101 B",
+          "price": 550
+        },
+        "bitzer": {
+          "name": "2MSL-07Z",
+          "price": 588.5
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 500
+        },
+        "bitzer": {
+          "name": "CD0 30-1,9M",
+          "price": 535
+        }
+      }
+    },
+    {
+      "code": "T2_30_4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H+CD4 90-7,3H",
+          "price": 39269
+        },
+        "bitzer": {
+          "name": "MT 4MTE-10Z+4KTE-12Z",
+          "price": 42410.52
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 101 B",
+          "price": 950
+        },
+        "bitzer": {
+          "name": "2MSL-07Z",
+          "price": 1016.5
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 900
+        },
+        "bitzer": {
+          "name": "CD0 30-1,9M",
+          "price": 963
+        }
+      }
+    },
+    {
+      "code": "T2_35_4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H+CD4 120-9,2H",
+          "price": 39518
+        },
+        "bitzer": {
+          "name": "MT 4MTE-10Z+4KTE-12Z",
+          "price": 42679.44
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 101 B",
+          "price": 700
+        },
+        "bitzer": {
+          "name": "2MSL-07Z",
+          "price": 749
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 650
+        },
+        "bitzer": {
+          "name": "CD0 30-1,9M",
+          "price": 695.5
+        }
+      }
+    },
+    {
+      "code": "T2_40_4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 120-9,2H+CD4 120-9,2H",
+          "price": 39752
+        },
+        "bitzer": {
+          "name": "MT 4KTE-12Z+4KTE-12Z",
+          "price": 42932.16
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 101 B",
+          "price": 1600
+        },
+        "bitzer": {
+          "name": "2MSL-07Z",
+          "price": 1712
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 1550
+        },
+        "bitzer": {
+          "name": "CD0 30-1,9M",
+          "price": 1658.5
+        }
+      }
+    },
+    {
+      "code": "T2_10_5,3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 36-2,4H+CD0 36-2,4H",
+          "price": 36282
+        },
+        "bitzer": {
+          "name": "MT 2MTE-5Z+2MTE-5Z",
+          "price": 39184.56
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 151 B",
+          "price": 2350
+        },
+        "bitzer": {
+          "name": "2LSL-1Z",
+          "price": 2514.5
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 3650
+        },
+        "bitzer": {
+          "name": "CD0 35-2,4M",
+          "price": 3905.5
+        }
+      }
+    },
+    {
+      "code": "T2_15_5,3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H+CD4 55-4,7M",
+          "price": 36476
+        },
+        "bitzer": {
+          "name": "MT 2MTE-5Z+2KTE-7Z",
+          "price": 39394.08
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 151 B",
+          "price": 2550
+        },
+        "bitzer": {
+          "name": "2LSL-1Z",
+          "price": 2728.5
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 3900
+        },
+        "bitzer": {
+          "name": "CD0 35-2,4M",
+          "price": 4173
+        }
+      }
+    },
+    {
+      "code": "T2_20_5,3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H+CD4 75-4,7H",
+          "price": 38896
+        },
+        "bitzer": {
+          "name": "MT 4PTE-10Z+4MTE-10Z",
+          "price": 42007.68
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 151 B",
+          "price": 1000
+        },
+        "bitzer": {
+          "name": "2LSL-1Z",
+          "price": 1070
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 2350
+        },
+        "bitzer": {
+          "name": "CD0 35-2,4M",
+          "price": 2514.5
+        }
+      }
+    },
+    {
+      "code": "T2_25_5,3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H+CD4 90-6,4H",
+          "price": 39219
+        },
+        "bitzer": {
+          "name": "MT 4MTE-10Z+4MTE-10Z",
+          "price": 42356.52
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 151 B",
+          "price": 560
+        },
+        "bitzer": {
+          "name": "2LSL-1Z",
+          "price": 599.2
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 1950
+        },
+        "bitzer": {
+          "name": "CD0 35-2,4M",
+          "price": 2086.5
+        }
+      }
+    },
+    {
+      "code": "T2_30_5,3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H+CD4 90-7,3H",
+          "price": 39312
+        },
+        "bitzer": {
+          "name": "MT 4MTE-10Z+4KTE-12Z",
+          "price": 42456.96
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 151 B",
+          "price": 1000
+        },
+        "bitzer": {
+          "name": "2LSL-1Z",
+          "price": 1070
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 2350
+        },
+        "bitzer": {
+          "name": "CD0 35-2,4M",
+          "price": 2514.5
+        }
+      }
+    },
+    {
+      "code": "T2_35_5,3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H+CD4 120-9,2H",
+          "price": 39561
+        },
+        "bitzer": {
+          "name": "MT 4MTE-10Z+4KTE-12Z",
+          "price": 42725.88
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 151 B",
+          "price": 750
+        },
+        "bitzer": {
+          "name": "2LSL-1Z",
+          "price": 802.5
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 2100
+        },
+        "bitzer": {
+          "name": "CD0 35-2,4M",
+          "price": 2247
+        }
+      }
+    },
+    {
+      "code": "T2_40_5,3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 120-9,2H+CD4 120-9,2H",
+          "price": 39795
+        },
+        "bitzer": {
+          "name": "MT 4KTE-12Z+4KTE-12Z",
+          "price": 42978.6
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 151 B",
+          "price": 1650
+        },
+        "bitzer": {
+          "name": "2LSL-1Z",
+          "price": 1765.5
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 3000
+        },
+        "bitzer": {
+          "name": "CD0 35-2,4M",
+          "price": 3210
+        }
+      }
+    },
+    {
+      "code": "T2_15_7,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H+CD4 55-4,7M",
+          "price": 36562
+        },
+        "bitzer": {
+          "name": "MT 2MTE-5Z+2KTE-7Z",
+          "price": 39486.96
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 181 B",
+          "price": 2700
+        },
+        "bitzer": {
+          "name": "2JSL-2Z",
+          "price": 2889
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 36-3,0M",
+          "price": 3500
+        },
+        "bitzer": {
+          "name": "CD0 36-3,0M",
+          "price": 3745
+        }
+      }
+    },
+    {
+      "code": "T2_20_7,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H+CD4 75-4,7H",
+          "price": 38982
+        },
+        "bitzer": {
+          "name": "MT 4PTE-10Z+4MTE-10Z",
+          "price": 42100.56
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 181 B",
+          "price": 1150
+        },
+        "bitzer": {
+          "name": "2JSL-2Z",
+          "price": 1230.5
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 36-3,0M",
+          "price": 1950
+        },
+        "bitzer": {
+          "name": "CD0 36-3,0M",
+          "price": 2086.5
+        }
+      }
+    },
+    {
+      "code": "T2_25_7,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H+CD4 90-6,4H",
+          "price": 39305
+        },
+        "bitzer": {
+          "name": "MT 4MTE-10Z+4MTE-10Z",
+          "price": 42449.4
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 181 B",
+          "price": 750
+        },
+        "bitzer": {
+          "name": "2JSL-2Z",
+          "price": 802.5
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 36-3,0M",
+          "price": 1550
+        },
+        "bitzer": {
+          "name": "CD0 36-3,0M",
+          "price": 1658.5
+        }
+      }
+    },
+    {
+      "code": "T2_30_7,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H+CD4 90-7,3H",
+          "price": 39398
+        },
+        "bitzer": {
+          "name": "MT 4MTE-10Z+4KTE-12Z",
+          "price": 42549.84
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 181 B",
+          "price": 1150
+        },
+        "bitzer": {
+          "name": "2JSL-2Z",
+          "price": 1230.5
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 36-3,0M",
+          "price": 1550
+        },
+        "bitzer": {
+          "name": "CD0 36-3,0M",
+          "price": 1658.5
+        }
+      }
+    },
+    {
+      "code": "T2_35_7,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H+CD4 120-9,2H",
+          "price": 39647
+        },
+        "bitzer": {
+          "name": "MT 4MTE-10Z+4KTE-12Z",
+          "price": 42818.76
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 181 B",
+          "price": 900
+        },
+        "bitzer": {
+          "name": "2JSL-2Z",
+          "price": 963
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 36-3,0M",
+          "price": 1700
+        },
+        "bitzer": {
+          "name": "CD0 36-3,0M",
+          "price": 1819
+        }
+      }
+    },
+    {
+      "code": "T2_40_7,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 120-9,2H+CD4 120-9,2H",
+          "price": 39881
+        },
+        "bitzer": {
+          "name": "MT 4KTE-12Z+4KTE-12Z",
+          "price": 43071.48
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 181 B",
+          "price": 1800
+        },
+        "bitzer": {
+          "name": "2JSL-2Z",
+          "price": 1926
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 36-3,0M",
+          "price": 2600
+        },
+        "bitzer": {
+          "name": "CD0 36-3,0M",
+          "price": 2782
+        }
+      }
+    },
+    {
+      "code": "T2_20_9,3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H+CD4 75-4,7H",
+          "price": 39073
+        },
+        "bitzer": {
+          "name": "MT 4PTE-10Z+4MTE-10Z",
+          "price": 42198.84
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 301 B",
+          "price": 850
+        },
+        "bitzer": {
+          "name": "2HSL-3Z",
+          "price": 909.5
+        }
+      },
+      "lt60": {
+        "dorin": null,
+        "bitzer": null
+      }
+    },
+    {
+      "code": "T2_25_9,3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H+CD4 90-6,4H",
+          "price": 39396
+        },
+        "bitzer": {
+          "name": "MT 4MTE-10Z+4MTE-10Z",
+          "price": 42547.68
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 301 B",
+          "price": 450
+        },
+        "bitzer": {
+          "name": "2HSL-3Z",
+          "price": 481.5
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "0",
+          "price": null
+        },
+        "bitzer": {
+          "name": "0",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "T2_30_9,3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H+CD4 90-7,3H",
+          "price": 39489
+        },
+        "bitzer": {
+          "name": "MT 4MTE-10Z+4KTE-12Z",
+          "price": 42648.12
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 301 B",
+          "price": 850
+        },
+        "bitzer": {
+          "name": "2HSL-3Z",
+          "price": 909.5
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "0",
+          "price": null
+        },
+        "bitzer": {
+          "name": "0",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "T2_35_9,3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H+CD4 120-9,2H",
+          "price": 39738
+        },
+        "bitzer": {
+          "name": "MT 4MTE-10Z+4KTE-12Z",
+          "price": 42917.04
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 301 B",
+          "price": 600
+        },
+        "bitzer": {
+          "name": "2HSL-3Z",
+          "price": 642
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "0",
+          "price": null
+        },
+        "bitzer": {
+          "name": "0",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "T2_40_9,3",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 120-9,2H+CD4 120-9,2H",
+          "price": 39972
+        },
+        "bitzer": {
+          "name": "MT 4KTE-12Z+4KTE-12Z",
+          "price": 43169.76
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "CDS 301 B",
+          "price": 1550
+        },
+        "bitzer": {
+          "name": "2HSL-3Z",
+          "price": 1658.5
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "0",
+          "price": null
+        },
+        "bitzer": {
+          "name": "0",
+          "price": null
+        }
+      }
+    }
+  ],
+  "optionals": [
+    {
+      "id": "carel",
+      "name": "Carel",
+      "price": 1860,
+      "category": "onboard"
+    },
+    {
+      "id": "danfoss_782",
+      "name": "Danfoss 782",
+      "price": 2800,
+      "category": "onboard"
+    },
+    {
+      "id": "heat_recovery",
+      "name": "Heat Recovery",
+      "price": 700,
+      "category": "onboard"
+    },
+    {
+      "id": "ducting",
+      "name": "Ducting",
+      "price": 2200,
+      "category": "onboard"
+    },
+    {
+      "id": "cladding_indoor",
+      "name": "Cladding indoor",
+      "price": 2300,
+      "category": "onboard"
+    },
+    {
+      "id": "cladding_outdoor",
+      "name": "Cladding outdoor",
+      "price": 400,
+      "category": "onboard"
+    },
+    {
+      "id": "muffler_sp",
+      "name": "Muffler spare parts",
+      "price": 1410,
+      "category": "spare"
+    },
+    {
+      "id": "ccmt_sp",
+      "name": "CCMT spare parts",
+      "price": 1200,
+      "category": "spare"
+    },
+    {
+      "id": "gascooler_spare",
+      "name": "3W gascooler Spare",
+      "price": 1150,
+      "category": "spare"
+    },
+    {
+      "id": "diff_mt",
+      "name": "Differential MT",
+      "price": 1600,
+      "category": "spare"
+    },
+    {
+      "id": "diff_mt_lt",
+      "name": "Differentials MT/LT",
+      "price": 1640,
+      "category": "spare"
+    },
+    {
+      "id": "mx_coil",
+      "name": "MX coil",
+      "price": 650,
+      "category": "spare"
+    },
+    {
+      "id": "carton_572a",
+      "name": "572A en carton",
+      "price": 1100,
+      "category": "spare"
+    },
+    {
+      "id": "carton_300t",
+      "name": "300T en carton",
+      "price": 1850,
+      "category": "spare"
+    },
+    {
+      "id": "carton_782a",
+      "name": "782A en carton",
+      "price": 1850,
+      "category": "spare"
+    }
+  ]
+}

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configurator Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow" data-i18n="hero_eyebrow">TAGO, MINIBOOSTER SWISSLINE & MICROBOOSTER CONFIGURATOR STUDIO</p>
+        <h1 data-i18n="hero_title">Configura la tua unità.</h1>
+        <p class="lede" data-i18n="hero_lede">Segui la configurazione guidata, scegli gli optionals e stampa la tua offerta.</p>
+      </div>
+      <div class="cta-row">
+        <button id="startBtn" class="button primary" data-i18n="cta_start">Inizia configurazione</button>
+        <button id="adminToggle" class="button ghost" data-i18n="cta_admin">Area admin</button>
+        <button id="themeToggle" class="button ghost slim" data-i18n="theme_toggle_dark">Dark mode</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="card meta-card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow" data-i18n="meta_eyebrow">Dati progetto</p>
+            <h2 data-i18n="meta_title">Identifica la richiesta</h2>
+          </div>
+        </div>
+        <div class="meta-grid">
+          <label class="field">
+            <span data-i18n="meta_project_name">Nome progetto</span>
+            <input id="projectName" type="text" placeholder="Es. Revamp centro commerciale">
+          </label>
+          <label class="field">
+            <span data-i18n="meta_request_date">Data richiesta</span>
+            <input id="requestDate" type="date">
+          </label>
+          <label class="field">
+            <span data-i18n="meta_owner">Owner</span>
+            <input id="projectOwner" type="text" placeholder="Nome referente">
+          </label>
+          <label class="field">
+            <span data-i18n="meta_language">Lingua documento</span>
+            <select id="projectLanguage">
+              <option value="ITA">ITA</option>
+              <option value="EN">EN</option>
+              <option value="FR">FR</option>
+              <option value="DE/CH">DE/CH</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section id="catalog" class="card">
+        <div class="card-head">
+          <button id="catalogToggle" type="button" class="collapse-toggle" aria-expanded="false" aria-label="Toggle catalogo">
+            <span class="chevron"></span>
+          </button>
+          <div class="catalog-headings">
+            <p class="eyebrow" data-i18n="catalog_eyebrow">Catalogo</p>
+            <h2 data-i18n="catalog_title">Panoramica macchine</h2>
+            <p class="hint" data-i18n="catalog_hint">Tutte le combinazioni MT con le relative opzioni LT e prezzi.</p>
+          </div>
+          <div class="catalog-actions">
+            <div class="filter-chips" id="catalogBrandFilters">
+              <button class="chip active" data-catalog-brand="all" data-i18n="catalog_filter_all">Tutte</button>
+              <button class="chip" data-catalog-brand="dorin" data-i18n="catalog_filter_dorin">Dorin</button>
+              <button class="chip" data-catalog-brand="bitzer" data-i18n="catalog_filter_bitzer">Bitzer</button>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="catalogOnlyLt">
+              <span data-i18n="catalog_toggle_lt">Solo configurazioni con LT</span>
+            </label>
+          </div>
+        </div>
+        <div class="catalog-content">
+          <div id="catalogList" class="catalog-grid"></div>
+          <p id="catalogEmpty" class="hint hidden" data-i18n="catalog_empty">Nessuna combinazione corrisponde ai filtri.</p>
+        </div>
+      </section>
+
+      <div class="layout-with-summary">
+        <section id="funnel" class="card">
+          <div class="card-head">
+            <div>
+              <p class="eyebrow" data-i18n="funnel_eyebrow">Percorso guidato</p>
+              <h2 data-i18n="funnel_title">Scegli passo dopo passo</h2>
+            </div>
+            <div class="step-controls">
+              <button id="prevBtn" class="button ghost" data-i18n="nav_prev">Indietro</button>
+              <div class="step-visual">
+                <div id="stepDots" class="step-dots" aria-label="Avanzamento">
+                  <span class="dot active"></span>
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                </div>
+              </div>
+              <button id="nextBtn" class="button primary" data-i18n="nav_next">Avanti</button>
+            </div>
+          </div>
+
+          <div id="steps">
+            <div class="step" data-step="1">
+              <h3 data-i18n="step1_title">1. Marca</h3>
+              <p class="hint" data-i18n="step1_hint">Scegli se configurare Dorin o Bitzer.</p>
+              <div id="brandOptions" class="option-grid"></div>
+            </div>
+
+            <div class="step" data-step="2">
+              <h3 data-i18n="step2_title">2. Combinazione MT</h3>
+              <p class="hint" data-i18n="step2_hint">Scegli il codice macchina (Stringamot) per la marca selezionata.</p>
+              <div id="codeOptions" class="option-grid"></div>
+            </div>
+
+            <div class="step" data-step="3">
+              <h3 data-i18n="step3_title">3. Compressore LT</h3>
+              <p class="hint" data-i18n="step3_hint">Nessuno o LT disponibile (36/60 bar) della marca scelta.</p>
+              <div id="ltOptions" class="option-grid"></div>
+            </div>
+
+            <div class="step" data-step="4">
+              <h3 data-i18n="step4_title">4. Optionals</h3>
+              <p class="hint" data-i18n="step4_hint">Componenti a bordo o spare parts.</p>
+              <div id="optionalOptions" class="option-grid"></div>
+            </div>
+
+            <div class="step" data-step="5">
+              <h3 data-i18n="step5_title">5. Gascooler</h3>
+              <p class="hint" data-i18n="step5_hint">Flagga se serve il gascooler (prezzi per MT verranno aggiunti).</p>
+              <label class="toggle">
+                <input type="checkbox" id="gascoolerToggle">
+                <span data-i18n="step5_label">Aggiungi gascooler</span>
+              </label>
+            </div>
+
+            <div class="step" data-step="6">
+              <h3 data-i18n="step6_title">6. Trasporto</h3>
+              <p class="hint" data-i18n="step6_hint">Flagga il trasporto, inserisci la città: calcoliamo la distanza in linea d'aria da Treviso.</p>
+              <div class="transport-block">
+                <label class="toggle">
+                  <input type="checkbox" id="transportToggle">
+                  <span data-i18n="step6_label">Richiedi trasporto</span>
+                </label>
+                <label class="field inline-field">
+                  <span data-i18n="step6_country_label">Paese</span>
+                  <select id="transportCountry" disabled>
+                    <option value="">EU/Altro</option>
+                    <option value="IT">Italia</option>
+                    <option value="FR">Francia</option>
+                    <option value="ES">Spagna</option>
+                    <option value="DE">Germania</option>
+                    <option value="GB">UK</option>
+                    <option value="PT">Portogallo</option>
+                    <option value="NL">Olanda</option>
+                    <option value="BE">Belgio</option>
+                    <option value="AT">Austria</option>
+                    <option value="CH">Svizzera</option>
+                  </select>
+                </label>
+                <label class="field inline-field">
+                  <span data-i18n="step6_city_label">Città di consegna</span>
+                  <input id="transportCity" type="text" placeholder="Es. Milano" disabled>
+                </label>
+                <div id="transportSuggestions" class="suggestions"></div>
+                <div id="transportInfo" class="transport-info hint"></div>
+                <p class="hint" data-i18n="step6_hint_suggest">Se non trovi la città, usa quella più vicina con >15k abitanti.</p>
+                <div class="inline-actions">
+                  <button id="transportReset" class="button ghost slim" type="button" data-i18n="step6_reset">Reset trasporto</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="summary-panel">
+          <p class="eyebrow" data-i18n="summary_title">Riepilogo</p>
+          <div id="projectMetaView" class="meta-view"></div>
+          <div id="summaryList" class="summary-list"></div>
+          <label class="field inline-field">
+            <span data-i18n="summary_discount_label">Discount %</span>
+            <input id="discountInput" type="number" min="0" max="100" step="0.5" value="0" placeholder="0%">
+          </label>
+          <div class="total">
+            <p data-i18n="summary_total_label">Totale</p>
+            <h2 id="totalPrice">€ 0</h2>
+            <div class="inline-actions">
+              <button id="printBtn" class="button ghost" data-i18n="summary_print">Stampa offerta</button>
+              <button id="resetBtn" class="button ghost" data-i18n="summary_reset">Reset</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <section id="adminPanel" class="card hidden">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow" data-i18n="admin_title">Area admin</p>
+            <h2 data-i18n="admin_matrix">Matrice prezzi</h2>
+            <p class="hint" data-i18n="admin_hint">Modifica prezzi, esporta il JSON o importa un CSV da Excel (campi: category,id,name,price).</p>
+          </div>
+          <button id="exportBtn" class="button primary" data-i18n="admin_export">Esporta JSON</button>
+        </div>
+
+        <div class="admin-grid">
+          <div>
+            <h4 data-i18n="admin_pricebook">Listino corrente</h4>
+            <div id="pricingTables" class="admin-tables"></div>
+          </div>
+          <div>
+            <h4 data-i18n="admin_quickedit">Modifica rapida</h4>
+            <p class="hint" data-i18n="admin_quickedit_hint">Clicca un prezzo per modificarlo. Salva per aggiornare il configuratore.</p>
+            <button id="savePrices" class="button primary" data-i18n="admin_save">Salva modifiche</button>
+            <div class="upload">
+              <label class="upload-label" for="fileInput" data-i18n="admin_import">Importa CSV o JSON</label>
+              <input type="file" id="fileInput" accept=".csv,.json">
+              <p class="hint" data-i18n="admin_import_hint">CSV da Excel: category,id,name,price</p>
+            </div>
+            <div class="upload">
+              <button id="openPasteModal" class="button primary slim" data-i18n="admin_paste">Incolla da Excel</button>
+              <p class="hint" data-i18n="admin_paste_hint">Incolla direttamente le celle della matrice (TSV) per vedere anteprima e JSON pulito.</p>
+            </div>
+            <textarea id="jsonPreview" class="json-preview" spellcheck="false"></textarea>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="print-sheet">
+      <header class="print-head">
+        <div>
+          <p class="eyebrow" data-i18n="print_heading">Scheda configurazione</p>
+          <h2 id="printTitle" data-i18n="print_title">Offerta</h2>
+        </div>
+        <div id="printProjectMeta" class="meta-view"></div>
+      </header>
+      <div class="print-body">
+        <div class="print-config">
+          <h4 data-i18n="print_config">Configurazione</h4>
+          <div id="printSummaryList" class="summary-list"></div>
+        </div>
+        <div class="print-total">
+          <p data-i18n="print_total_label">Totale</p>
+          <h2 id="printTotal">€ 0</h2>
+        </div>
+      </div>
+    </section>
+
+    <div id="pasteModal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-head">
+          <div>
+            <p class="eyebrow">Incolla da Excel</p>
+            <h3>Matrice prezzi TSV</h3>
+            <p class="hint">Copia le celle dal foglio (tab-separated) e incolla qui. Puliamo valuta e mostriamo la preview.</p>
+          </div>
+          <button id="closePasteModal" class="button ghost">Chiudi</button>
+        </div>
+        <textarea id="pasteArea" rows="6" class="paste-area" placeholder="Incolla qui..."></textarea>
+        <div class="modal-actions">
+          <button id="parsePaste" class="button ghost">Anteprima</button>
+          <button id="confirmPaste" class="button primary" disabled>Conferma</button>
+        </div>
+        <div id="pasteErrors" class="paste-errors"></div>
+        <div id="pasteBadges" class="badge-row"></div>
+        <div class="preview-wrapper">
+          <table id="pastePreview" class="preview-table"></table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
