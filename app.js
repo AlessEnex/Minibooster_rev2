@@ -8,6 +8,7 @@ import {
   resetSelections,
   setCatalogCollapsed,
   updateCatalogCollapseLabel,
+  updateProjectFlow,
   updateSummary,
   updateThemeToggleLabel,
   wireCatalogFilters,
@@ -20,6 +21,7 @@ import {
   renderAdminTables,
   saveAdminChanges,
 } from "./admin.js";
+import { setupPrintButton } from "./print.js";
 
 const projectNameInput = document.getElementById("projectName");
 const requestDateInput = document.getElementById("requestDate");
@@ -44,6 +46,7 @@ const initProjectInputs = () => {
     appState.selections.project[field] = value;
     updateSummary();
     renderCatalog();
+    updateProjectFlow();
     applyTranslations(i18nNodes, updateThemeToggleLabel, updateCatalogCollapseLabel);
   };
 
@@ -84,10 +87,11 @@ const initNavControls = () => {
   );
 
   document.getElementById("resetBtn")?.addEventListener("click", resetSelections);
-  document.getElementById("printBtn")?.addEventListener("click", () => window.print());
 
   document.getElementById("savePrices")?.addEventListener("click", saveAdminChanges);
   document.getElementById("exportBtn")?.addEventListener("click", exportJson);
+  
+  setupPrintButton();
 };
 
 const bootstrap = () => {
@@ -102,6 +106,7 @@ const bootstrap = () => {
   renderAdminTables();
   updateSummary();
   renderCatalog();
+  updateProjectFlow();
   goToStep(1);
   loadPricingMatrix();
   initNavControls();

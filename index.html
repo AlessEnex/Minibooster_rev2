@@ -15,9 +15,32 @@
         <p class="lede" data-i18n="hero_lede">Segui la configurazione guidata, scegli gli optionals e stampa la tua offerta.</p>
       </div>
       <div class="cta-row">
-        <button id="startBtn" class="button primary" data-i18n="cta_start">Inizia configurazione</button>
+        <div class="language-wrapper">
+          <span class="language-label" data-i18n="header_language">Language</span>
+          <select id="projectLanguage" class="language-selector">
+            <option value="ITA">ITA</option>
+            <option value="EN">EN</option>
+            <option value="FR">FR</option>
+            <option value="DE/CH">DE/CH</option>
+          </select>
+        </div>
         <button id="adminToggle" class="button ghost" data-i18n="cta_admin">Area admin</button>
-        <button id="themeToggle" class="button ghost slim" data-i18n="theme_toggle_dark">Dark mode</button>
+        <button id="themeToggle" class="button ghost slim icon-btn" aria-label="Toggle theme">
+          <svg class="theme-icon sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="theme-icon moon-icon hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
       </div>
     </header>
 
@@ -41,15 +64,6 @@
           <label class="field">
             <span data-i18n="meta_owner">Owner</span>
             <input id="projectOwner" type="text" placeholder="Nome referente">
-          </label>
-          <label class="field">
-            <span data-i18n="meta_language">Lingua documento</span>
-            <select id="projectLanguage">
-              <option value="ITA">ITA</option>
-              <option value="EN">EN</option>
-              <option value="FR">FR</option>
-              <option value="DE/CH">DE/CH</option>
-            </select>
           </label>
         </div>
       </section>
@@ -82,8 +96,19 @@
         </div>
       </section>
 
+      <section id="machineTypeSelector" class="card hidden">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow" data-i18n="machine_eyebrow">Tipo macchina</p>
+            <h2 data-i18n="machine_title">Seleziona la famiglia</h2>
+            <p class="hint" data-i18n="machine_hint">Scegli il tipo di macchina da configurare.</p>
+          </div>
+        </div>
+        <div id="machineTypeOptions" class="option-grid"></div>
+      </section>
+
       <div class="layout-with-summary">
-        <section id="funnel" class="card">
+        <section id="funnel" class="card hidden">
           <div class="card-head">
             <div>
               <p class="eyebrow" data-i18n="funnel_eyebrow">Percorso guidato</p>
@@ -243,10 +268,10 @@
         <div class="print-config">
           <h4 data-i18n="print_config">Configurazione</h4>
           <div id="printSummaryList" class="summary-list"></div>
-        </div>
-        <div class="print-total">
-          <p data-i18n="print_total_label">Totale</p>
-          <h2 id="printTotal">€ 0</h2>
+          <div class="print-total">
+            <p data-i18n="print_total_label">Totale</p>
+            <h2 id="printTotal">€ 0</h2>
+          </div>
         </div>
       </div>
     </section>

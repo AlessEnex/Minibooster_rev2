@@ -5,9 +5,16 @@ import {
   formatPrice,
   getOptionals,
   groupMtByName,
+  machineTypes,
+  isProjectComplete,
+  getFilteredConfigs,
 } from "./state.js";
 import { getDictionary } from "./i18n.js";
 
+const machineTypeOptions = document.getElementById("machineTypeOptions");
+const machineTypeSelector = document.getElementById("machineTypeSelector");
+const funnelSection = document.getElementById("funnel");
+const summaryPanel = document.querySelector(".summary-panel");
 const brandOptions = document.getElementById("brandOptions");
 const codeOptions = document.getElementById("codeOptions");
 const ltOptions = document.getElementById("ltOptions");
@@ -66,6 +73,39 @@ const renderOptionCard = (item, group, multiple, opts = {}) => {
       }
     } else {
       appState.selections[group] = item.id;
+      if (group === "machineType") {
+        // Reset tutto quando cambia tipo macchina
+        appState.selections.brand = null;
+        appState.selections.mtKey = null;
+        appState.selections.ltPressure = null;
+        appState.selections.ltChoice = null;
+        appState.selections.optionals = new Set();
+        // Mostra il funnel e renderizza
+        if (funnelSection) funnelSection.classList.remove("hidden");
+        renderUserPanels();
+        updateSummary();
+        goToStep(1);
+        // Forza scroll con spazio temporaneo
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            if (funnelSection) {
+              const rect = funnelSection.getBoundingClientRect();
+              const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+              const targetPosition = rect.top + scrollTop;
+              const viewportHeight = window.innerHeight;
+              
+              // Aggiungi padding-bottom per garantire spazio di scroll
+              const body = document.body;
+              const neededPadding = viewportHeight;
+              body.style.paddingBottom = neededPadding + "px";
+              
+              // Scroll
+              window.scrollTo({ top: targetPosition, behavior: "smooth" });
+            }
+          });
+        });
+        return; // Evita doppio render sotto
+      }
       if (group === "brand") {
         appState.selections.mtKey = null;
         appState.selections.ltPressure = null;
@@ -77,15 +117,48 @@ const renderOptionCard = (item, group, multiple, opts = {}) => {
         appState.selections.ltChoice = null;
         appState.selections.optionals = new Set();
       }
-      if (group === "ltChoice" && item.pressure) {
-        appState.selections.ltPressure = item.pressure;
+      if (group === "ltChoice") {
+        if (item.pressure) {
+          appState.selections.ltPressure = item.pressure;
+        }
+        // Rimuovi differentials incompatibili quando cambia LT
+        const hasLT = item.id !== "none";
+        if (hasLT) {
+          // Se ora c'è LT, rimuovi "diff_mt" e mantieni solo "diff_mt_lt"
+          appState.selections.optionals.delete("diff_mt");
+        } else {
+          // Se ora NON c'è LT, rimuovi "diff_mt_lt" e mantieni solo "diff_mt"
+          appState.selections.optionals.delete("diff_mt_lt");
+        }
       }
     }
     renderUserPanels();
     updateSummary();
+    
+    // Auto-avanzamento per gli step 1, 2, 3 (selezioni singole)
+    if (!multiple && (group === "brand" || group === "mtKey" || group === "ltChoice")) {
+      setTimeout(() => goToStep(appState.step + 1), 300);
+    }
   });
 
   return option;
+};
+
+const renderMachineTypeOptions = () => {
+  if (!machineTypeOptions) return;
+  machineTypeOptions.innerHTML = "";
+  machineTypes.forEach((machine) => {
+    const option = renderOptionCard(
+      {
+        id: machine.id,
+        name: machine.name,
+        price: 0,
+      },
+      "machineType",
+      false
+    );
+    machineTypeOptions.appendChild(option);
+  });
 };
 
 const renderBrandOptions = () => {
@@ -118,12 +191,10 @@ const renderCodeOptions = () => {
   }
   const grouped = groupMtByName(appState.selections.brand);
   grouped.forEach((item) => {
-    const ltCount = item.lt36Options.length + item.lt60Options.length;
     const option = renderOptionCard(
       {
         id: item.id,
         name: item.mtName,
-        badge: ltCount > 0 ? `${ltCount} LT` : "Solo MT",
         price: item.mtPrice,
       },
       "mtKey",
@@ -211,6 +282,10 @@ const renderOptionalOptions = () => {
   if (!optionalOptions) return;
   optionalOptions.innerHTML = "";
   const optionals = getOptionals();
+  
+  // Verifica se c'è LT selezionato (diverso da null e "none")
+  const hasLT = appState.selections.ltChoice && appState.selections.ltChoice !== "none";
+  
   const groups = [
     { title: "Controllori", ids: ["carel", "danfoss_782"], exclusiveIds: [] },
     { title: "Opzioni", ids: ["heat_recovery", "ducting"], exclusiveIds: [] },
@@ -228,6 +303,10 @@ const renderOptionalOptions = () => {
     container.className = "option-group";
     container.innerHTML = `<h4>${group.title}</h4>`;
     group.ids.forEach((id) => {
+      // Filtra i differentials basandosi sulla presenza di LT
+      if (id === "diff_mt" && hasLT) return; // Salta "Differential MT" se c'è LT
+      if (id === "diff_mt_lt" && !hasLT) return; // Salta "Differentials MT/LT" se NON c'è LT
+      
       const opt = optionals.find((o) => o.id === id);
       if (!opt) return;
       const exclusiveIds = group.exclusiveIds?.includes(id) ? group.exclusiveIds : [];
@@ -263,11 +342,46 @@ const renderProjectMeta = () => {
 };
 
 export const renderUserPanels = () => {
+  renderMachineTypeOptions();
   renderBrandOptions();
   renderCodeOptions();
   renderLtOptions();
   renderOptionalOptions();
   renderProjectMeta();
+  updateProjectFlow();
+};
+
+export const updateProjectFlow = () => {
+  const projectComplete = isProjectComplete();
+  const wasHidden = machineTypeSelector?.classList.contains("hidden");
+  
+  if (projectComplete) {
+    if (machineTypeSelector) {
+      machineTypeSelector.classList.remove("hidden");
+      // Scroll solo se era nascosto prima (prima volta che diventa completo)
+      if (wasHidden) {
+        setTimeout(() => {
+          const rect = machineTypeSelector.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const targetPosition = rect.top + scrollTop;
+          const viewportHeight = window.innerHeight;
+          
+          // Aggiungi padding-bottom per garantire spazio di scroll
+          const body = document.body;
+          const neededPadding = viewportHeight;
+          body.style.paddingBottom = neededPadding + "px";
+          
+          // Scroll
+          window.scrollTo({ top: targetPosition, behavior: "smooth" });
+        }, 100);
+      }
+    }
+    if (summaryPanel) summaryPanel.classList.remove("hidden");
+  } else {
+    if (machineTypeSelector) machineTypeSelector.classList.add("hidden");
+    if (funnelSection) funnelSection.classList.add("hidden");
+    if (summaryPanel) summaryPanel.classList.add("hidden");
+  }
 };
 
 export const updateSummary = () => {
@@ -489,7 +603,18 @@ export const applyCatalogSelection = (brand, mtKey) => {
 export const updateThemeToggleLabel = (dict = getDictionary()) => {
   if (!themeToggleBtn) return;
   const isDark = appState.ui.theme === "dark";
-  themeToggleBtn.textContent = isDark ? dict.theme_toggle_light : dict.theme_toggle_dark;
+  const sunIcon = themeToggleBtn.querySelector(".sun-icon");
+  const moonIcon = themeToggleBtn.querySelector(".moon-icon");
+  
+  if (sunIcon && moonIcon) {
+    if (isDark) {
+      sunIcon.classList.add("hidden");
+      moonIcon.classList.remove("hidden");
+    } else {
+      sunIcon.classList.remove("hidden");
+      moonIcon.classList.add("hidden");
+    }
+  }
 };
 
 export const setTheme = (theme) => {

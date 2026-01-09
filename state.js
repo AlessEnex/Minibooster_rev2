@@ -3,6 +3,7 @@ const clone = (value) => JSON.parse(JSON.stringify(value));
 export const appState = {
   step: 1,
   selections: {
+    machineType: null,
     brand: null,
     mtKey: null,
     ltPressure: null,
@@ -28,6 +29,25 @@ export const appState = {
     theme: "light",
     catalogCollapsed: true,
   },
+};
+
+export const machineTypes = [
+  { id: "TAGO", name: "TAGO", prefix: "T" },
+  { id: "MBS", name: "MBS SWISSLINE", prefix: "MBS" },
+  { id: "MCB", name: "MICROBOOSTER", prefix: "MCB" },
+];
+
+export const isProjectComplete = () => {
+  const { name, date, owner } = appState.selections.project;
+  return Boolean(name?.trim() && date?.trim() && owner?.trim());
+};
+
+export const getFilteredConfigs = () => {
+  const configs = getConfigs();
+  if (!appState.selections.machineType) return configs;
+  const machineType = machineTypes.find((m) => m.id === appState.selections.machineType);
+  if (!machineType) return configs;
+  return configs.filter((cfg) => cfg.code?.startsWith(machineType.prefix));
 };
 
 export const catalogFilters = { brand: "all", onlyLt: false };
@@ -182,9 +202,50 @@ export const buildConfigsFromRecords = (records) => {
   return Array.from(map.values());
 };
 
+export const buildOptionalsFromRecords = (records) => {
+  const optionalFields = [
+    { field: "carel", id: "carel", name: "Carel", category: "onboard" },
+    { field: "danfoss_782", id: "danfoss_782", name: "Danfoss 782", category: "onboard" },
+    { field: "heat_recovery", id: "heat_recovery", name: "Heat Recovery", category: "onboard" },
+    { field: "ducting", id: "ducting", name: "Ducting", category: "onboard" },
+    { field: "cladding_indoor", id: "cladding_indoor", name: "Cladding indoor", category: "onboard" },
+    { field: "cladding_outdoor", id: "cladding_outdoor", name: "Cladding outdoor", category: "onboard" },
+    { field: "muffler_sp", id: "muffler_sp", name: "Muffler spare parts", category: "spare" },
+    { field: "ccmt_sp", id: "ccmt_sp", name: "CCMT spare parts", category: "spare" },
+    { field: "gascooler_spare", id: "gascooler_spare", name: "3W gascooler Spare", category: "spare" },
+    { field: "diff_mt", id: "diff_mt", name: "Differential MT", category: "spare" },
+    { field: "diff_mt_lt", id: "diff_mt_lt", name: "Differentials MT/LT", category: "spare" },
+    { field: "mx_coil", id: "mx_coil", name: "MX coil", category: "spare" },
+    { field: "carton_572a", id: "carton_572a", name: "572A en carton", category: "spare" },
+    { field: "carton_300t", id: "carton_300t", name: "300T en carton", category: "spare" },
+    { field: "carton_782a", id: "carton_782a", name: "782A en carton", category: "spare" },
+  ];
+
+  const priceMap = new Map();
+  
+  optionalFields.forEach((opt) => {
+    const prices = records
+      .map((r) => r[opt.field])
+      .filter((p) => p !== null && p !== undefined && !Number.isNaN(p));
+    
+    if (prices.length > 0) {
+      const avgPrice = prices.reduce((sum, p) => sum + p, 0) / prices.length;
+      priceMap.set(opt.id, Math.round(avgPrice));
+    }
+  });
+
+  return optionalFields.map((opt) => ({
+    id: opt.id,
+    name: opt.name,
+    price: priceMap.get(opt.id) ?? (getOptionals().find((o) => o.id === opt.id)?.price ?? 0),
+    category: opt.category,
+  }));
+};
+
 export const groupMtByName = (brand) => {
   const grouped = new Map();
-  configs.forEach((cfg) => {
+  const filteredConfigs = getFilteredConfigs();
+  filteredConfigs.forEach((cfg) => {
     const mt = cfg.mt[brand];
     if (!mt || mt.price === null) return;
     const key = `${brand}:${mt.name}`;

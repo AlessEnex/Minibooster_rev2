@@ -154,6 +154,74 @@ body.dark-mode .collapse-toggle .chevron {
   align-items: center;
 }
 
+.language-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.language-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.language-selector {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--ink);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1.5L6 6.5L11 1.5" stroke="%23666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.5rem;
+}
+
+.language-selector:hover {
+  border-color: var(--accent);
+}
+
+.language-selector:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.language-selector option {
+  background: var(--card);
+  color: var(--ink);
+  padding: 0.5rem;
+}
+
+body.dark-mode .language-selector {
+  background-image: url('data:image/svg+xml;utf8,<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1.5L6 6.5L11 1.5" stroke="%2394a3b8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  min-width: auto;
+  border: none !important;
+  background: transparent !important;
+}
+
+.theme-icon {
+  display: block;
+  transition: transform 0.2s;
+}
+
+.icon-btn:hover .theme-icon {
+  transform: rotate(15deg);
+}
+
 .button {
   border: 1px solid transparent;
   border-radius: 999px;
@@ -448,6 +516,8 @@ body.dark-mode .option {
 
 body.dark-mode .option.selected {
   background: linear-gradient(180deg, #0b1221, #0c1627);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent), 0 10px 30px rgba(96, 165, 250, 0.2);
 }
 
 .catalog-content {
@@ -1014,41 +1084,135 @@ body.dark-mode .summary-row {
 }
 
 @media print {
-  body {
-    background: #ffffff;
+  * {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    background: white !important;
+    color: black !important;
+    border-color: #000 !important;
   }
+  
+  @page {
+    margin: 0.5cm;
+    size: A4;
+  }
+  
+  body,
+  body.dark-mode {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0;
+    padding: 0;
+    font-size: 8pt;
+  }
+  
   .hero,
   #adminPanel,
   .cta-row,
   .upload,
   #openPasteModal,
-  #adminToggle {
+  #adminToggle,
+  #catalog,
+  #machineTypeSelector {
     display: none !important;
   }
+  
   .card,
   .summary-panel,
   .meta-card,
-  .layout-with-summary {
+  .layout-with-summary,
+  #funnel {
     display: none !important;
   }
+  
   .print-sheet {
     display: block !important;
-    page-break-inside: avoid;
+    page-break-before: avoid !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
-  body {
-    color: #000;
+  
+  .print-head {
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #000 !important;
   }
-  .summary-row {
-    border-bottom-color: rgba(0, 0, 0, 0.12);
-    color: #000;
+  
+  .print-head h2 {
+    font-size: 12pt;
+    font-weight: normal;
+    margin: 0;
+    color: #000 !important;
   }
-  .summary-row span:last-child {
-    color: #000;
+  
+  .print-head .eyebrow {
+    font-size: 6pt;
+    font-weight: normal;
+    margin: 0 0 2px 0;
+    color: #000 !important;
   }
+  
   .meta-view {
     border: none;
-    background: transparent;
+    background: transparent !important;
     padding: 0;
-    color: #000;
+    color: #000 !important;
+    font-size: 6pt;
+    line-height: 1.3;
+  }
+  
+  .meta-view div {
+    margin: 0;
+    color: #000 !important;
+  }
+  
+  .print-body {
+    gap: 3px;
+  }
+  
+  .print-config {
+    page-break-inside: auto;
+  }
+  
+  .print-config h4 {
+    font-size: 8pt;
+    font-weight: normal;
+    margin: 3px 0 2px 0;
+    color: #000 !important;
+  }
+  
+  .summary-row {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
+    color: #000 !important;
+    background: white !important;
+    padding: 1.5px 0;
+    font-size: 7pt;
+    line-height: 1.4;
+  }
+  
+  .summary-row span:last-child {
+    color: #000 !important;
+    font-weight: normal;
+  }
+  
+  .total-row {
+    margin-top: 6px;
+    padding-top: 4px;
+    border-top: 1px solid #000 !important;
+    font-size: 8pt !important;
+  }
+  
+  .total-row strong {
+    font-weight: 600 !important;
+  }
+  
+  .print-total {
+    display: none !important;
+  }
+  
+  body {
+    color: #000 !important;
   }
 }

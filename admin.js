@@ -1,6 +1,7 @@
 import {
   appState,
   buildConfigsFromRecords,
+  buildOptionalsFromRecords,
   effectiveLength,
   getConfigs,
   getOptionals,
@@ -213,7 +214,9 @@ export const closePasteModal = () => {
 
 export const confirmParsedRecords = () => {
   const nextConfigs = buildConfigsFromRecords(lastParsedRecords);
+  const nextOptionals = buildOptionalsFromRecords(lastParsedRecords);
   setConfigs(nextConfigs);
+  setOptionals(nextOptionals);
   renderUserPanels();
   updateSummary();
   renderAdminTables();
