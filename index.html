@@ -124,7 +124,7 @@
                   <span class="dot"></span>
                   <span class="dot"></span>
                   <span class="dot"></span>
-                </div>
+                  <span class="dot"></span>                <span class="dot"></span>                </div>
               </div>
               <button id="nextBtn" class="button primary" data-i18n="nav_next">Avanti</button>
             </div>
@@ -150,30 +150,42 @@
             </div>
 
             <div class="step" data-step="4">
-              <h3 data-i18n="step4_title">4. Optionals</h3>
-              <p class="hint" data-i18n="step4_hint">Componenti a bordo o spare parts.</p>
-              <div id="optionalOptions" class="option-grid"></div>
+              <h3 data-i18n="step4_title">4. Quadro elettrico</h3>
+              <p class="hint" data-i18n="step4_hint">Scegli se includere il quadro elettrico, differenziali e MX coil.</p>
+              <div id="electricalPanelOptions" class="option-grid"></div>
             </div>
 
             <div class="step" data-step="5">
-              <h3 data-i18n="step5_title">5. Gascooler</h3>
-              <p class="hint" data-i18n="step5_hint">Flagga se serve il gascooler (prezzi per MT verranno aggiunti).</p>
-              <label class="toggle">
-                <input type="checkbox" id="gascoolerToggle">
-                <span data-i18n="step5_label">Aggiungi gascooler</span>
-              </label>
+              <h3 data-i18n="step5_title">5. Controlli</h3>
+              <p class="hint" data-i18n="step5_hint">Scegli il tipo di controllo (Wurm, Danfoss, Carel).</p>
+              <div id="controlOptions" class="option-grid"></div>
             </div>
 
             <div class="step" data-step="6">
-              <h3 data-i18n="step6_title">6. Trasporto</h3>
-              <p class="hint" data-i18n="step6_hint">Flagga il trasporto, inserisci la città: calcoliamo la distanza in linea d'aria da Treviso.</p>
+              <h3 data-i18n="step6_title">6. Optionals</h3>
+              <p class="hint" data-i18n="step6_hint">Componenti a bordo o spare parts.</p>
+              <div id="optionalOptions" class="option-grid"></div>
+            </div>
+
+            <div class="step" data-step="7">
+              <h3 data-i18n="step7_title">7. Gascooler</h3>
+              <p class="hint" data-i18n="step7_hint">Flagga se serve il gascooler (prezzi per MT verranno aggiunti).</p>
+              <label class="toggle">
+                <input type="checkbox" id="gascoolerToggle">
+                <span data-i18n="step7_label">Aggiungi gascooler</span>
+              </label>
+            </div>
+
+            <div class="step" data-step="8">
+              <h3 data-i18n="step8_title">8. Trasporto</h3>
+              <p class="hint" data-i18n="step8_hint">Flagga il trasporto, inserisci la città: calcoliamo la distanza in linea d'aria da Treviso.</p>
               <div class="transport-block">
                 <label class="toggle">
                   <input type="checkbox" id="transportToggle">
-                  <span data-i18n="step6_label">Richiedi trasporto</span>
+                  <span data-i18n="step8_label">Richiedi trasporto</span>
                 </label>
                 <label class="field inline-field">
-                  <span data-i18n="step6_country_label">Paese</span>
+                  <span data-i18n="step8_country_label">Paese</span>
                   <select id="transportCountry" disabled>
                     <option value="">EU/Altro</option>
                     <option value="IT">Italia</option>
@@ -189,14 +201,14 @@
                   </select>
                 </label>
                 <label class="field inline-field">
-                  <span data-i18n="step6_city_label">Città di consegna</span>
+                  <span data-i18n="step8_city_label">Città di consegna</span>
                   <input id="transportCity" type="text" placeholder="Es. Milano" disabled>
                 </label>
                 <div id="transportSuggestions" class="suggestions"></div>
                 <div id="transportInfo" class="transport-info hint"></div>
-                <p class="hint" data-i18n="step6_hint_suggest">Se non trovi la città, usa quella più vicina con >15k abitanti.</p>
+                <p class="hint" data-i18n="step8_hint_suggest">Se non trovi la città, usa quella più vicina con >15k abitanti.</p>
                 <div class="inline-actions">
-                  <button id="transportReset" class="button ghost slim" type="button" data-i18n="step6_reset">Reset trasporto</button>
+                  <button id="transportReset" class="button ghost slim" type="button" data-i18n="step8_reset">Reset trasporto</button>
                 </div>
               </div>
             </div>
@@ -241,6 +253,10 @@
             <h4 data-i18n="admin_quickedit">Modifica rapida</h4>
             <p class="hint" data-i18n="admin_quickedit_hint">Clicca un prezzo per modificarlo. Salva per aggiornare il configuratore.</p>
             <button id="savePrices" class="button primary" data-i18n="admin_save">Salva modifiche</button>
+            <div class="upload">
+              <button id="copyExcelHeaders" class="button ghost slim" data-i18n="admin_copy_headers">📋 Copia Header Excel</button>
+              <p class="hint" data-i18n="admin_copy_headers_hint">Copia la riga di intestazioni attesa dal sistema (con colonne _availability). Incollala come prima riga in Excel.</p>
+            </div>
             <div class="upload">
               <label class="upload-label" for="fileInput" data-i18n="admin_import">Importa CSV o JSON</label>
               <input type="file" id="fileInput" accept=".csv,.json">

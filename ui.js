@@ -4,6 +4,7 @@ import {
   formatDate,
   formatPrice,
   getOptionals,
+  getAvailableOptionals,
   groupMtByName,
   machineTypes,
   isProjectComplete,
@@ -18,6 +19,8 @@ const summaryPanel = document.querySelector(".summary-panel");
 const brandOptions = document.getElementById("brandOptions");
 const codeOptions = document.getElementById("codeOptions");
 const ltOptions = document.getElementById("ltOptions");
+const electricalPanelOptions = document.getElementById("electricalPanelOptions");
+const controlOptions = document.getElementById("controlOptions");
 const optionalOptions = document.getElementById("optionalOptions");
 const summaryList = document.getElementById("summaryList");
 const projectMetaView = document.getElementById("projectMetaView");
@@ -59,7 +62,11 @@ const renderOptionCard = (item, group, multiple, opts = {}) => {
   const isSelected = multiple
     ? appState.selections[group].has(item.id)
     : appState.selections[group] === item.id;
-  if (isSelected) option.classList.add("selected");
+  if (isSelected) {
+    option.classList.add("selected");
+    // Aggiungi classe included solo se selezionato E prezzo -1
+    if (item.price === -1) option.classList.add("included");
+  }
 
   option.addEventListener("click", () => {
     if (multiple) {
@@ -278,37 +285,61 @@ const renderLtOptions = () => {
   }
 };
 
-const renderOptionalOptions = () => {
-  if (!optionalOptions) return;
-  optionalOptions.innerHTML = "";
-  const optionals = getOptionals();
+const renderElectricalPanelOptions = () => {
+  if (!electricalPanelOptions) return;
+  electricalPanelOptions.innerHTML = "";
+  
+  // Ottieni optionals filtrati in base al machineType selezionato
+  const optionals = getAvailableOptionals(appState.selections.machineType);
+  
+  // Trova electrical_panel optional
+  const electricalPanelOpt = optionals.find(o => o.id === 'electrical_panel');
+  
+  // Renderizza electrical_panel come prima option card
+  if (electricalPanelOpt && electricalPanelOpt.price !== null && electricalPanelOpt.price !== undefined) {
+    const panelCard = renderOptionCard(
+      {
+        id: electricalPanelOpt.id,
+        name: electricalPanelOpt.name,
+        price: electricalPanelOpt.price,
+        badge: "Main",
+      },
+      "optionals",
+      true, // Multiple = true per gestirlo come Set
+      { exclusiveIds: [] }
+    );
+    electricalPanelOptions.appendChild(panelCard);
+  }
+  
+  // Se electrical_panel non è selezionato, non mostrare il resto
+  const hasElectricalPanel = appState.selections.optionals.has('electrical_panel');
+  if (!hasElectricalPanel) {
+    return;
+  }
   
   // Verifica se c'è LT selezionato (diverso da null e "none")
   const hasLT = appState.selections.ltChoice && appState.selections.ltChoice !== "none";
   
   const groups = [
-    { title: "Controllori", ids: ["carel", "danfoss_782"], exclusiveIds: [] },
-    { title: "Opzioni", ids: ["heat_recovery", "ducting"], exclusiveIds: [] },
-    { title: "Carenatura", ids: ["cladding_indoor", "cladding_outdoor"], exclusiveIds: ["cladding_indoor", "cladding_outdoor"] },
-    { title: "Quadro elettrico", ids: ["diff_mt", "diff_mt_lt", "mx_coil"], exclusiveIds: ["diff_mt", "diff_mt_lt"] },
-    {
-      title: "Accessori spare parts",
-      ids: ["muffler_sp", "ccmt_sp", "gascooler_spare", "carton_572a", "carton_300t", "carton_782a"],
-      exclusiveIds: [],
-    },
+    { title: "Componenti quadro", ids: ["diff_mt", "diff_mt_lt", "mx_coil"], exclusiveIds: ["diff_mt", "diff_mt_lt"] },
   ];
 
   groups.forEach((group) => {
     const container = document.createElement("div");
     container.className = "option-group";
     container.innerHTML = `<h4>${group.title}</h4>`;
+    let hasVisibleItems = false;
+    
     group.ids.forEach((id) => {
       // Filtra i differentials basandosi sulla presenza di LT
       if (id === "diff_mt" && hasLT) return; // Salta "Differential MT" se c'è LT
       if (id === "diff_mt_lt" && !hasLT) return; // Salta "Differentials MT/LT" se NON c'è LT
       
       const opt = optionals.find((o) => o.id === id);
-      if (!opt) return;
+      if (!opt) return; // Non renderizzare se non disponibile per questo machineType
+      if (opt.price === null || opt.price === undefined) return; // Non renderizzare se Not Available (NA)
+      
+      hasVisibleItems = true;
       const exclusiveIds = group.exclusiveIds?.includes(id) ? group.exclusiveIds : [];
       const optionEl = renderOptionCard(
         {
@@ -323,7 +354,123 @@ const renderOptionalOptions = () => {
       );
       container.appendChild(optionEl);
     });
-    optionalOptions.appendChild(container);
+    
+    // Aggiungi il gruppo solo se ha elementi visibili
+    if (hasVisibleItems) {
+      electricalPanelOptions.appendChild(container);
+    }
+  });
+};
+
+const renderControlOptions = () => {
+  if (!controlOptions) return;
+  controlOptions.innerHTML = "";
+  
+  // Ottieni optionals filtrati in base al machineType selezionato
+  const optionals = getAvailableOptionals(appState.selections.machineType);
+  
+  // Se electrical_panel non è selezionato, mostra messaggio
+  const hasElectricalPanel = appState.selections.optionals.has('electrical_panel');
+  if (!hasElectricalPanel) {
+    const message = document.createElement("p");
+    message.className = "hint";
+    message.textContent = "Seleziona il quadro elettrico nello step precedente per scegliere i controlli.";
+    controlOptions.appendChild(message);
+    return;
+  }
+  
+  const groups = [
+    { title: "Controllori", ids: ["danfoss_572a", "danfoss_782", "carel", "wurm"], exclusiveIds: ["danfoss_572a", "danfoss_782", "carel", "wurm"] },
+  ];
+
+  groups.forEach((group) => {
+    const container = document.createElement("div");
+    container.className = "option-group";
+    container.innerHTML = `<h4>${group.title}</h4>`;
+    let hasVisibleItems = false;
+    
+    group.ids.forEach((id) => {
+      const opt = optionals.find((o) => o.id === id);
+      if (!opt) return; // Non renderizzare se non disponibile per questo machineType
+      if (opt.price === null || opt.price === undefined) return; // Non renderizzare se Not Available (NA)
+      
+      hasVisibleItems = true;
+      const exclusiveIds = group.exclusiveIds?.includes(id) ? group.exclusiveIds : [];
+      const optionEl = renderOptionCard(
+        {
+          id: opt.id,
+          name: opt.name,
+          price: opt.price,
+          badge: opt.category === "onboard" ? "On-board" : "Spare",
+        },
+        "optionals",
+        true,
+        { exclusiveIds }
+      );
+      container.appendChild(optionEl);
+    });
+    
+    // Aggiungi il gruppo solo se ha elementi visibili
+    if (hasVisibleItems) {
+      controlOptions.appendChild(container);
+    }
+  });
+};
+
+const renderElectricalOptions = () => {
+  renderElectricalPanelOptions();
+  renderControlOptions();
+};
+
+const renderOptionalOptions = () => {
+  if (!optionalOptions) return;
+  optionalOptions.innerHTML = "";
+  
+  // Ottieni optionals filtrati in base al machineType selezionato
+  const optionals = getAvailableOptionals(appState.selections.machineType);
+  
+  const groups = [
+    { title: "Opzioni", ids: ["heat_recovery", "ducting", "valvole_meccaniche"], exclusiveIds: [] },
+    { title: "Carenatura", ids: ["cladding_indoor", "cladding_outdoor"], exclusiveIds: ["cladding_indoor", "cladding_outdoor"] },
+    { title: "Inverter", ids: ["inverter_fc280", "inverter_fc103"], exclusiveIds: ["inverter_fc280", "inverter_fc103"] },
+    {
+      title: "Accessori spare parts",
+      ids: ["muffler_sp", "ccmt_sp", "gascooler_spare", "watergate", "carton_572a", "carton_300t", "carton_782a"],
+      exclusiveIds: [],
+    },
+  ];
+
+  groups.forEach((group) => {
+    const container = document.createElement("div");
+    container.className = "option-group";
+    container.innerHTML = `<h4>${group.title}</h4>`;
+    let hasVisibleItems = false;
+    
+    group.ids.forEach((id) => {
+      const opt = optionals.find((o) => o.id === id);
+      if (!opt) return; // Non renderizzare se non disponibile per questo machineType
+      if (opt.price === null || opt.price === undefined) return; // Non renderizzare se Not Available (NA)
+      
+      hasVisibleItems = true;
+      const exclusiveIds = group.exclusiveIds?.includes(id) ? group.exclusiveIds : [];
+      const optionEl = renderOptionCard(
+        {
+          id: opt.id,
+          name: opt.name,
+          price: opt.price,
+          badge: opt.category === "onboard" ? "On-board" : "Spare",
+        },
+        "optionals",
+        true,
+        { exclusiveIds }
+      );
+      container.appendChild(optionEl);
+    });
+    
+    // Aggiungi il gruppo solo se ha elementi visibili
+    if (hasVisibleItems) {
+      optionalOptions.appendChild(container);
+    }
   });
 };
 
@@ -346,6 +493,7 @@ export const renderUserPanels = () => {
   renderBrandOptions();
   renderCodeOptions();
   renderLtOptions();
+  renderElectricalOptions();
   renderOptionalOptions();
   renderProjectMeta();
   updateProjectFlow();
@@ -419,7 +567,10 @@ export const updateSummary = () => {
   const optItems = getOptionals().filter((o) => appState.selections.optionals.has(o.id));
   optItems.forEach((o) => {
     rows.push([dict.summary_optional_label || "Optional", o.name, o.price]);
-    total += o.price;
+    // Somma al totale solo se il prezzo è > 0 (esclude null, -1=Included, 0)
+    if (o.price > 0) {
+      total += o.price;
+    }
   });
 
   if (appState.selections.gascooler) {
@@ -542,7 +693,7 @@ export const renderCatalog = () => {
 };
 
 export const goToStep = (step) => {
-  appState.step = Math.max(1, Math.min(6, step));
+  appState.step = Math.max(1, Math.min(8, step));
   if (stepDots) {
     Array.from(stepDots.children).forEach((dot, idx) => {
       dot.classList.toggle("active", idx < appState.step);
@@ -561,7 +712,7 @@ export const resetSelections = () => {
     mtKey: null,
     ltPressure: null,
     ltChoice: null,
-    optionals: new Set(),
+    optionals: new Set(['electrical_panel']),
     discount: 0,
     project: appState.selections.project,
     gascooler: false,
@@ -592,7 +743,7 @@ export const applyCatalogSelection = (brand, mtKey) => {
   appState.selections.mtKey = mtKey;
   appState.selections.ltPressure = null;
   appState.selections.ltChoice = null;
-  appState.selections.optionals = new Set();
+  appState.selections.optionals = new Set(['electrical_panel']);
   renderUserPanels();
   updateSummary();
   goToStep(3);
@@ -676,9 +827,9 @@ export const wireCatalogFilters = () => {
     applyCatalogSelection(btn.dataset.brand, btn.dataset.mtKey);
   });
 
-  catalogToggleBtn?.addEventListener("click", () =>
-    setCatalogCollapsed(!appState.ui.catalogCollapsed)
-  );
+  catalogToggleBtn?.addEventListener("click", () => {
+    setCatalogCollapsed(!appState.ui.catalogCollapsed);
+  });
 
   themeToggleBtn?.addEventListener("click", () => {
     setTheme(appState.ui.theme === "dark" ? "light" : "dark");
@@ -962,7 +1113,7 @@ const updateTransport = async (opts = {}) => {
   const countryFilter = transportCountrySelect?.value || "";
   const dict = getDictionary();
   if (transportInfo && enabled && cityIndexStatus === "loading") {
-    transportInfo.textContent = dict.step6_info_loading || "Carico database città...";
+    transportInfo.textContent = dict.step8_info_loading || "Carico database città...";
   }
   const coords = enabled ? await lookupCity(key) : null;
   let km = 0;
@@ -985,18 +1136,19 @@ const updateTransport = async (opts = {}) => {
     } else if (!cityRaw) {
       transportInfo.textContent = "";
     } else if (cityIndexStatus === "missing") {
-      transportInfo.textContent = dict.step6_info_dataset_missing || "Dataset città mancante.";
+      transportInfo.textContent = dict.step8_info_dataset_missing || "Dataset città mancante.";
     } else if (cityIndexStatus === "error") {
-      transportInfo.textContent = dict.step6_info_unknown || "Città non trovata.";
+      transportInfo.textContent = dict.step8_info_unknown || "Città non trovata.";
     } else if (!coords || (countryFilter && coords?.country !== countryFilter)) {
-      transportInfo.textContent = dict.step6_info_unknown || "Città non trovata.";
+      transportInfo.textContent = dict.step8_info_unknown || "Città non trovata.";
     } else if (!isEuropean) {
-      transportInfo.textContent = dict.step6_info_extra || "Richiedi quotazione al team Enex.";
+      transportInfo.textContent = dict.step8_info_extra || "Richiedi quotazione al team Enex.";
     } else {
-      const msgTemplate = dict.step6_info_result || "Distanza stimata: {km} km - Costo stimato: € {price}";
-      transportInfo.textContent = msgTemplate
+      const msgTemplate = dict.step8_info_result || "Distanza stimata: {km} km - Costo stimato: € {price}";
+      const message = msgTemplate
         .replace("{km}", km)
-        .replace("{price}", price.toFixed(0));
+        .replace("{price}", `<strong style="color: #0066cc; font-size: 1.2em;">${price.toFixed(0)}</strong>`);
+      transportInfo.innerHTML = message;
     }
   }
   const dotCoords =

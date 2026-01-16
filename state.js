@@ -8,7 +8,7 @@ export const appState = {
     mtKey: null,
     ltPressure: null,
     ltChoice: null,
-    optionals: new Set(),
+    optionals: new Set(['electrical_panel']),
     gascooler: false,
     discount: 0,
     transport: {
@@ -125,21 +125,24 @@ export const defaultConfigs = [
 ];
 
 export const defaultOptionals = [
-  { id: "carel", name: "Carel", price: 1860, category: "onboard" },
+  { id: "danfoss_572a", name: "Danfoss 572A", price: 2400, category: "onboard" },
   { id: "danfoss_782", name: "Danfoss 782", price: 2800, category: "onboard" },
+  { id: "carel", name: "Carel", price: 1860, category: "onboard", availability: ["TAGO"] },
+  { id: "wurm", name: "WURM", price: 2000, category: "onboard" },
   { id: "heat_recovery", name: "Heat Recovery", price: 700, category: "onboard" },
-  { id: "ducting", name: "Ducting", price: 2200, category: "onboard" },
-  { id: "cladding_indoor", name: "Cladding indoor", price: 2300, category: "onboard" },
-  { id: "cladding_outdoor", name: "Cladding outdoor", price: 400, category: "onboard" },
-  { id: "muffler_sp", name: "Muffler spare parts", price: 1410, category: "spare" },
+  { id: "ducting", name: "Ducting", price: 2200, category: "onboard" },  { id: "valvole_meccaniche", name: "Valvole meccaniche", price: 0, category: "onboard" },  { id: "cladding_indoor", name: "Cladding indoor", price: 2300, category: "onboard" },
+  { id: "cladding_outdoor", name: "Cladding outdoor", price: 400, category: "onboard" },  { id: "inverter_fc280", name: "Inverter FC280", price: 0, category: "onboard" },
+  { id: "inverter_fc103", name: "Inverter FC103", price: 0, category: "onboard" },  { id: "muffler_sp", name: "Muffler spare parts", price: 1410, category: "spare" },
   { id: "ccmt_sp", name: "CCMT spare parts", price: 1200, category: "spare" },
   { id: "gascooler_spare", name: "3W gascooler Spare", price: 1150, category: "spare" },
-  { id: "diff_mt", name: "Differential MT", price: 1600, category: "spare" },
+  { id: "watergate", name: "Watergate", price: 0, category: "spare" },
+  { id: "diff_mt", name: "Differential MT", price: 820, category: "spare" },
   { id: "diff_mt_lt", name: "Differentials MT/LT", price: 1640, category: "spare" },
   { id: "mx_coil", name: "MX coil", price: 650, category: "spare" },
   { id: "carton_572a", name: "572A en carton", price: 1100, category: "spare" },
   { id: "carton_300t", name: "300T en carton", price: 1850, category: "spare" },
   { id: "carton_782a", name: "782A en carton", price: 1850, category: "spare" },
+  { id: "electrical_panel", name: "Quadro elettrico", price: 0, category: "electrical" },
 ];
 
 let configs = clone(defaultConfigs);
@@ -149,6 +152,20 @@ const pricingMatrix = { configs, optionals };
 export const getConfigs = () => configs;
 export const getOptionals = () => optionals;
 export const getPricingMatrix = () => pricingMatrix;
+
+export const getAvailableOptionals = (machineTypeId = null) => {
+  const allOptionals = getOptionals();
+  if (!machineTypeId) return allOptionals;
+  
+  return allOptionals.filter(opt => {
+    // Se non ha campo availability, è disponibile per tutti
+    if (!opt.availability || !Array.isArray(opt.availability) || opt.availability.length === 0) {
+      return true;
+    }
+    // Altrimenti deve essere presente nel array availability
+    return opt.availability.includes(machineTypeId);
+  });
+};
 
 export const setConfigs = (next) => {
   configs = next;
@@ -204,42 +221,102 @@ export const buildConfigsFromRecords = (records) => {
 
 export const buildOptionalsFromRecords = (records) => {
   const optionalFields = [
-    { field: "carel", id: "carel", name: "Carel", category: "onboard" },
+    { field: "danfoss_572a", id: "danfoss_572a", name: "Danfoss 572A", category: "onboard" },
     { field: "danfoss_782", id: "danfoss_782", name: "Danfoss 782", category: "onboard" },
+    { field: "carel", id: "carel", name: "Carel", category: "onboard" },
+    { field: "wurm", id: "wurm", name: "WURM", category: "onboard" },
     { field: "heat_recovery", id: "heat_recovery", name: "Heat Recovery", category: "onboard" },
     { field: "ducting", id: "ducting", name: "Ducting", category: "onboard" },
+    { field: "valvole_meccaniche", id: "valvole_meccaniche", name: "Valvole meccaniche", category: "onboard" },
     { field: "cladding_indoor", id: "cladding_indoor", name: "Cladding indoor", category: "onboard" },
     { field: "cladding_outdoor", id: "cladding_outdoor", name: "Cladding outdoor", category: "onboard" },
+    { field: "inverter_fc280", id: "inverter_fc280", name: "Inverter FC280", category: "onboard" },
+    { field: "inverter_fc103", id: "inverter_fc103", name: "Inverter FC103", category: "onboard" },
     { field: "muffler_sp", id: "muffler_sp", name: "Muffler spare parts", category: "spare" },
     { field: "ccmt_sp", id: "ccmt_sp", name: "CCMT spare parts", category: "spare" },
     { field: "gascooler_spare", id: "gascooler_spare", name: "3W gascooler Spare", category: "spare" },
+    { field: "watergate", id: "watergate", name: "Watergate", category: "spare" },
     { field: "diff_mt", id: "diff_mt", name: "Differential MT", category: "spare" },
     { field: "diff_mt_lt", id: "diff_mt_lt", name: "Differentials MT/LT", category: "spare" },
     { field: "mx_coil", id: "mx_coil", name: "MX coil", category: "spare" },
     { field: "carton_572a", id: "carton_572a", name: "572A en carton", category: "spare" },
     { field: "carton_300t", id: "carton_300t", name: "300T en carton", category: "spare" },
     { field: "carton_782a", id: "carton_782a", name: "782A en carton", category: "spare" },
+    { field: "electrical_panel", id: "electrical_panel", name: "Quadro elettrico", category: "electrical" },
   ];
 
   const priceMap = new Map();
+  const availabilityMap = new Map();
+  
+  // Helper per estrarre machineType dal code
+  const getMachineTypeFromCode = (code) => {
+    if (!code) return null;
+    if (code.startsWith('T')) return 'TAGO';
+    if (code.startsWith('MBS')) return 'MBS';
+    if (code.startsWith('MCB')) return 'MCB';
+    return null;
+  };
   
   optionalFields.forEach((opt) => {
-    const prices = records
-      .map((r) => r[opt.field])
-      .filter((p) => p !== null && p !== undefined && !Number.isNaN(p));
+    const prices = [];
+    const machineTypes = new Set();
+    let hasAnyData = false; // Flag per verificare se ci sono dati nell'Excel
     
+    records.forEach((r) => {
+      const value = r[opt.field];
+      const machineType = getMachineTypeFromCode(r.code);
+      
+      // Se il campo esiste nel record (anche se null), significa che c'è un dato
+      if (opt.field in r) {
+        hasAnyData = true;
+      }
+      
+      // Se ha un valore (anche -1 = Included o 0), è disponibile per quel machineType
+      if (value !== null && value !== undefined && !Number.isNaN(value) && machineType) {
+        machineTypes.add(machineType);
+        // Raccogli i prezzi solo se > 0 per calcolare media
+        if (value > 0) {
+          prices.push(value);
+        } else if (value === -1 || value === 0) {
+          // Se almeno un valore è -1 (Included) o 0, salvalo
+          if (!priceMap.has(opt.id)) {
+            priceMap.set(opt.id, value);
+          }
+        }
+      }
+    });
+    
+    // Calcola prezzo medio solo se ci sono prezzi > 0
     if (prices.length > 0) {
       const avgPrice = prices.reduce((sum, p) => sum + p, 0) / prices.length;
       priceMap.set(opt.id, Math.round(avgPrice));
+    } else if (hasAnyData && !priceMap.has(opt.id)) {
+      // Se ci sono dati ma tutti NA, imposta null (non usare fallback a 0)
+      priceMap.set(opt.id, null);
+    }
+    
+    // Imposta availability se ci sono machineTypes specifici
+    if (machineTypes.size > 0 && machineTypes.size < 3) {
+      availabilityMap.set(opt.id, Array.from(machineTypes));
     }
   });
 
-  return optionalFields.map((opt) => ({
-    id: opt.id,
-    name: opt.name,
-    price: priceMap.get(opt.id) ?? (getOptionals().find((o) => o.id === opt.id)?.price ?? 0),
-    category: opt.category,
-  }));
+  return optionalFields.map((opt) => {
+    const result = {
+      id: opt.id,
+      name: opt.name,
+      price: priceMap.has(opt.id) ? priceMap.get(opt.id) : (getOptionals().find((o) => o.id === opt.id)?.price ?? 0),
+      category: opt.category,
+    };
+    
+    // Aggiungi availability se presente
+    const availability = availabilityMap.get(opt.id) || getOptionals().find((o) => o.id === opt.id)?.availability;
+    if (availability && Array.isArray(availability) && availability.length > 0) {
+      result.availability = availability;
+    }
+    
+    return result;
+  });
 };
 
 export const groupMtByName = (brand) => {
@@ -287,7 +364,8 @@ export const groupMtByName = (brand) => {
 };
 
 export const formatPrice = (value) => {
-  if (value === null || value === undefined) return "—";
+  if (value === null || value === undefined) return "N/A";
+  if (value === -1) return "Included";
   return (
     "€ " +
     Number(value)
@@ -309,7 +387,12 @@ export const formatDate = (value) => {
 
 export const cleanNumber = (value) => {
   if (!value) return null;
-  const sanitized = value.replace(/[€\s.]/g, "").replace(",", ".");
+  const trimmed = String(value).trim().toUpperCase();
+  // INCLUDED → -1 (valore sentinella per "incluso nel prezzo")
+  if (trimmed === "INCLUDED" || trimmed === "INCLUSO") return -1;
+  // NA → null (non disponibile)
+  if (trimmed === "NA" || trimmed === "N/A" || trimmed === "N.A." || trimmed === "-") return null;
+  const sanitized = String(value).replace(/[€\s.]/g, "").replace(",", ".");
   const parsed = parseFloat(sanitized);
   return Number.isNaN(parsed) ? null : parsed;
 };
@@ -358,21 +441,29 @@ export const mapRowToRecord = (cells) => ({
   lt_dorin_60_price: cleanNumber(cells[10]),
   lt_bitzer_60_name: normalizeTextCell(cells[11]),
   lt_bitzer_60_price: cleanNumber(cells[12]),
-  carel: cleanNumber(cells[13]),
+  // Optionals (senza colonne _availability)
+  danfoss_572a: cleanNumber(cells[13]),
   danfoss_782: cleanNumber(cells[14]),
-  heat_recovery: cleanNumber(cells[15]),
-  ducting: cleanNumber(cells[16]),
-  cladding_indoor: cleanNumber(cells[17]),
-  cladding_outdoor: cleanNumber(cells[18]),
-  muffler_sp: cleanNumber(cells[19]),
-  ccmt_sp: cleanNumber(cells[20]),
-  gascooler_spare: cleanNumber(cells[21]),
-  diff_mt: cleanNumber(cells[22]),
-  diff_mt_lt: cleanNumber(cells[23]),
-  mx_coil: cleanNumber(cells[24]),
-  carton_572a: cleanNumber(cells[25]),
-  carton_300t: cleanNumber(cells[26]),
-  carton_782a: cleanNumber(cells[27]),
+  carel: cleanNumber(cells[15]),
+  wurm: cleanNumber(cells[16]),
+  heat_recovery: cleanNumber(cells[17]),
+  ducting: cleanNumber(cells[18]),
+  valvole_meccaniche: cleanNumber(cells[19]),
+  cladding_indoor: cleanNumber(cells[20]),
+  cladding_outdoor: cleanNumber(cells[21]),
+  inverter_fc280: cleanNumber(cells[22]),
+  inverter_fc103: cleanNumber(cells[23]),
+  muffler_sp: cleanNumber(cells[24]),
+  ccmt_sp: cleanNumber(cells[25]),
+  gascooler_spare: cleanNumber(cells[26]),
+  watergate: cleanNumber(cells[27]),
+  diff_mt: cleanNumber(cells[28]),
+  diff_mt_lt: cleanNumber(cells[29]),
+  mx_coil: cleanNumber(cells[30]),
+  carton_572a: cleanNumber(cells[31]),
+  carton_300t: cleanNumber(cells[32]),
+  carton_782a: cleanNumber(cells[33]),
+  electrical_panel: cleanNumber(cells[34]),
 });
 
 export const matrixHeaders = [
@@ -389,19 +480,80 @@ export const matrixHeaders = [
   "Prezzo LT Dorin 60bar",
   "Nome LT Bitzer 60bar",
   "Prezzo LT Bitzer 60bar",
-  "Carel",
+  "Danfoss 572A",
   "Danfoss 782",
+  "Carel",
+  "WURM",
   "Heat Recovery",
   "Ducting",
+  "Valvole meccaniche",
   "Cladding indoor",
   "Cladding outdoor",
+  "Inverter FC280",
+  "Inverter FC103",
   "Muffler spare parts",
   "CCMT spare parts",
   "3W gascooler Spare",
+  "Watergate",
   "Differential MT",
   "Differentials MT/LT",
   "MX coil",
   "572A en carton",
   "300T en carton",
   "782A en carton",
+  "Quadro elettrico",
 ];
+
+// Mappa dei campi optionals per generare headers completi
+const optionalFieldsMap = [
+  { header: "Danfoss 572A" },
+  { header: "Danfoss 782" },
+  { header: "Carel" },
+  { header: "WURM" },
+  { header: "Heat Recovery" },
+  { header: "Ducting" },
+  { header: "Valvole meccaniche" },
+  { header: "Cladding indoor" },
+  { header: "Cladding outdoor" },
+  { header: "Inverter FC280" },
+  { header: "Inverter FC103" },
+  { header: "Muffler spare parts" },
+  { header: "CCMT spare parts" },
+  { header: "3W gascooler Spare" },
+  { header: "Watergate" },
+  { header: "Differential MT" },
+  { header: "Differentials MT/LT" },
+  { header: "MX coil" },
+  { header: "572A en carton" },
+  { header: "300T en carton" },
+  { header: "782A en carton" },
+];
+
+// Genera header completo (senza più colonne _availability)
+export const getFullExcelHeaders = () => {
+  const baseHeaders = [
+    "Stringamot",
+    "Nome MT Dorin",
+    "Prezzo MT Dorin",
+    "Nome MT Bitzer",
+    "Prezzo MT Bitzer",
+    "Nome LT Dorin 36bar",
+    "Prezzo LT Dorin 36bar",
+    "Nome LT Bitzer 36bar",
+    "Prezzo LT Bitzer 36bar",
+    "Nome LT Dorin 60bar",
+    "Prezzo LT Dorin 60bar",
+    "Nome LT Bitzer 60bar",
+    "Prezzo LT Bitzer 60bar",
+  ];
+
+  // Aggiungi optionals (solo header, niente _availability)
+  optionalFieldsMap.forEach(opt => {
+    baseHeaders.push(opt.header);
+  });
+
+  // Aggiungi colonna Quadro elettrico
+  baseHeaders.push("Quadro elettrico");
+
+  return baseHeaders;
+};

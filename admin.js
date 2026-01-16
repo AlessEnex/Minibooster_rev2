@@ -8,6 +8,7 @@ import {
   getPricingMatrix,
   mapRowToRecord,
   matrixHeaders,
+  getFullExcelHeaders,
   normalizeCellsLength,
   parseTsvInput,
   resetDataToDefaults,
@@ -237,6 +238,31 @@ export const exportJson = () => {
   URL.revokeObjectURL(url);
 };
 
+export const copyExcelHeadersToClipboard = async () => {
+  const headers = getFullExcelHeaders();
+  const headerString = headers.join("\t"); // Tab-separated per Excel
+  
+  try {
+    await navigator.clipboard.writeText(headerString);
+    alert(`✅ Header copiato negli appunti!\n\n${headers.length} colonne totali.\n\nIncolla come prima riga in Excel per verificare la corrispondenza.`);
+  } catch (err) {
+    // Fallback per browser senza clipboard API
+    const textarea = document.createElement("textarea");
+    textarea.value = headerString;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      document.execCommand("copy");
+      alert(`✅ Header copiato negli appunti!\n\n${headers.length} colonne totali.\n\nIncolla come prima riga in Excel per verificare la corrispondenza.`);
+    } catch (e) {
+      alert("❌ Impossibile copiare negli appunti. Copia manualmente:\n\n" + headerString);
+    }
+    document.body.removeChild(textarea);
+  }
+};
+
 const parseCsv = (text) => {
   const lines = text.split(/\r?\n/).filter(Boolean);
   const [headerLine, ...rows] = lines;
@@ -324,6 +350,7 @@ export const initAdminEvents = () => {
   });
   openPasteModalBtn?.addEventListener("click", openPasteModal);
   closePasteModalBtn?.addEventListener("click", closePasteModal);
+  document.getElementById("copyExcelHeaders")?.addEventListener("click", copyExcelHeadersToClipboard);
   fileInput?.addEventListener("change", (event) => {
     const [file] = event.target.files;
     if (file) handleFileImport(file);
