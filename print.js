@@ -195,11 +195,193 @@ export const renderPrintSheet = () => {
   }
 };
 
+const paginatePrintPages = () => {
+  const printSheet = document.querySelector(".print-sheet");
+  const pages = document.getElementById("printPages");
+  const template = document.getElementById("printPageTemplate");
+  const flow = document.getElementById("printContent");
+
+  if (!printSheet || !pages || !template || !flow) {
+    return;
+  }
+
+  const sheetStyles = window.getComputedStyle(printSheet);
+  const wasHidden = sheetStyles.display === "none";
+  if (wasHidden) {
+    printSheet.style.display = "block";
+    printSheet.style.visibility = "hidden";
+    printSheet.style.position = "absolute";
+    printSheet.style.left = "-9999px";
+    printSheet.style.top = "0";
+  }
+
+  pages.innerHTML = "";
+
+  const head = flow.querySelector(".print-head");
+  const config = flow.querySelector(".print-config");
+  const signature = flow.querySelector(".print-signature");
+  const descriptions = config ? config.querySelector("#printDescriptions") : null;
+
+  const headClone = head ? head.cloneNode(true) : null;
+  const configClone = config ? config.cloneNode(true) : null;
+  const signatureClone = signature ? signature.cloneNode(true) : null;
+  const descriptionSections = descriptions
+    ? Array.from(descriptions.children).filter((child) => child.classList.contains("print-desc-section"))
+    : [];
+
+  if (!headClone && !configClone && !signatureClone && descriptionSections.length === 0) {
+    return;
+  }
+
+  const createPage = () => {
+    const page = template.content.firstElementChild.cloneNode(true);
+    pages.appendChild(page);
+    return page;
+  };
+
+  const measurePage = createPage();
+  measurePage.style.visibility = "hidden";
+  measurePage.style.position = "absolute";
+  measurePage.style.left = "-9999px";
+  measurePage.style.top = "0";
+  pages.removeChild(measurePage);
+
+  let page = createPage();
+  let body = page.querySelector(".print-page-body");
+
+  const isOverflowing = () => body.scrollHeight > body.clientHeight + 1;
+
+  const startNewPage = () => {
+    page = createPage();
+    body = page.querySelector(".print-page-body");
+  };
+
+  const appendBlock = (node) => {
+    body.appendChild(node);
+    if (isOverflowing()) {
+      body.removeChild(node);
+      if (body.childElementCount === 0) {
+        body.appendChild(node);
+        return;
+      }
+      startNewPage();
+      body.appendChild(node);
+    }
+  };
+
+  const buildSectionShell = (section) => {
+    const shell = document.createElement("div");
+    shell.className = section.className;
+    const title = section.querySelector(".print-desc-title");
+    if (title) {
+      shell.appendChild(title.cloneNode(true));
+    }
+    const list = section.querySelector(".print-desc-list");
+    if (list) {
+      shell.appendChild(list.cloneNode(false));
+    }
+    return shell;
+  };
+
+  const appendSection = (section) => {
+    const list = section.querySelector(".print-desc-list");
+    const note = section.querySelector(".print-desc-note");
+    const items = list ? Array.from(list.children) : [];
+
+    if (items.length === 0) {
+      appendBlock(section.cloneNode(true));
+      return;
+    }
+
+    let shell = buildSectionShell(section);
+    body.appendChild(shell);
+    let listClone = shell.querySelector(".print-desc-list");
+
+    items.forEach((item) => {
+      listClone.appendChild(item.cloneNode(true));
+      if (isOverflowing()) {
+        listClone.removeChild(listClone.lastChild);
+        if (listClone.children.length === 0) {
+          body.removeChild(shell);
+        }
+        startNewPage();
+        shell = buildSectionShell(section);
+        body.appendChild(shell);
+        listClone = shell.querySelector(".print-desc-list");
+        listClone.appendChild(item.cloneNode(true));
+      }
+    });
+
+    if (note) {
+      const noteClone = note.cloneNode(true);
+      shell.appendChild(noteClone);
+      if (isOverflowing()) {
+        shell.removeChild(noteClone);
+        startNewPage();
+        const noteSection = buildSectionShell(section);
+        noteSection.appendChild(noteClone);
+        body.appendChild(noteSection);
+        if (isOverflowing()) {
+          // If the note is still too tall, keep it anyway.
+        }
+      }
+    }
+  };
+
+  if (configClone) {
+    const configDescriptions = configClone.querySelector("#printDescriptions");
+    if (configDescriptions) {
+      configDescriptions.remove();
+    }
+  }
+
+  if (headClone) {
+    appendBlock(headClone);
+  }
+
+  if (configClone) {
+    appendBlock(configClone);
+  }
+
+  descriptionSections.forEach((section) => {
+    if (section.classList.contains("print-desc-page-break")) {
+      if (body.childElementCount > 0) {
+        startNewPage();
+      }
+    }
+    appendSection(section);
+  });
+
+  if (signatureClone) {
+    appendBlock(signatureClone);
+  }
+
+  if (wasHidden) {
+    printSheet.style.display = "";
+    printSheet.style.visibility = "";
+    printSheet.style.position = "";
+    printSheet.style.left = "";
+    printSheet.style.top = "";
+  }
+};
+
+let printHandlersBound = false;
+
 export const setupPrintButton = () => {
   const printBtn = document.getElementById("printBtn");
+
+  if (!printHandlersBound) {
+    window.addEventListener("beforeprint", () => {
+      renderPrintSheet();
+      paginatePrintPages();
+    });
+    printHandlersBound = true;
+  }
+
   if (printBtn) {
     printBtn.addEventListener("click", () => {
       renderPrintSheet();
+      paginatePrintPages();
       setTimeout(() => {
         window.print();
       }, 100);

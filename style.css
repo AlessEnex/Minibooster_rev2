@@ -1417,7 +1417,7 @@ body.dark-mode .preview-table th {
 /* Print (less aggressive; target print content) */
 @media print {
   @page {
-    margin: 1.5cm 0.5cm 2.0cm 0.5cm;
+    margin: 0;
     size: A4;
   }
 
@@ -1453,47 +1453,92 @@ body.dark-mode .preview-table th {
     display: block !important;
   }
 
-  .print-sheet * {
+  .print-sheet *:not(.print-company-footer):not(.print-company-footer *):not(.print-debug-strip) {
     color: #000 !important;
     background: transparent !important;
     box-shadow: none !important;
   }
 
+  .print-pages {
+    display: block !important;
+  }
+
+  .print-debug-strip {
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 5cm !important;
+    opacity: 0.3 !important;
+    z-index: 9999 !important;
+    pointer-events: none !important;
+  }
+
+  .print-debug-red {
+    top: 0 !important;
+    background: red !important;
+  }
+
+  .print-debug-blue {
+    bottom: 0 !important;
+    background: blue !important;
+  }
+
   .print-page {
     width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    border: none;
-    page-break-inside: auto;
-    break-inside: auto;
+    height: 297mm;
+    padding: 0.8cm 0.5cm 0.2cm 0.5cm;
+    box-sizing: border-box;
+    display: grid !important;
+    grid-template-rows: auto 1fr auto;
+    page-break-after: always;
+    break-after: page;
+    position: relative;
   }
 
-  .print-page thead {
-    display: table-header-group;
+  .print-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5cm;
+    background: red !important;
+    opacity: 0.3;
+    z-index: 9999;
+    pointer-events: none;
   }
 
-  .print-page tfoot {
-    display: table-footer-group;
+  .print-page::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5cm;
+    background: blue !important;
+    opacity: 0.3;
+    z-index: 9999;
+    pointer-events: none;
   }
 
-  .print-page tbody {
-    display: table-row-group;
+  .print-page:last-child {
+    page-break-after: auto;
+    break-after: auto;
   }
 
-  .print-page td {
-    padding: 0;
-    vertical-align: top;
-    border: none;
-    page-break-inside: auto;
-    break-inside: auto;
+  .print-page-body {
+    grid-row: 2;
+    min-height: 0;
+    overflow: hidden;
   }
 
-  .print-page tr,
-  .print-page tbody,
-  .print-page thead,
-  .print-page tfoot {
-    page-break-inside: auto;
-    break-inside: auto;
+  .print-content-flow {
+    position: absolute;
+    visibility: hidden;
+    left: -9999px;
+    top: 0;
+    width: calc(100% - 1cm);
   }
 
   .print-logos {
@@ -1527,10 +1572,11 @@ body.dark-mode .preview-table th {
   }
 
   .print-page-header {
-    position: static;
+    grid-row: 1;
   }
 
   .print-company-footer {
+    grid-row: 3;
     display: flex !important;
     justify-content: space-between;
     align-items: stretch;
@@ -1539,8 +1585,10 @@ body.dark-mode .preview-table th {
     line-height: 1.2;
     border-top: 0.5px solid #999;
     padding-top: 3px;
-    height: 2cm;
+    padding-bottom: 0.2cm;
+    margin-top: 0.2cm;
     box-sizing: border-box;
+    color: #000 !important;
   }
 
   .print-footer-text {
