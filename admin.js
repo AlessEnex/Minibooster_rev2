@@ -37,6 +37,15 @@ const fileInput = document.getElementById("fileInput");
 
 let lastParsedRecords = [];
 
+const mergeOptionals = (loaded, defaults) => {
+  const merged = new Map(defaults.map((opt) => [opt.id, { ...opt }]));
+  loaded.forEach((opt) => {
+    const base = merged.get(opt.id) || {};
+    merged.set(opt.id, { ...base, ...opt });
+  });
+  return Array.from(merged.values());
+};
+
 const renderPastePreview = (rows) => {
   if (!rows.length) {
     pastePreview.innerHTML = "";
@@ -294,7 +303,7 @@ export const handleFileImport = (file) => {
         parsed = parseCsv(content);
       }
       if (parsed.configs) setConfigs(parsed.configs);
-      if (parsed.optionals) setOptionals(parsed.optionals);
+      if (parsed.optionals) setOptionals(mergeOptionals(parsed.optionals, defaultOptionals));
       renderUserPanels();
       updateSummary();
       renderAdminTables();
@@ -318,7 +327,7 @@ export const loadPricingMatrix = async () => {
       setConfigs(JSON.parse(JSON.stringify(defaultConfigs)));
     }
     if (data.optionals && data.optionals.length) {
-      setOptionals(data.optionals);
+      setOptionals(mergeOptionals(data.optionals, defaultOptionals));
     } else {
       setOptionals(JSON.parse(JSON.stringify(defaultOptionals)));
     }

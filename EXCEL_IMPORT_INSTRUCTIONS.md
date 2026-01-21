@@ -70,7 +70,7 @@ Il sistema calcola il **prezzo medio** (€1750) ma mantiene le availability cor
 
 ### Note importanti
 
-1. ✅ **Compattezza**: Solo 30 colonne totali (vs 47 con _availability)
+1. ✅ **Compattezza**: Solo 42 colonne totali (vs 47 con _availability)
 2. ✅ **Zero intreccio**: Ogni riga è indipendente
 3. ✅ **Intuitivo**: Se c'è prezzo → disponibile, se NA → non disponibile
 4. ✅ **Flessibilità**: Prezzi diversi per gamme diverse
@@ -80,4 +80,9 @@ Il sistema calcola il **prezzo medio** (€1750) ma mantiene le availability cor
 
 - ✅ Import/Export JSON mantiene il campo `availability`
 - ✅ Vecchie matrici senza availability funzionano (availability omessa = disponibile ovunque)
-- ✅ Pulsante "📋 Copia Header Excel" genera le 30 colonne corrette
+- ✅ Pulsante "📋 Copia Header Excel" genera le 42 colonne corrette
+
+### Cablaggio
+
+- Aggiungi la colonna **Cablaggio standard** (dopo **Quadro elettrico**) per il costo base cablaggio.
+- Il costo extra al metro non sta in Excel: usa `pricing-extras.json` con `cablingExtraPerMeter` per TAGO/MBS/MCB.

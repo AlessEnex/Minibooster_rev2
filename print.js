@@ -1,5 +1,6 @@
 import { appState, formatDate, formatPrice, getOptionals, groupMtByName, machineTypes } from "./state.js";
 import { getDictionary } from "./i18n.js";
+import { getPrintDescriptions } from "./print-descriptions.js";
 
 export const renderPrintSheet = () => {
   const dict = getDictionary();
@@ -7,6 +8,7 @@ export const renderPrintSheet = () => {
   const printProjectMeta = document.getElementById("printProjectMeta");
   const printSummaryList = document.getElementById("printSummaryList");
   const printTotal = document.getElementById("printTotal");
+  const printDescriptions = document.getElementById("printDescriptions");
 
   // Titolo
   if (printTitle) {
@@ -15,15 +17,41 @@ export const renderPrintSheet = () => {
 
   // Metadati progetto
   if (printProjectMeta) {
-    const { name, date, owner, language } = appState.selections.project;
+    const { name, date, owner, language, offerNumber, revision, client, requestedBy } = appState.selections.project;
     const machineType = machineTypes.find((m) => m.id === appState.selections.machineType);
+    const machineTypeName = machineType ? machineType.name : "—";
     
     printProjectMeta.innerHTML = `
-      <div><strong>Progetto:</strong> ${name || "—"}</div>
-      <div><strong>Data richiesta:</strong> ${formatDate(date) || "—"}</div>
-      <div><strong>Owner:</strong> ${owner || "—"}</div>
-      <div><strong>Lingua:</strong> ${language || "—"}</div>
-      ${machineType ? `<div><strong>Tipo macchina:</strong> ${machineType.name}</div>` : ""}
+      <div class="print-meta-grid">
+        <div class="print-meta-row">
+          <span class="print-meta-label">OFFERTA N°:</span>
+          <span class="print-meta-value">${offerNumber || "—"}</span>
+        </div>
+        <div class="print-meta-row">
+          <span class="print-meta-label">REVISIONE:</span>
+          <span class="print-meta-value">${revision || "—"}</span>
+        </div>
+        <div class="print-meta-row">
+          <span class="print-meta-label">CLIENTE:</span>
+          <span class="print-meta-value">${client || "—"}</span>
+        </div>
+        <div class="print-meta-row">
+          <span class="print-meta-label">RICHIESTO DA:</span>
+          <span class="print-meta-value">${requestedBy || "—"}</span>
+        </div>
+        <div class="print-meta-row">
+          <span class="print-meta-label">OWNER:</span>
+          <span class="print-meta-value">${owner || "—"}</span>
+        </div>
+        <div class="print-meta-row">
+          <span class="print-meta-label">PROGETTO:</span>
+          <span class="print-meta-value">${name || "—"}</span>
+        </div>
+        <div class="print-meta-row">
+          <span class="print-meta-label">MODELLO SELEZIONATO:</span>
+          <span class="print-meta-value">${machineTypeName}</span>
+        </div>
+      </div>
     `;
   }
 
@@ -61,8 +89,26 @@ export const renderPrintSheet = () => {
   const optItems = getOptionals().filter((o) => appState.selections.optionals.has(o.id));
   optItems.forEach((o) => {
     rows.push([dict.summary_optional_label || "Optional", o.name, o.price]);
-    total += o.price;
+    if (o.price !== null && o.price !== undefined && o.price !== -1 && o.price !== -2) {
+      total += o.price;
+    }
   });
+
+  const probeSelectedId = appState.selections.probesChoice;
+  if (probeSelectedId) {
+    const probe = getOptionals().find((o) => o.id === probeSelectedId);
+    if (probe) {
+      rows.push([dict.summary_probes_label || "Sonde", probe.name, probe.price]);
+      if (
+        probe.price !== null &&
+        probe.price !== undefined &&
+        probe.price !== -1 &&
+        probe.price !== -2
+      ) {
+        total += probe.price;
+      }
+    }
+  }
 
   if (appState.selections.gascooler) {
     rows.push([dict.summary_gascooler_label || "Gascooler", dict.step5_label || "Gascooler", 0]);
@@ -99,6 +145,53 @@ export const renderPrintSheet = () => {
 
   if (printTotal) {
     printTotal.textContent = formatPrice(total);
+  }
+
+  if (printDescriptions) {
+    const sections = getPrintDescriptions(appState.selections.machineType, appState.selections.project.language);
+    const hasElectricalPanel = appState.selections.electricalPanelChoice === "electrical_panel";
+    const filteredSections = sections.filter((section) => {
+      if (section.requiresElectricalPanel && !hasElectricalPanel) {
+        return false;
+      }
+      return true;
+    });
+    if (filteredSections.length === 0) {
+      printDescriptions.innerHTML = "";
+    } else {
+      const renderedSections = filteredSections
+        .map((section) => {
+          const cleanedItems = Array.isArray(section.items)
+            ? section.items.filter((item) => typeof item === "string" && item.trim().length > 0)
+            : [];
+          const hasItems = cleanedItems.length > 0;
+          const hasNote = typeof section.note === "string" && section.note.trim().length > 0;
+          const hasTitle = typeof section.title === "string" && section.title.trim().length > 0;
+
+          if (!hasItems && !hasNote) {
+            return "";
+          }
+
+          const title = hasTitle ? `<h4 class="print-desc-title">${section.title}</h4>` : "";
+          const items = hasItems
+            ? `<ul class="print-desc-list">${cleanedItems
+                .map((item) => `<li>${item}</li>`)
+                .join("")}</ul>`
+            : "";
+          const note = hasNote ? `<p class="print-desc-note">${section.note}</p>` : "";
+          const classNames = ["print-desc-section"];
+          if (section.className) {
+            classNames.push(section.className);
+          }
+          if (section.pageBreakBefore) {
+            classNames.push("print-desc-page-break");
+          }
+          return `<div class="${classNames.join(" ")}">${title}${items}${note}</div>`;
+        })
+        .filter(Boolean);
+
+      printDescriptions.innerHTML = renderedSections.length ? renderedSections.join("") : "";
+    }
   }
 };
 

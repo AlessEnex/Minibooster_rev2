@@ -1,39 +1,6 @@
 {
   "configs": [
     {
-      "code": "Stringamot",
-      "mt": {
-        "dorin": {
-          "name": "Nome MT Dorin",
-          "price": null
-        },
-        "bitzer": {
-          "name": "Nome MT Bitzer",
-          "price": null
-        }
-      },
-      "lt36": {
-        "dorin": {
-          "name": "Nome LT Dorin 36bar",
-          "price": null
-        },
-        "bitzer": {
-          "name": "Nome LT Bitzer 36bar",
-          "price": null
-        }
-      },
-      "lt60": {
-        "dorin": {
-          "name": "Nome LT Dorin 60bar",
-          "price": null
-        },
-        "bitzer": {
-          "name": "Nome LT Bitzer 60bar",
-          "price": null
-        }
-      }
-    },
-    {
       "code": "T2_10_0",
       "mt": {
         "dorin": {
@@ -1313,6 +1280,3339 @@
           "price": 5485.37
         }
       }
+    },
+    {
+      "code": "MBS_3,2_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 10-0,8H + CD0 10-0,8H",
+          "price": 26300
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_3,7_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 10-0,8H + CD0 18-1,1H",
+          "price": 26350
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_4,2_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 18-1,1H + CD0 18-1,1H",
+          "price": 26450
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_5_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 18-1,1H + CD0 30-1,5H",
+          "price": 26500
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_5,7_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 30-1,5H + CD0 30-1,5H",
+          "price": 26600
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_6,7_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 30-1,5H + CD0 35-1,9H",
+          "price": 26650
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_7,6_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 35-1,9H + CD0 35-1,9H",
+          "price": 26850
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_8,7_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 35-1,9H + CD0 36-2,4H",
+          "price": 26900
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_9,7_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 36-2,4H + CD0 36-2,4H",
+          "price": 26950
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_10,8_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 36-2,4H + CD0 38-3,0H",
+          "price": 27000
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_11,8_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H + CD0 38-3,0H",
+          "price": 27150
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_15,8_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H + CD4 75-4,7H",
+          "price": 28200
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_19,9_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H + CD4 75-4,7H",
+          "price": 29500
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_23,6_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H + CD4 90-6,4H",
+          "price": 29700
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_27,3_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H + CD4 90-6,4H",
+          "price": 30050
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_29,1_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H + CD4 90-7,3H",
+          "price": 30100
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_30,9_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H + CD4 90-7,3H",
+          "price": 30200
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_34,9_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H + CD4 120-9,2H",
+          "price": 30350
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_39_0",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 120-9,2H + CD4 120-9,2H",
+          "price": 30550
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_2_1,9",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 18-1,1H + CD0 18-1,1H",
+          "price": 27078.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 08-0,8M",
+          "price": 3521.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_2,7_1,9",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 18-1,1H + CD0 30-1,5H",
+          "price": 27128.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 08-0,8M",
+          "price": 3521.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_3,5_1,9",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 30-1,5H + CD0 30-1,5H",
+          "price": 27228.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 08-0,8M",
+          "price": 3521.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_4,4_1,9",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 30-1,5H + CD0 35-1,9H",
+          "price": 27328.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 08-0,8M",
+          "price": 3521.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_5,4_1,9",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 35-1,9H + CD0 35-1,9H",
+          "price": 27478.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 08-0,8M",
+          "price": 3521.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_6,4_1,9",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 35-1,9H + CD0 36-2,4H",
+          "price": 27528.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 08-0,8M",
+          "price": 3521.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_7,5_1,9",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 36-2,4H + CD0 36-2,4H",
+          "price": 27628.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 08-0,8M",
+          "price": 3521.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_8,5_1,9",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 36-2,4H + CD0 38-3,0H",
+          "price": 27678.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 08-0,8M",
+          "price": 3521.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_9,5_1,9",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H + CD0 38-3,0H",
+          "price": 27828.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 08-0,8M",
+          "price": 3521.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_13,6_1,9",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H + CD4 75-4,7H",
+          "price": 28828.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 08-0,8M",
+          "price": 3521.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_17,6_1,9",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H + CD4 75-4,7H",
+          "price": 30178.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 08-0,8M",
+          "price": 3521.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_21,3_1,9",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H + CD4 90-6,4H",
+          "price": 30328.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 08-0,8M",
+          "price": 3521.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_25_1,9",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H + CD4 90-6,4H",
+          "price": 30678.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 08-0,8M",
+          "price": 3521.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_26,9_1,9",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H + CD4 90-7,3H",
+          "price": 30778.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 08-0,8M",
+          "price": 3521.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_28,7_1,9",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H + CD4 90-7,3H",
+          "price": 30878.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 08-0,8M",
+          "price": 3521.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_32,7_1,9",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H + CD4 120-9,2H",
+          "price": 31028.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 08-0,8M",
+          "price": 3521.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_36,7_1,9",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 120-9,2H + CD4 120-9,2H",
+          "price": 31178.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 08-0,8M",
+          "price": 3521.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_2,1_2,5",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 18-1,1H + CD0 30-1,5H",
+          "price": 27178.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 15-1,1M",
+          "price": 4021.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_2,8_2,5",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 30-1,5H + CD0 30-1,5H",
+          "price": 27278.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 15-1,1M",
+          "price": 4021.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_3,8_2,5",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 30-1,5H + CD0 35-1,9H",
+          "price": 27328.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 15-1,1M",
+          "price": 4021.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_4,7_2,5",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 35-1,9H + CD0 35-1,9H",
+          "price": 27528.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 15-1,1M",
+          "price": 4021.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_5,7_2,5",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 35-1,9H + CD0 36-2,4H",
+          "price": 27578.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 15-1,1M",
+          "price": 4021.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_6,8_2,5",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 36-2,4H + CD0 36-2,4H",
+          "price": 27628.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 15-1,1M",
+          "price": 4021.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_7,8_2,5",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 36-2,4H + CD0 38-3,0H",
+          "price": 27728.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 15-1,1M",
+          "price": 4021.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_8,9_2,5",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H + CD0 38-3,0H",
+          "price": 27828.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 15-1,1M",
+          "price": 4021.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_12,9_2,5",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H + CD4 75-4,7H",
+          "price": 28878.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 15-1,1M",
+          "price": 4021.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_16,9_2,5",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H + CD4 75-4,7H",
+          "price": 30228.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 15-1,1M",
+          "price": 4021.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_20,7_2,5",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H + CD4 90-6,4H",
+          "price": 30378.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 15-1,1M",
+          "price": 4021.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_24,4_2,5",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H + CD4 90-6,4H",
+          "price": 30728.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 15-1,1M",
+          "price": 4021.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_26,2_2,5",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H + CD4 90-7,3H",
+          "price": 30828.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 15-1,1M",
+          "price": 4021.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_28_2,5",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H + CD4 90-7,3H",
+          "price": 30878.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 15-1,1M",
+          "price": 4021.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_32_2,5",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H + CD4 120-9,2H",
+          "price": 31078.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 15-1,1M",
+          "price": 4021.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_36_2,5",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 120-9,2H + CD4 120-9,2H",
+          "price": 31228.2
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 15-1,1M",
+          "price": 4021.803092
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_2,7_3,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 30-1,5H + CD0 35-1,9H",
+          "price": 27449.94
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 4450.06
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_3,6_3,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 35-1,9H + CD0 35-1,9H",
+          "price": 27649.94
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 4450.06
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_4,7_3,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 35-1,9H + CD0 36-2,4H",
+          "price": 27699.94
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 4450.06
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_5,7_3,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 36-2,4H + CD0 36-2,4H",
+          "price": 27749.94
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 4450.06
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_6,8_3,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 36-2,4H + CD0 38-3,0H",
+          "price": 27799.94
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 4450.06
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_7,8_3,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H + CD0 38-3,0H",
+          "price": 27949.94
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 4450.06
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_11,9_3,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H + CD4 75-4,7H",
+          "price": 28999.94
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 4450.06
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_15,9_3,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H + CD4 75-4,7H",
+          "price": 30299.94
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 4450.06
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_19,6_3,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H + CD4 90-6,4H",
+          "price": 30449.94
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 4450.06
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_23,3_3,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H + CD4 90-6,4H",
+          "price": 30799.94
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 4450.06
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_25,1_3,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H + CD4 90-7,3H",
+          "price": 30899.94
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 4450.06
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_26,9_3,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H + CD4 90-7,3H",
+          "price": 30999.94
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 4450.06
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_31_3,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H + CD4 120-9,2H",
+          "price": 31149.94
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 4450.06
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_35_3,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 120-9,2H + CD4 120-9,2H",
+          "price": 31299.94
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 18-1,5M",
+          "price": 4450.06
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_2,4_4,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 35-1,9H + CD0 35-1,9H",
+          "price": 27640.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 4559.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_3,4_4,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 35-1,9H + CD0 36-2,4H",
+          "price": 27690.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 4559.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_4,5_4,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 36-2,4H + CD0 36-2,4H",
+          "price": 27740.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 4559.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_5,5_4,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 36-2,4H + CD0 38-3,0H",
+          "price": 27790.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 4559.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_6,6_4,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H + CD0 38-3,0H",
+          "price": 27940.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 4559.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_10,6_4,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H + CD4 75-4,7H",
+          "price": 28990.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 4559.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_14,6_4,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H + CD4 75-4,7H",
+          "price": 30290.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 4559.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_18,3_4,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H + CD4 90-6,4H",
+          "price": 30440.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 4559.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_22,1_4,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H + CD4 90-6,4H",
+          "price": 30790.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 4559.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_23,9_4,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H + CD4 90-7,3H",
+          "price": 30890.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 4559.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_25,7_4,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H + CD4 90-7,3H",
+          "price": 30990.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 4559.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_29,7_4,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H + CD4 120-9,2H",
+          "price": 31140.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 4559.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_33,7_4,4",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 120-9,2H + CD4 120-9,2H",
+          "price": 31290.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 30-1,9M",
+          "price": 4559.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_2_5,6",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 35-1,9H + CD0 36-2,4H",
+          "price": 27792.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 4607.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_3,1_5,6",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 36-2,4H + CD0 36-2,4H",
+          "price": 27892.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 4607.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_4,1_5,6",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 36-2,4H + CD0 38-3,0H",
+          "price": 27942.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 4607.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_5,2_5,6",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H + CD0 38-3,0H",
+          "price": 28092.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 4607.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_9,2_5,6",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H + CD4 75-4,7H",
+          "price": 29092.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 4607.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_13,2_5,6",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H + CD4 75-4,7H",
+          "price": 30442.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 4607.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_16,9_5,6",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H + CD4 90-6,4H",
+          "price": 30592.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 4607.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_20,7_5,6",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H + CD4 90-6,4H",
+          "price": 30942.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 4607.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_22,5_5,6",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H + CD4 90-7,3H",
+          "price": 31042.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 4607.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_24,3_5,6",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H + CD4 90-7,3H",
+          "price": 31142.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 4607.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_28,3_5,6",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H + CD4 120-9,2H",
+          "price": 31292.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 4607.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_32,3_5,6",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 120-9,2H + CD4 120-9,2H",
+          "price": 31442.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 35-2,4M",
+          "price": 4607.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_2,7_6,8",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 36-2,4H + CD0 38-3,0H",
+          "price": 27932.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 36-3,0M",
+          "price": 4667.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_3,8_6,8",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H + CD0 38-3,0H",
+          "price": 28082.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 36-3,0M",
+          "price": 4667.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_7,8_6,8",
+      "mt": {
+        "dorin": {
+          "name": "MT CD0 38-3,0H + CD4 75-4,7H",
+          "price": 29082.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 36-3,0M",
+          "price": 4667.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_11,8_6,8",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H + CD4 75-4,7H",
+          "price": 30432.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 36-3,0M",
+          "price": 4667.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_15,5_6,8",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 75-4,7H + CD4 90-6,4H",
+          "price": 30582.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 36-3,0M",
+          "price": 4667.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_19,3_6,8",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H + CD4 90-6,4H",
+          "price": 30932.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 36-3,0M",
+          "price": 4667.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_21,1_6,8",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-6,4H + CD4 90-7,3H",
+          "price": 31032.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 36-3,0M",
+          "price": 4667.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_22,9_6,8",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H + CD4 90-7,3H",
+          "price": 31132.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 36-3,0M",
+          "price": 4667.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_26,9_6,8",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 90-7,3H + CD4 120-9,2H",
+          "price": 31282.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 36-3,0M",
+          "price": 4667.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
+    },
+    {
+      "code": "MBS_30,9_6,8",
+      "mt": {
+        "dorin": {
+          "name": "MT CD4 120-9,2H + CD4 120-9,2H",
+          "price": 31432.37
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt36": {
+        "dorin": {
+          "name": "NA",
+          "price": null
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      },
+      "lt60": {
+        "dorin": {
+          "name": "CD0 36-3,0M",
+          "price": 4667.63
+        },
+        "bitzer": {
+          "name": "NA",
+          "price": null
+        }
+      }
     }
   ],
   "optionals": [
@@ -1328,34 +4628,41 @@
     {
       "id": "danfoss_782",
       "name": "Danfoss 782",
-      "price": 1860,
+      "price": 3475,
       "category": "onboard",
       "availability": [
-        "TAGO"
+        "TAGO",
+        "MBS"
       ]
     },
     {
       "id": "carel",
       "name": "Carel",
-      "price": null,
+      "price": -360,
       "category": "onboard",
       "availability": [
-        "TAGO"
+        "TAGO",
+        "MBS"
       ]
     },
     {
       "id": "wurm",
       "name": "WURM",
       "price": null,
-      "category": "onboard"
+      "category": "onboard",
+      "availability": [
+        "MBS",
+        "MCB"
+      ]
     },
     {
       "id": "heat_recovery",
       "name": "Heat Recovery",
-      "price": 2800,
+      "price": 2908,
       "category": "onboard",
       "availability": [
-        "TAGO"
+        "TAGO",
+        "MBS"
       ]
     },
     {
@@ -1364,14 +4671,18 @@
       "price": 700,
       "category": "onboard",
       "availability": [
-        "TAGO"
+        "TAGO",
+        "MBS"
       ]
     },
     {
       "id": "valvole_meccaniche",
       "name": "Valvole meccaniche",
-      "price": null,
-      "category": "onboard"
+      "price": 1120,
+      "category": "onboard",
+      "availability": [
+        "MBS"
+      ]
     },
     {
       "id": "cladding_indoor",
@@ -1379,7 +4690,8 @@
       "price": 2200,
       "category": "onboard",
       "availability": [
-        "TAGO"
+        "TAGO",
+        "MBS"
       ]
     },
     {
@@ -1388,7 +4700,8 @@
       "price": 2530,
       "category": "onboard",
       "availability": [
-        "TAGO"
+        "TAGO",
+        "MBS"
       ]
     },
     {
@@ -1403,8 +4716,11 @@
     {
       "id": "inverter_fc103",
       "name": "Inverter FC103",
-      "price": null,
-      "category": "onboard"
+      "price": 1784,
+      "category": "onboard",
+      "availability": [
+        "MBS"
+      ]
     },
     {
       "id": "muffler_sp",
@@ -1412,7 +4728,8 @@
       "price": 400,
       "category": "spare",
       "availability": [
-        "TAGO"
+        "TAGO",
+        "MBS"
       ]
     },
     {
@@ -1421,7 +4738,8 @@
       "price": 1410,
       "category": "spare",
       "availability": [
-        "TAGO"
+        "TAGO",
+        "MBS"
       ]
     },
     {
@@ -1430,14 +4748,18 @@
       "price": 1200,
       "category": "spare",
       "availability": [
-        "TAGO"
+        "TAGO",
+        "MBS"
       ]
     },
     {
       "id": "watergate",
       "name": "Watergate",
-      "price": null,
-      "category": "spare"
+      "price": 835,
+      "category": "spare",
+      "availability": [
+        "MBS"
+      ]
     },
     {
       "id": "diff_mt",
@@ -1445,7 +4767,8 @@
       "price": 1150,
       "category": "spare",
       "availability": [
-        "TAGO"
+        "TAGO",
+        "MBS"
       ]
     },
     {
@@ -1454,7 +4777,8 @@
       "price": 1600,
       "category": "spare",
       "availability": [
-        "TAGO"
+        "TAGO",
+        "MBS"
       ]
     },
     {
@@ -1463,7 +4787,8 @@
       "price": 1640,
       "category": "spare",
       "availability": [
-        "TAGO"
+        "TAGO",
+        "MBS"
       ]
     },
     {
@@ -1490,14 +4815,125 @@
       "price": 1850,
       "category": "spare",
       "availability": [
-        "TAGO"
+        "TAGO",
+        "MBS"
+      ]
+    },
+    {
+      "id": "probes_danfoss_mt",
+      "name": "Sonde Danfoss MT (PT1000 + AKS11/21)",
+      "price": 582,
+      "category": "probes",
+      "availability": [
+        "TAGO",
+        "MBS"
+      ]
+    },
+    {
+      "id": "probes_danfoss_mtlt",
+      "name": "Sonde Danfoss MT+LT (PT1000 + AKS11/21)",
+      "price": 769,
+      "category": "probes",
+      "availability": [
+        "TAGO",
+        "MBS"
+      ]
+    },
+    {
+      "id": "probes_wurm_mt",
+      "name": "Sonde WURM MT",
+      "price": null,
+      "category": "probes",
+      "availability": [
+        "MBS",
+        "MCB"
+      ]
+    },
+    {
+      "id": "probes_wurm_mtlt",
+      "name": "Sonde WURM MT+LT",
+      "price": null,
+      "category": "probes",
+      "availability": [
+        "MBS",
+        "MCB"
+      ]
+    },
+    {
+      "id": "probes_generic_mt",
+      "name": "Sonde generiche MT (NTC + 4-20mA)",
+      "price": 240,
+      "category": "probes",
+      "availability": [
+        "TAGO",
+        "MBS"
+      ]
+    },
+    {
+      "id": "probes_generic_mtlt",
+      "name": "Sonde generiche MT+LT (NTC + 4-20mA)",
+      "price": 330,
+      "category": "probes",
+      "availability": [
+        "TAGO",
+        "MBS"
       ]
     },
     {
       "id": "electrical_panel",
       "name": "Quadro elettrico",
-      "price": 5692,
+      "price": 5719,
       "category": "electrical",
+      "availability": [
+        "TAGO",
+        "MBS"
+      ]
+    },
+    {
+      "id": "cabling_standard",
+      "name": "Cablaggio standard",
+      "price": 400,
+      "category": "cabling",
+      "availability": [
+        "TAGO",
+        "MBS"
+      ]
+    },
+    {
+      "id": "wurm_customer",
+      "name": "WURM fornito dal cliente",
+      "price": 0,
+      "category": "onboard",
+      "availability": [
+        "MBS",
+        "MCB"
+      ]
+    },
+    {
+      "id": "controls_customer_supplied",
+      "name": "Controlli forniti dal cliente",
+      "price": 0,
+      "category": "electrical",
+      "availability": [
+        "MBS",
+        "MCB"
+      ]
+    },
+    {
+      "id": "probes_customer_supplied",
+      "name": "Sonde fornite dal cliente",
+      "price": 0,
+      "category": "probes",
+      "availability": [
+        "MBS",
+        "MCB"
+      ]
+    },
+    {
+      "id": "probes_included",
+      "name": "Sonde incluse",
+      "price": 0,
+      "category": "probes",
       "availability": [
         "TAGO"
       ]

@@ -1,0 +1,153 @@
+/* Stili dedicati per l'output di stampa */
+
+@page {
+  size: A4;
+  margin: 15mm;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  font-size: 10pt;
+  line-height: 1.4;
+  color: #000;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+/* ========== HEADER (max 25% pagina) ========== */
+
+.output-header {
+  border-bottom: 2px solid #000;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  max-height: 25vh; /* Max 25% altezza pagina */
+  overflow: hidden;
+}
+
+/* Sezione loghi */
+.output-logos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  height: 50px; /* Altezza fissa */
+}
+
+.output-logo {
+  height: 50px; /* Altezza fissa */
+  width: auto; /* Larghezza adattiva */
+  max-width: 15%; /* Massimo 15% larghezza per garantire che 6 loghi stiano */
+  object-fit: contain;
+  /* Placeholder per loghi mancanti */
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+}
+
+/* Griglia informazioni principali */
+.output-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 16px;
+  font-size: 9pt;
+}
+
+.output-info-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.output-label {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 8pt;
+  letter-spacing: 0.3px;
+  color: #333;
+  white-space: nowrap;
+}
+
+.output-value {
+  font-weight: 400;
+  color: #000;
+}
+
+/* ========== CONTENUTO PRINCIPALE ========== */
+
+.output-content {
+  margin-top: 20px;
+}
+
+.output-section-title {
+  font-size: 14pt;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 4px;
+}
+
+/* Righe riepilogo */
+.output-summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 9pt;
+}
+
+.output-summary-label {
+  color: #333;
+}
+
+.output-summary-price {
+  font-weight: 700;
+  color: #000;
+  min-width: 80px;
+  text-align: right;
+}
+
+/* Totale */
+.output-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding: 10px;
+  background: #f5f5f5;
+  border: 2px solid #000;
+  font-size: 12pt;
+  font-weight: 700;
+}
+
+.output-total-label {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.output-total-value {
+  color: #000;
+}
+
+/* ========== STAMPA ========== */
+
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .output-header {
+    page-break-after: avoid;
+  }
+  
+  .output-summary-row {
+    page-break-inside: avoid;
+  }
+  
+  /* Nasconde elementi placeholder per loghi mancanti */
+  .output-logo[src*="logo"]:not([src$=".png"]):not([src$=".jpg"]):not([src$=".svg"]) {
+    display: none;
+  }
+}

@@ -8,7 +8,11 @@ export const appState = {
     mtKey: null,
     ltPressure: null,
     ltChoice: null,
-    optionals: new Set(['electrical_panel']),
+    electricalPanelChoice: null,
+    probesChoice: null,
+    cablingChoice: null,
+    cablingExtraMeters: 0,
+    optionals: new Set(),
     gascooler: false,
     discount: 0,
     transport: {
@@ -23,12 +27,54 @@ export const appState = {
       date: "",
       owner: "",
       language: "ITA",
+      offerNumber: "",
+      revision: "",
+      client: "",
+      requestedBy: "",
     },
   },
   ui: {
     theme: "light",
     catalogCollapsed: true,
+    machineTypeSelectorCollapsed: false,
   },
+};
+
+const defaultExtraCosts = {
+  cablingExtraPerMeter: {
+    TAGO: 0,
+    MBS: 0,
+    MCB: 0,
+  },
+};
+
+let extraCosts = clone(defaultExtraCosts);
+
+export const getExtraCosts = () => extraCosts;
+
+export const setExtraCosts = (next) => {
+  extraCosts = next;
+};
+
+export const loadExtraCosts = async () => {
+  try {
+    const res = await fetch("pricing-extras.json", { cache: "no-cache" });
+    if (!res.ok) throw new Error("missing pricing-extras.json");
+    const data = await res.json();
+    const base = clone(defaultExtraCosts);
+    const merged = {
+      ...base,
+      ...data,
+      cablingExtraPerMeter: {
+        ...base.cablingExtraPerMeter,
+        ...(data?.cablingExtraPerMeter || {}),
+      },
+    };
+    setExtraCosts(merged);
+  } catch (err) {
+    console.warn("Uso costi extra di default:", err.message);
+    setExtraCosts(clone(defaultExtraCosts));
+  }
 };
 
 export const machineTypes = [
@@ -125,10 +171,11 @@ export const defaultConfigs = [
 ];
 
 export const defaultOptionals = [
-  { id: "danfoss_572a", name: "Danfoss 572A", price: 2400, category: "onboard" },
-  { id: "danfoss_782", name: "Danfoss 782", price: 2800, category: "onboard" },
+  { id: "danfoss_572a", name: "Danfoss 572A", price: 2400, category: "onboard", availability: ["TAGO"] },
+  { id: "danfoss_782", name: "Danfoss 782", price: 2800, category: "onboard", availability: ["TAGO", "MBS", "MCB"] },
   { id: "carel", name: "Carel", price: 1860, category: "onboard", availability: ["TAGO"] },
-  { id: "wurm", name: "WURM", price: 2000, category: "onboard" },
+  { id: "wurm", name: "WURM", price: 2000, category: "onboard", availability: ["MBS", "MCB"] },
+  { id: "wurm_customer", name: "WURM fornito dal cliente", price: 0, category: "onboard", availability: ["MBS", "MCB"] },
   { id: "heat_recovery", name: "Heat Recovery", price: 700, category: "onboard" },
   { id: "ducting", name: "Ducting", price: 2200, category: "onboard" },  { id: "valvole_meccaniche", name: "Valvole meccaniche", price: 0, category: "onboard" },  { id: "cladding_indoor", name: "Cladding indoor", price: 2300, category: "onboard" },
   { id: "cladding_outdoor", name: "Cladding outdoor", price: 400, category: "onboard" },  { id: "inverter_fc280", name: "Inverter FC280", price: 0, category: "onboard" },
@@ -143,6 +190,16 @@ export const defaultOptionals = [
   { id: "carton_300t", name: "300T en carton", price: 1850, category: "spare" },
   { id: "carton_782a", name: "782A en carton", price: 1850, category: "spare" },
   { id: "electrical_panel", name: "Quadro elettrico", price: 0, category: "electrical" },
+  { id: "cabling_standard", name: "Cablaggio standard", price: 0, category: "cabling" },
+  { id: "controls_customer_supplied", name: "Controlli forniti dal cliente", price: 0, category: "electrical", availability: ["MBS", "MCB"] },
+  { id: "probes_danfoss_mt", name: "Sonde Danfoss MT (PT1000 + AKS11/21)", price: 0, category: "probes", availability: ["MBS", "MCB"] },
+  { id: "probes_danfoss_mtlt", name: "Sonde Danfoss MT+LT (PT1000 + AKS11/21)", price: 0, category: "probes", availability: ["MBS", "MCB"] },
+  { id: "probes_wurm_mt", name: "Sonde WURM MT", price: 0, category: "probes", availability: ["MBS", "MCB"] },
+  { id: "probes_wurm_mtlt", name: "Sonde WURM MT+LT", price: 0, category: "probes", availability: ["MBS", "MCB"] },
+  { id: "probes_generic_mt", name: "Sonde generiche MT (NTC + 4-20mA)", price: 0, category: "probes", availability: ["MBS", "MCB"] },
+  { id: "probes_generic_mtlt", name: "Sonde generiche MT+LT (NTC + 4-20mA)", price: 0, category: "probes", availability: ["MBS", "MCB"] },
+  { id: "probes_customer_supplied", name: "Sonde fornite dal cliente", price: 0, category: "probes", availability: ["MBS", "MCB"] },
+  { id: "probes_included", name: "Sonde incluse", price: 0, category: "probes", availability: ["TAGO"] },
 ];
 
 let configs = clone(defaultConfigs);
@@ -242,7 +299,14 @@ export const buildOptionalsFromRecords = (records) => {
     { field: "carton_572a", id: "carton_572a", name: "572A en carton", category: "spare" },
     { field: "carton_300t", id: "carton_300t", name: "300T en carton", category: "spare" },
     { field: "carton_782a", id: "carton_782a", name: "782A en carton", category: "spare" },
+    { field: "probes_danfoss_mt", id: "probes_danfoss_mt", name: "Sonde Danfoss MT (PT1000 + AKS11/21)", category: "probes" },
+    { field: "probes_danfoss_mtlt", id: "probes_danfoss_mtlt", name: "Sonde Danfoss MT+LT (PT1000 + AKS11/21)", category: "probes" },
+    { field: "probes_wurm_mt", id: "probes_wurm_mt", name: "Sonde WURM MT", category: "probes" },
+    { field: "probes_wurm_mtlt", id: "probes_wurm_mtlt", name: "Sonde WURM MT+LT", category: "probes" },
+    { field: "probes_generic_mt", id: "probes_generic_mt", name: "Sonde generiche MT (NTC + 4-20mA)", category: "probes" },
+    { field: "probes_generic_mtlt", id: "probes_generic_mtlt", name: "Sonde generiche MT+LT (NTC + 4-20mA)", category: "probes" },
     { field: "electrical_panel", id: "electrical_panel", name: "Quadro elettrico", category: "electrical" },
+    { field: "cabling_standard", id: "cabling_standard", name: "Cablaggio standard", category: "cabling" },
   ];
 
   const priceMap = new Map();
@@ -274,14 +338,14 @@ export const buildOptionalsFromRecords = (records) => {
       // Se ha un valore (anche -1 = Included o 0), è disponibile per quel machineType
       if (value !== null && value !== undefined && !Number.isNaN(value) && machineType) {
         machineTypes.add(machineType);
-        // Raccogli i prezzi solo se > 0 per calcolare media
-        if (value > 0) {
-          prices.push(value);
-        } else if (value === -1 || value === 0) {
-          // Se almeno un valore è -1 (Included) o 0, salvalo
+        // Raccogli i prezzi numerici per calcolare media (esclude sentinelle)
+        if (value === -1 || value === 0 || value === -2) {
+          // Se almeno un valore è -1 (Included), 0 o -2 (Supplied by customer), salvalo
           if (!priceMap.has(opt.id)) {
             priceMap.set(opt.id, value);
           }
+        } else {
+          prices.push(value);
         }
       }
     });
@@ -301,7 +365,7 @@ export const buildOptionalsFromRecords = (records) => {
     }
   });
 
-  return optionalFields.map((opt) => {
+  const mappedOptionals = optionalFields.map((opt) => {
     const result = {
       id: opt.id,
       name: opt.name,
@@ -317,6 +381,15 @@ export const buildOptionalsFromRecords = (records) => {
     
     return result;
   });
+
+  const mappedIds = new Set(mappedOptionals.map((opt) => opt.id));
+  getOptionals().forEach((opt) => {
+    if (!mappedIds.has(opt.id)) {
+      mappedOptionals.push(opt);
+    }
+  });
+
+  return mappedOptionals;
 };
 
 export const groupMtByName = (brand) => {
@@ -366,6 +439,7 @@ export const groupMtByName = (brand) => {
 export const formatPrice = (value) => {
   if (value === null || value === undefined) return "N/A";
   if (value === -1) return "Included";
+  if (value === -2) return "SUPPLIED BY CUSTOMER";
   return (
     "€ " +
     Number(value)
@@ -390,6 +464,12 @@ export const cleanNumber = (value) => {
   const trimmed = String(value).trim().toUpperCase();
   // INCLUDED → -1 (valore sentinella per "incluso nel prezzo")
   if (trimmed === "INCLUDED" || trimmed === "INCLUSO") return -1;
+  if (
+    trimmed === "SC" ||
+    trimmed === "SUPPLIED BY CUSTOMER" ||
+    trimmed === "SUPPLIED BY COSTUMER"
+  )
+    return -2;
   // NA → null (non disponibile)
   if (trimmed === "NA" || trimmed === "N/A" || trimmed === "N.A." || trimmed === "-") return null;
   const sanitized = String(value).replace(/[€\s.]/g, "").replace(",", ".");
@@ -463,7 +543,14 @@ export const mapRowToRecord = (cells) => ({
   carton_572a: cleanNumber(cells[31]),
   carton_300t: cleanNumber(cells[32]),
   carton_782a: cleanNumber(cells[33]),
-  electrical_panel: cleanNumber(cells[34]),
+  probes_danfoss_mt: cleanNumber(cells[34]),
+  probes_danfoss_mtlt: cleanNumber(cells[35]),
+  probes_wurm_mt: cleanNumber(cells[36]),
+  probes_wurm_mtlt: cleanNumber(cells[37]),
+  probes_generic_mt: cleanNumber(cells[38]),
+  probes_generic_mtlt: cleanNumber(cells[39]),
+  electrical_panel: cleanNumber(cells[40]),
+  cabling_standard: cleanNumber(cells[41]),
 });
 
 export const matrixHeaders = [
@@ -501,7 +588,14 @@ export const matrixHeaders = [
   "572A en carton",
   "300T en carton",
   "782A en carton",
+  "Sonde Danfoss MT (PT1000 + AKS11/21)",
+  "Sonde Danfoss MT+LT (PT1000 + AKS11/21)",
+  "Sonde WURM MT",
+  "Sonde WURM MT+LT",
+  "Sonde generiche MT (NTC + 4-20mA)",
+  "Sonde generiche MT+LT (NTC + 4-20mA)",
   "Quadro elettrico",
+  "Cablaggio standard",
 ];
 
 // Mappa dei campi optionals per generare headers completi
@@ -527,6 +621,12 @@ const optionalFieldsMap = [
   { header: "572A en carton" },
   { header: "300T en carton" },
   { header: "782A en carton" },
+  { header: "Sonde Danfoss MT (PT1000 + AKS11/21)" },
+  { header: "Sonde Danfoss MT+LT (PT1000 + AKS11/21)" },
+  { header: "Sonde WURM MT" },
+  { header: "Sonde WURM MT+LT" },
+  { header: "Sonde generiche MT (NTC + 4-20mA)" },
+  { header: "Sonde generiche MT+LT (NTC + 4-20mA)" },
 ];
 
 // Genera header completo (senza più colonne _availability)
@@ -554,6 +654,7 @@ export const getFullExcelHeaders = () => {
 
   // Aggiungi colonna Quadro elettrico
   baseHeaders.push("Quadro elettrico");
+  baseHeaders.push("Cablaggio standard");
 
   return baseHeaders;
 };

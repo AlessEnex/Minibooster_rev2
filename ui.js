@@ -11,17 +11,33 @@ import {
   getFilteredConfigs,
 } from "./state.js";
 import { getDictionary } from "./i18n.js";
+import {
+  buildSummaryData,
+  getCablingExtraPrice,
+  getCablingStandardPrice,
+  isCablingChoiceMissing,
+  isCablingExtraInvalid,
+  parseCablingMeters,
+} from "./summary.js";
 
 const machineTypeOptions = document.getElementById("machineTypeOptions");
 const machineTypeSelector = document.getElementById("machineTypeSelector");
+const machineTypeSelected = document.getElementById("machineTypeSelected");
 const funnelSection = document.getElementById("funnel");
 const summaryPanel = document.querySelector(".summary-panel");
 const brandOptions = document.getElementById("brandOptions");
 const codeOptions = document.getElementById("codeOptions");
 const ltOptions = document.getElementById("ltOptions");
 const electricalPanelOptions = document.getElementById("electricalPanelOptions");
+const electricalPanelChoiceHint = document.getElementById("electricalPanelChoiceHint");
 const controlOptions = document.getElementById("controlOptions");
 const optionalOptions = document.getElementById("optionalOptions");
+const probesChoiceHint = document.getElementById("probesChoiceHint");
+const cablingOptions = document.getElementById("cablingOptions");
+const cablingChoiceHint = document.getElementById("cablingChoiceHint");
+const cablingExtraWrap = document.getElementById("cablingExtraWrap");
+const cablingExtraMetersInput = document.getElementById("cablingExtraMeters");
+const cablingExtraHint = document.getElementById("cablingExtraHint");
 const summaryList = document.getElementById("summaryList");
 const projectMetaView = document.getElementById("projectMetaView");
 const printSummaryList = document.getElementById("printSummaryList");
@@ -37,17 +53,126 @@ const transportInfo = document.getElementById("transportInfo");
 const transportResetBtn = document.getElementById("transportReset");
 const transportSuggestions = document.getElementById("transportSuggestions");
 const stepDots = document.getElementById("stepDots");
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
 const catalogList = document.getElementById("catalogList");
 const catalogEmpty = document.getElementById("catalogEmpty");
 const catalogOnlyLtToggle = document.getElementById("catalogOnlyLt");
 const catalogBrandButtons = document.querySelectorAll("[data-catalog-brand]");
 const catalogSection = document.getElementById("catalog");
 const catalogToggleBtn = document.getElementById("catalogToggle");
+const machineTypeToggleBtn = document.getElementById("machineTypeToggle");
 const themeToggleBtn = document.getElementById("themeToggle");
+
+const electricalPanelDependentIds = [
+  "electrical_panel",
+  "diff_mt",
+  "diff_mt_lt",
+  "mx_coil",
+  "danfoss_572a",
+  "danfoss_782",
+  "carel",
+  "wurm",
+  "wurm_customer",
+];
+const controlsCustomerId = "controls_customer_supplied";
+const probesOptionIds = [
+  "probes_danfoss_mt",
+  "probes_danfoss_mtlt",
+  "probes_wurm_mt",
+  "probes_wurm_mtlt",
+  "probes_generic_mt",
+  "probes_generic_mtlt",
+  "probes_customer_supplied",
+  "probes_included",
+];
+
+const hideElectricalPanelChoiceHint = () => {
+  electricalPanelChoiceHint?.classList.add("hidden");
+};
+
+const showElectricalPanelChoiceHint = () => {
+  electricalPanelChoiceHint?.classList.remove("hidden");
+};
+
+const resetElectricalPanelChoice = () => {
+  appState.selections.electricalPanelChoice = null;
+  electricalPanelDependentIds.forEach((id) => appState.selections.optionals.delete(id));
+  appState.selections.optionals.delete(controlsCustomerId);
+  hideElectricalPanelChoiceHint();
+};
+
+const setElectricalPanelChoice = (choice) => {
+  appState.selections.electricalPanelChoice = choice;
+  if (choice === "electrical_panel") {
+    appState.selections.optionals.add("electrical_panel");
+    appState.selections.optionals.delete(controlsCustomerId);
+  } else {
+    electricalPanelDependentIds.forEach((id) => appState.selections.optionals.delete(id));
+    appState.selections.optionals.add(controlsCustomerId);
+  }
+  hideElectricalPanelChoiceHint();
+};
+
+const isElectricalPanelChoiceMissing = () =>
+  appState.selections.electricalPanelChoice !== "none" &&
+  appState.selections.electricalPanelChoice !== "electrical_panel";
+
+const hideProbesChoiceHint = () => {
+  probesChoiceHint?.classList.add("hidden");
+};
+
+const showProbesChoiceHint = () => {
+  probesChoiceHint?.classList.remove("hidden");
+};
+
+const resetProbesChoice = () => {
+  appState.selections.probesChoice = null;
+  hideProbesChoiceHint();
+};
+
+const isProbesChoiceMissing = () => {
+  if (!appState.selections.machineType) return false;
+  return !probesOptionIds.includes(appState.selections.probesChoice);
+};
+
+const hideCablingChoiceHint = () => {
+  cablingChoiceHint?.classList.add("hidden");
+};
+
+const showCablingChoiceHint = () => {
+  cablingChoiceHint?.classList.remove("hidden");
+};
+
+const hideCablingExtraHint = () => {
+  cablingExtraHint?.classList.add("hidden");
+};
+
+const showCablingExtraHint = () => {
+  cablingExtraHint?.classList.remove("hidden");
+};
+
+const resetCablingChoice = () => {
+  appState.selections.cablingChoice = null;
+  appState.selections.cablingExtraMeters = 0;
+  hideCablingChoiceHint();
+  hideCablingExtraHint();
+};
+
+const setCablingChoice = (choice) => {
+  appState.selections.cablingChoice = choice;
+  if (choice !== "extra") {
+    appState.selections.cablingExtraMeters = 0;
+  }
+  hideCablingChoiceHint();
+  hideCablingExtraHint();
+};
+
 
 const renderOptionCard = (item, group, multiple, opts = {}) => {
   const option = document.createElement("div");
   option.className = "option";
+  const showPrice = item.price !== null && item.price !== undefined;
   option.innerHTML = `
     <div class="title-row">
       <div>
@@ -56,7 +181,7 @@ const renderOptionCard = (item, group, multiple, opts = {}) => {
       </div>
       ${item.badge ? `<span class="pill subtle">${item.badge}</span>` : ""}
     </div>
-    <p class="price">${formatPrice(item.price)}</p>
+    ${showPrice ? `<p class="price">${formatPrice(item.price)}</p>` : ""}
   `;
 
   const isSelected = multiple
@@ -87,6 +212,11 @@ const renderOptionCard = (item, group, multiple, opts = {}) => {
         appState.selections.ltPressure = null;
         appState.selections.ltChoice = null;
         appState.selections.optionals = new Set();
+        resetElectricalPanelChoice();
+        resetProbesChoice();
+        resetCablingChoice();
+        // Comprimi la sezione tipo macchina
+        setMachineTypeSelectorCollapsed(true);
         // Mostra il funnel e renderizza
         if (funnelSection) funnelSection.classList.remove("hidden");
         renderUserPanels();
@@ -118,11 +248,15 @@ const renderOptionCard = (item, group, multiple, opts = {}) => {
         appState.selections.ltPressure = null;
         appState.selections.ltChoice = null;
         appState.selections.optionals = new Set();
+        resetElectricalPanelChoice();
+        resetCablingChoice();
       }
       if (group === "mtKey") {
         appState.selections.ltPressure = null;
         appState.selections.ltChoice = null;
         appState.selections.optionals = new Set();
+        resetElectricalPanelChoice();
+        resetCablingChoice();
       }
       if (group === "ltChoice") {
         if (item.pressure) {
@@ -138,9 +272,22 @@ const renderOptionCard = (item, group, multiple, opts = {}) => {
           appState.selections.optionals.delete("diff_mt_lt");
         }
       }
+      if (group === "electricalPanelChoice") {
+        setElectricalPanelChoice(item.id);
+      }
+      if (group === "probesChoice") {
+        hideProbesChoiceHint();
+      }
+      if (group === "cablingChoice") {
+        setCablingChoice(item.id);
+        if (item.id === "extra") {
+          setTimeout(() => cablingExtraMetersInput?.focus(), 0);
+        }
+      }
     }
     renderUserPanels();
     updateSummary();
+    updateNextButtonState();
     
     // Auto-avanzamento per gli step 1, 2, 3 (selezioni singole)
     if (!multiple && (group === "brand" || group === "mtKey" || group === "ltChoice")) {
@@ -159,7 +306,7 @@ const renderMachineTypeOptions = () => {
       {
         id: machine.id,
         name: machine.name,
-        price: 0,
+        price: null, // Nascondi il prezzo per la selezione del tipo macchina
       },
       "machineType",
       false
@@ -180,7 +327,7 @@ const renderBrandOptions = () => {
         {
           id: item.id,
           name: item.name,
-          price: 0,
+          price: null, // Nascondi il prezzo per la selezione della marca
         },
         "brand",
         false
@@ -288,38 +435,53 @@ const renderLtOptions = () => {
 const renderElectricalPanelOptions = () => {
   if (!electricalPanelOptions) return;
   electricalPanelOptions.innerHTML = "";
-  
+
   // Ottieni optionals filtrati in base al machineType selezionato
   const optionals = getAvailableOptionals(appState.selections.machineType);
-  
-  // Trova electrical_panel optional
-  const electricalPanelOpt = optionals.find(o => o.id === 'electrical_panel');
-  
-  // Renderizza electrical_panel come prima option card
+
+  const electricalPanelOpt = optionals.find((o) => o.id === "electrical_panel");
+  const isTago = appState.selections.machineType === "TAGO";
+
+  if (isTago && appState.selections.electricalPanelChoice !== "electrical_panel") {
+    setElectricalPanelChoice("electrical_panel");
+  }
+
+  if (!isTago) {
+    const noneCard = renderOptionCard(
+      {
+        id: "none",
+        name: "Nessun quadro",
+        price: 0,
+        badge: "Scelta",
+      },
+      "electricalPanelChoice",
+      false
+    );
+    electricalPanelOptions.appendChild(noneCard);
+  }
+
   if (electricalPanelOpt && electricalPanelOpt.price !== null && electricalPanelOpt.price !== undefined) {
     const panelCard = renderOptionCard(
       {
-        id: electricalPanelOpt.id,
+        id: "electrical_panel",
         name: electricalPanelOpt.name,
         price: electricalPanelOpt.price,
         badge: "Main",
       },
-      "optionals",
-      true, // Multiple = true per gestirlo come Set
-      { exclusiveIds: [] }
+      "electricalPanelChoice",
+      false
     );
     electricalPanelOptions.appendChild(panelCard);
   }
-  
-  // Se electrical_panel non è selezionato, non mostrare il resto
-  const hasElectricalPanel = appState.selections.optionals.has('electrical_panel');
+
+  const hasElectricalPanel = appState.selections.electricalPanelChoice === "electrical_panel";
   if (!hasElectricalPanel) {
     return;
   }
-  
-  // Verifica se c'è LT selezionato (diverso da null e "none")
+
+  // Verifica se c'e LT selezionato (diverso da null e "none")
   const hasLT = appState.selections.ltChoice && appState.selections.ltChoice !== "none";
-  
+
   const groups = [
     { title: "Componenti quadro", ids: ["diff_mt", "diff_mt_lt", "mx_coil"], exclusiveIds: ["diff_mt", "diff_mt_lt"] },
   ];
@@ -329,16 +491,16 @@ const renderElectricalPanelOptions = () => {
     container.className = "option-group";
     container.innerHTML = `<h4>${group.title}</h4>`;
     let hasVisibleItems = false;
-    
+
     group.ids.forEach((id) => {
       // Filtra i differentials basandosi sulla presenza di LT
-      if (id === "diff_mt" && hasLT) return; // Salta "Differential MT" se c'è LT
-      if (id === "diff_mt_lt" && !hasLT) return; // Salta "Differentials MT/LT" se NON c'è LT
-      
+      if (id === "diff_mt" && hasLT) return; // Salta "Differential MT" se c'e LT
+      if (id === "diff_mt_lt" && !hasLT) return; // Salta "Differentials MT/LT" se NON c'e LT
+
       const opt = optionals.find((o) => o.id === id);
       if (!opt) return; // Non renderizzare se non disponibile per questo machineType
       if (opt.price === null || opt.price === undefined) return; // Non renderizzare se Not Available (NA)
-      
+
       hasVisibleItems = true;
       const exclusiveIds = group.exclusiveIds?.includes(id) ? group.exclusiveIds : [];
       const optionEl = renderOptionCard(
@@ -354,12 +516,105 @@ const renderElectricalPanelOptions = () => {
       );
       container.appendChild(optionEl);
     });
-    
+
     // Aggiungi il gruppo solo se ha elementi visibili
     if (hasVisibleItems) {
       electricalPanelOptions.appendChild(container);
     }
   });
+};
+
+let cablingInputBound = false;
+
+const bindCablingExtraInput = () => {
+  if (!cablingExtraMetersInput || cablingInputBound) return;
+  const handleMetersChange = (event) => {
+    const value = parseCablingMeters(event.target.value);
+    appState.selections.cablingExtraMeters = value;
+    if (value > 0) {
+      hideCablingExtraHint();
+    }
+    
+    // Aggiorna il prezzo della card "extra" senza ricreare tutto
+    const extraCard = cablingOptions?.querySelector('.option:nth-child(2)');
+    if (extraCard) {
+      const basePrice = getCablingStandardPrice();
+      const meters = parseCablingMeters(appState.selections.cablingExtraMeters);
+      const extraPrice = getCablingExtraPrice(basePrice, meters);
+      const priceEl = extraCard.querySelector('.price');
+      const subtitleEl = extraCard.querySelector('.subtitle');
+      
+      if (priceEl) {
+        priceEl.textContent = formatPrice(extraPrice);
+      }
+      if (subtitleEl) {
+        const dict = getDictionary();
+        subtitleEl.textContent = meters > 0 ? `${meters} m` : dict.step4_cabling_extra_placeholder || "Metri extra";
+      }
+    }
+    
+    updateSummary();
+    updateNextButtonState();
+  };
+  cablingExtraMetersInput.addEventListener("input", handleMetersChange);
+  cablingExtraMetersInput.addEventListener("change", handleMetersChange);
+  cablingInputBound = true;
+};
+
+const renderCablingOptions = () => {
+  if (!cablingOptions) return;
+  cablingOptions.innerHTML = "";
+  if (!appState.selections.machineType) return;
+
+  if (isCablingChoiceMissing()) {
+    setCablingChoice("standard");
+  }
+
+  const dict = getDictionary();
+  const basePrice = getCablingStandardPrice();
+  const meters = parseCablingMeters(appState.selections.cablingExtraMeters);
+  const extraPrice = getCablingExtraPrice(basePrice, meters);
+
+  const standardCard = renderOptionCard(
+    {
+      id: "standard",
+      name: dict.step4_cabling_standard || "Cablaggio standard",
+      price: basePrice,
+      badge: "Default",
+    },
+    "cablingChoice",
+    false
+  );
+  cablingOptions.appendChild(standardCard);
+
+  const extraCard = renderOptionCard(
+    {
+      id: "extra",
+      name: dict.step4_cabling_extra || "Cablaggio extra",
+      subtitle: meters > 0 ? `${meters} m` : dict.step4_cabling_extra_placeholder || "Metri extra",
+      price: extraPrice,
+    },
+    "cablingChoice",
+    false
+  );
+  cablingOptions.appendChild(extraCard);
+
+  if (cablingExtraWrap) {
+    cablingExtraWrap.classList.toggle(
+      "hidden",
+      appState.selections.cablingChoice !== "extra"
+    );
+  }
+  if (cablingExtraMetersInput) {
+    cablingExtraMetersInput.value = meters > 0 ? String(meters) : "";
+    cablingExtraMetersInput.disabled = appState.selections.cablingChoice !== "extra";
+  }
+
+  if (appState.selections.cablingChoice === "extra" && isCablingExtraInvalid()) {
+    showCablingExtraHint();
+  }
+
+  bindCablingExtraInput();
 };
 
 const renderControlOptions = () => {
@@ -369,18 +624,39 @@ const renderControlOptions = () => {
   // Ottieni optionals filtrati in base al machineType selezionato
   const optionals = getAvailableOptionals(appState.selections.machineType);
   
-  // Se electrical_panel non è selezionato, mostra messaggio
-  const hasElectricalPanel = appState.selections.optionals.has('electrical_panel');
-  if (!hasElectricalPanel) {
+  const panelChoice = appState.selections.electricalPanelChoice;
+  if (panelChoice === "electrical_panel") {
+    appState.selections.optionals.delete(controlsCustomerId);
+  }
+  if (!panelChoice) {
     const message = document.createElement("p");
     message.className = "hint";
     message.textContent = "Seleziona il quadro elettrico nello step precedente per scegliere i controlli.";
     controlOptions.appendChild(message);
     return;
   }
+  if (panelChoice !== "electrical_panel") {
+    appState.selections.optionals.add(controlsCustomerId);
+    const supplied = optionals.find((o) => o.id === controlsCustomerId);
+    const card = document.createElement("div");
+    card.className = "option selected";
+    card.innerHTML = `
+      <div class="title-row">
+        <div><strong>${supplied?.name || "Controlli forniti dal cliente"}</strong></div>
+        <span class="pill subtle">Default</span>
+      </div>
+      <p class="price">${formatPrice(supplied?.price ?? 0)}</p>
+    `;
+    controlOptions.appendChild(card);
+    return;
+  }
   
   const groups = [
-    { title: "Controllori", ids: ["danfoss_572a", "danfoss_782", "carel", "wurm"], exclusiveIds: ["danfoss_572a", "danfoss_782", "carel", "wurm"] },
+    {
+      title: "Controllori",
+      ids: ["danfoss_572a", "danfoss_782", "carel", "wurm", "wurm_customer"],
+      exclusiveIds: ["danfoss_572a", "danfoss_782", "carel", "wurm", "wurm_customer"],
+    },
   ];
 
   groups.forEach((group) => {
@@ -419,7 +695,70 @@ const renderControlOptions = () => {
 
 const renderElectricalOptions = () => {
   renderElectricalPanelOptions();
+  renderCablingOptions();
   renderControlOptions();
+};
+
+const renderProbesOptions = (optionals) => {
+  if (!optionalOptions) return;
+  if (!appState.selections.machineType) return;
+  const probeOptions = optionals
+    .filter((opt) => opt.category === "probes")
+    .filter((opt) => opt.price !== null && opt.price !== undefined);
+  if (!probeOptions.length) return;
+
+  const container = document.createElement("div");
+  container.className = "option-group";
+  container.innerHTML = "<h4>Sonde</h4>";
+
+  const isTago = appState.selections.machineType === "TAGO";
+  const hasLT = appState.selections.ltChoice && appState.selections.ltChoice !== "none";
+  let optionsToRender = probeOptions;
+
+  if (isTago) {
+    const included = probeOptions.find((opt) => opt.id === "probes_included") || probeOptions[0];
+    if (included && appState.selections.probesChoice !== included.id) {
+      appState.selections.probesChoice = included.id;
+    }
+    optionsToRender = included ? [included] : probeOptions.slice(0, 1);
+  } else {
+    if (appState.selections.probesChoice === "probes_included") {
+      appState.selections.probesChoice = null;
+    }
+    optionsToRender = probeOptions.filter((opt) =>
+      opt.id === "probes_customer_supplied" || 
+      (hasLT ? opt.id.endsWith("_mtlt") : opt.id.endsWith("_mt"))
+    );
+    if (!optionsToRender.length) {
+      optionsToRender = probeOptions;
+    }
+  }
+
+  if (
+    appState.selections.probesChoice &&
+    !optionsToRender.some((opt) => opt.id === appState.selections.probesChoice)
+  ) {
+    appState.selections.probesChoice = null;
+  }
+
+  optionsToRender.forEach((opt) => {
+    const optionEl = renderOptionCard(
+      {
+        id: opt.id,
+        name: opt.name,
+        price: opt.price,
+      },
+      "probesChoice",
+      false
+    );
+    container.appendChild(optionEl);
+  });
+
+  if (probesOptionIds.includes(appState.selections.probesChoice)) {
+    hideProbesChoiceHint();
+  }
+
+  optionalOptions.appendChild(container);
 };
 
 const renderOptionalOptions = () => {
@@ -428,6 +767,8 @@ const renderOptionalOptions = () => {
   
   // Ottieni optionals filtrati in base al machineType selezionato
   const optionals = getAvailableOptionals(appState.selections.machineType);
+
+  renderProbesOptions(optionals);
   
   const groups = [
     { title: "Opzioni", ids: ["heat_recovery", "ducting", "valvole_meccaniche"], exclusiveIds: [] },
@@ -506,8 +847,8 @@ export const updateProjectFlow = () => {
   if (projectComplete) {
     if (machineTypeSelector) {
       machineTypeSelector.classList.remove("hidden");
-      // Scroll solo se era nascosto prima (prima volta che diventa completo)
-      if (wasHidden) {
+      // Scroll solo se era nascosto prima E nessun campo ha il focus
+      if (wasHidden && document.activeElement?.tagName !== 'INPUT' && document.activeElement?.tagName !== 'SELECT') {
         setTimeout(() => {
           const rect = machineTypeSelector.getBoundingClientRect();
           const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -567,11 +908,54 @@ export const updateSummary = () => {
   const optItems = getOptionals().filter((o) => appState.selections.optionals.has(o.id));
   optItems.forEach((o) => {
     rows.push([dict.summary_optional_label || "Optional", o.name, o.price]);
-    // Somma al totale solo se il prezzo è > 0 (esclude null, -1=Included, 0)
-    if (o.price > 0) {
+    // Somma al totale solo se e' un valore numerico reale (esclude null, -1, -2)
+    if (o.price !== null && o.price !== undefined && o.price !== -1 && o.price !== -2) {
       total += o.price;
     }
   });
+
+  // Aggiungi "Nessun quadro fornito" se selezionato none
+  if (appState.selections.electricalPanelChoice === "none") {
+    rows.push([dict.summary_optional_label || "Optional", "Nessun quadro fornito", 0]);
+  }
+
+  if (!isCablingChoiceMissing()) {
+    const basePrice = getCablingStandardPrice();
+    const meters = parseCablingMeters(appState.selections.cablingExtraMeters);
+    const cablingChoice = appState.selections.cablingChoice;
+    const cablingName =
+      cablingChoice === "extra"
+        ? `${dict.step4_cabling_extra || "Cablaggio extra"} (${meters} m)`
+        : dict.step4_cabling_standard || "Cablaggio standard";
+    const cablingPrice =
+      cablingChoice === "extra" ? getCablingExtraPrice(basePrice, meters) : basePrice;
+
+    rows.push([dict.summary_cabling_label || "Cablaggio", cablingName, cablingPrice]);
+    if (
+      cablingPrice !== null &&
+      cablingPrice !== undefined &&
+      cablingPrice !== -1 &&
+      cablingPrice !== -2
+    ) {
+      total += cablingPrice;
+    }
+  }
+
+  const probeSelectedId = appState.selections.probesChoice;
+  if (probeSelectedId) {
+    const probe = getOptionals().find((o) => o.id === probeSelectedId);
+    if (probe) {
+      rows.push([dict.summary_probes_label || "Sonde", probe.name, probe.price]);
+      if (
+        probe.price !== null &&
+        probe.price !== undefined &&
+        probe.price !== -1 &&
+        probe.price !== -2
+      ) {
+        total += probe.price;
+      }
+    }
+  }
 
   if (appState.selections.gascooler) {
     rows.push([dict.summary_gascooler_label || "Gascooler", dict.step5_label || "Gascooler", 0]);
@@ -592,14 +976,27 @@ export const updateSummary = () => {
     total -= discountValue;
   }
 
+  // Traccia le righe esistenti per rilevare le nuove aggiunte
+  const previousRowKeys = Array.from(summaryList?.querySelectorAll('.summary-row') || []).map(row => row.textContent);
+  
   const summaryHtml = rows
     .map(
-      ([label, name, price]) =>
-        `<div class="summary-row"><span>${label}: ${name}</span><span>${formatPrice(price)}</span></div>`
+      ([label, name, price]) => {
+        const rowKey = `${label}: ${name}${formatPrice(price)}`;
+        const isNew = !previousRowKeys.includes(rowKey);
+        return `<div class="summary-row${isNew ? ' added' : ''}"><span>${label}: ${name}</span><span>${formatPrice(price)}</span></div>`;
+      }
     )
     .join("");
 
   summaryList.innerHTML = summaryHtml;
+  
+  // Rimuovi la classe 'added' dopo l'animazione
+  setTimeout(() => {
+    summaryList?.querySelectorAll('.summary-row.added').forEach(row => {
+      row.classList.remove('added');
+    });
+  }, 500);
   if (printSummaryList) {
     printSummaryList.innerHTML = summaryHtml;
   }
@@ -614,6 +1011,9 @@ export const updateSummary = () => {
 const getOptionalCounts = () =>
   getOptionals().reduce(
     (acc, item) => {
+      if (item.category === "cabling") {
+        return acc;
+      }
       if (item.category === "spare") {
         acc.spare += 1;
       } else {
@@ -693,7 +1093,22 @@ export const renderCatalog = () => {
 };
 
 export const goToStep = (step) => {
-  appState.step = Math.max(1, Math.min(8, step));
+  const currentStep = appState.step;
+  const nextStep = Math.max(1, Math.min(8, step));
+  if (currentStep === 4 && nextStep > currentStep) {
+    const missingPanel = isElectricalPanelChoiceMissing();
+    const missingCabling = isCablingChoiceMissing();
+    const invalidCabling = isCablingExtraInvalid();
+    if (missingPanel) showElectricalPanelChoiceHint();
+    if (missingCabling) showCablingChoiceHint();
+    if (invalidCabling) showCablingExtraHint();
+    if (missingPanel || missingCabling || invalidCabling) return;
+  }
+  if (currentStep === 6 && nextStep > currentStep && isProbesChoiceMissing()) {
+    showProbesChoiceHint();
+    return;
+  }
+  appState.step = nextStep;
   if (stepDots) {
     Array.from(stepDots.children).forEach((dot, idx) => {
       dot.classList.toggle("active", idx < appState.step);
@@ -704,6 +1119,35 @@ export const goToStep = (step) => {
     const visible = Number(el.dataset.step) === appState.step;
     el.style.display = visible ? "block" : "none";
   });
+  updateNextButtonState();
+};
+
+const canProceedFromCurrentStep = () => {
+  const step = appState.step;
+  
+  if (step === 4) {
+    const missingPanel = isElectricalPanelChoiceMissing();
+    const missingCabling = isCablingChoiceMissing();
+    const invalidCabling = isCablingExtraInvalid();
+    return !missingPanel && !missingCabling && !invalidCabling;
+  }
+  
+  if (step === 6) {
+    return !isProbesChoiceMissing();
+  }
+  
+  return true;
+};
+
+export const updateNextButtonState = () => {
+  if (!nextBtn) return;
+  const canProceed = canProceedFromCurrentStep();
+  nextBtn.disabled = !canProceed;
+  if (canProceed) {
+    nextBtn.classList.remove("disabled");
+  } else {
+    nextBtn.classList.add("disabled");
+  }
 };
 
 export const resetSelections = () => {
@@ -712,7 +1156,11 @@ export const resetSelections = () => {
     mtKey: null,
     ltPressure: null,
     ltChoice: null,
-    optionals: new Set(['electrical_panel']),
+    electricalPanelChoice: null,
+    probesChoice: null,
+    cablingChoice: null,
+    cablingExtraMeters: 0,
+    optionals: new Set(),
     discount: 0,
     project: appState.selections.project,
     gascooler: false,
@@ -732,6 +1180,10 @@ export const resetSelections = () => {
     transportCityInput.disabled = true;
   }
   if (transportInfo) transportInfo.textContent = "";
+  hideElectricalPanelChoiceHint();
+  hideProbesChoiceHint();
+  hideCablingChoiceHint();
+  hideCablingExtraHint();
   goToStep(1);
   renderUserPanels();
   updateSummary();
@@ -743,7 +1195,15 @@ export const applyCatalogSelection = (brand, mtKey) => {
   appState.selections.mtKey = mtKey;
   appState.selections.ltPressure = null;
   appState.selections.ltChoice = null;
-  appState.selections.optionals = new Set(['electrical_panel']);
+  appState.selections.electricalPanelChoice = null;
+  appState.selections.probesChoice = null;
+  appState.selections.cablingChoice = null;
+  appState.selections.cablingExtraMeters = 0;
+  appState.selections.optionals = new Set();
+  hideElectricalPanelChoiceHint();
+  hideProbesChoiceHint();
+  hideCablingChoiceHint();
+  hideCablingExtraHint();
   renderUserPanels();
   updateSummary();
   goToStep(3);
@@ -797,6 +1257,32 @@ export const setCatalogCollapsed = (collapsed) => {
   updateCatalogCollapseLabel();
 };
 
+export const setMachineTypeSelectorCollapsed = (collapsed) => {
+  appState.ui.machineTypeSelectorCollapsed = Boolean(collapsed);
+  if (machineTypeSelector) {
+    machineTypeSelector.classList.toggle("collapsed", appState.ui.machineTypeSelectorCollapsed);
+  }
+  updateMachineTypeToggleLabel();
+  updateMachineTypeSelectedLabel();
+};
+
+export const updateMachineTypeSelectedLabel = () => {
+  if (!machineTypeSelected) return;
+  const selectedType = machineTypes.find(m => m.id === appState.selections.machineType);
+  if (selectedType && appState.ui.machineTypeSelectorCollapsed) {
+    machineTypeSelected.textContent = selectedType.name;
+    machineTypeSelected.classList.remove("hidden");
+  } else {
+    machineTypeSelected.classList.add("hidden");
+  }
+};
+
+export const updateMachineTypeToggleLabel = () => {
+  if (!machineTypeToggleBtn) return;
+  const collapsed = appState.ui.machineTypeSelectorCollapsed;
+  machineTypeToggleBtn.setAttribute("aria-expanded", collapsed ? "false" : "true");
+};
+
 export const updateCatalogCollapseLabel = (dict = getDictionary()) => {
   if (!catalogToggleBtn) return;
   const collapsed = appState.ui.catalogCollapsed;
@@ -829,6 +1315,10 @@ export const wireCatalogFilters = () => {
 
   catalogToggleBtn?.addEventListener("click", () => {
     setCatalogCollapsed(!appState.ui.catalogCollapsed);
+  });
+
+  machineTypeToggleBtn?.addEventListener("click", () => {
+    setMachineTypeSelectorCollapsed(!appState.ui.machineTypeSelectorCollapsed);
   });
 
   themeToggleBtn?.addEventListener("click", () => {

@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <canvas id="frostCanvas"></canvas>
   <div class="app-shell">
     <header class="hero">
       <div>
@@ -51,8 +52,25 @@
             <p class="eyebrow" data-i18n="meta_eyebrow">Dati progetto</p>
             <h2 data-i18n="meta_title">Identifica la richiesta</h2>
           </div>
+          <button id="fillTestData" class="button ghost" style="background: #ff6b6b; color: white;">🧪 Compila Test</button>
         </div>
         <div class="meta-grid">
+          <label class="field">
+            <span data-i18n="meta_offer_number">Offerta N°</span>
+            <input id="offerNumber" type="text" placeholder="Es. 2024-001">
+          </label>
+          <label class="field">
+            <span data-i18n="meta_revision">Revisione</span>
+            <input id="revisionNumber" type="text" placeholder="Es. Rev. 1">
+          </label>
+          <label class="field">
+            <span data-i18n="meta_client">Cliente</span>
+            <input id="clientName" type="text" placeholder="Nome cliente">
+          </label>
+          <label class="field">
+            <span data-i18n="meta_requested_by">Richiesto da</span>
+            <input id="requestedBy" type="text" placeholder="Nome richiedente">
+          </label>
           <label class="field">
             <span data-i18n="meta_project_name">Nome progetto</span>
             <input id="projectName" type="text" placeholder="Es. Revamp centro commerciale">
@@ -68,7 +86,7 @@
         </div>
       </section>
 
-      <section id="catalog" class="card">
+      <section id="catalog" class="card hidden">
         <div class="card-head">
           <button id="catalogToggle" type="button" class="collapse-toggle" aria-expanded="false" aria-label="Toggle catalogo">
             <span class="chevron"></span>
@@ -98,37 +116,21 @@
 
       <section id="machineTypeSelector" class="card hidden">
         <div class="card-head">
+          <button id="machineTypeToggle" type="button" class="collapse-toggle" aria-expanded="true" aria-label="Toggle tipo macchina">
+            <span class="chevron"></span>
+          </button>
           <div>
             <p class="eyebrow" data-i18n="machine_eyebrow">Tipo macchina</p>
             <h2 data-i18n="machine_title">Seleziona la famiglia</h2>
             <p class="hint" data-i18n="machine_hint">Scegli il tipo di macchina da configurare.</p>
           </div>
+          <span id="machineTypeSelected" class="pill subtle hidden"></span>
         </div>
         <div id="machineTypeOptions" class="option-grid"></div>
       </section>
 
       <div class="layout-with-summary">
         <section id="funnel" class="card hidden">
-          <div class="card-head">
-            <div>
-              <p class="eyebrow" data-i18n="funnel_eyebrow">Percorso guidato</p>
-              <h2 data-i18n="funnel_title">Scegli passo dopo passo</h2>
-            </div>
-            <div class="step-controls">
-              <button id="prevBtn" class="button ghost" data-i18n="nav_prev">Indietro</button>
-              <div class="step-visual">
-                <div id="stepDots" class="step-dots" aria-label="Avanzamento">
-                  <span class="dot active"></span>
-                  <span class="dot"></span>
-                  <span class="dot"></span>
-                  <span class="dot"></span>
-                  <span class="dot"></span>
-                  <span class="dot"></span>
-                  <span class="dot"></span>                <span class="dot"></span>                </div>
-              </div>
-              <button id="nextBtn" class="button primary" data-i18n="nav_next">Avanti</button>
-            </div>
-          </div>
 
           <div id="steps">
             <div class="step" data-step="1">
@@ -145,15 +147,28 @@
 
             <div class="step" data-step="3">
               <h3 data-i18n="step3_title">3. Compressore LT</h3>
-              <p class="hint" data-i18n="step3_hint">Nessuno o LT disponibile (36/60 bar) della marca scelta.</p>
+              <p class="hint" data-i18n="step3_hint">Seleziona la configurazione LT.</p>
               <div id="ltOptions" class="option-grid"></div>
             </div>
 
             <div class="step" data-step="4">
               <h3 data-i18n="step4_title">4. Quadro elettrico</h3>
               <p class="hint" data-i18n="step4_hint">Scegli se includere il quadro elettrico, differenziali e MX coil.</p>
-              <div id="electricalPanelOptions" class="option-grid"></div>
+            <div id="electricalPanelOptions" class="option-grid"></div>
+            <p id="electricalPanelChoiceHint" class="hint hidden">Seleziona &quot;Nessun quadro&quot; o &quot;Quadro elettrico&quot; per continuare.</p>
+            <div class="option-group cabling-group">
+              <h4 data-i18n="step4_cabling_title">Cablaggio</h4>
+              <div id="cablingOptions" class="option-grid"></div>
+              <div id="cablingExtraWrap" class="cabling-extra hidden">
+                <label class="field inline-field">
+                  <span data-i18n="step4_cabling_extra_meters_label">Metri extra</span>
+                  <input id="cablingExtraMeters" type="number" min="1" step="1" inputmode="numeric" placeholder="0">
+                </label>
+                <p id="cablingExtraHint" class="hint hidden" data-i18n="step4_cabling_extra_hint">Inserisci i metri extra per continuare.</p>
+              </div>
+              <p id="cablingChoiceHint" class="hint hidden" data-i18n="step4_cabling_choice_hint">Seleziona il tipo di cablaggio per continuare.</p>
             </div>
+          </div>
 
             <div class="step" data-step="5">
               <h3 data-i18n="step5_title">5. Controlli</h3>
@@ -164,8 +179,9 @@
             <div class="step" data-step="6">
               <h3 data-i18n="step6_title">6. Optionals</h3>
               <p class="hint" data-i18n="step6_hint">Componenti a bordo o spare parts.</p>
-              <div id="optionalOptions" class="option-grid"></div>
-            </div>
+            <div id="optionalOptions" class="option-grid"></div>
+            <p id="probesChoiceHint" class="hint hidden">Seleziona le sonde per continuare.</p>
+          </div>
 
             <div class="step" data-step="7">
               <h3 data-i18n="step7_title">7. Gascooler</h3>
@@ -212,6 +228,23 @@
                 </div>
               </div>
             </div>
+          </div>
+
+          <div class="step-controls">
+            <button id="prevBtn" class="button ghost" data-i18n="nav_prev">Indietro</button>
+            <div class="step-visual">
+              <div id="stepDots" class="step-dots" aria-label="Avanzamento">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <button id="nextBtn" class="button primary" data-i18n="nav_next">Avanti</button>
           </div>
         </section>
 
@@ -273,23 +306,69 @@
     </main>
 
     <section class="print-sheet">
-      <header class="print-head">
-        <div>
-          <p class="eyebrow" data-i18n="print_heading">Scheda configurazione</p>
-          <h2 id="printTitle" data-i18n="print_title">Offerta</h2>
-        </div>
-        <div id="printProjectMeta" class="meta-view"></div>
-      </header>
-      <div class="print-body">
-        <div class="print-config">
-          <h4 data-i18n="print_config">Configurazione</h4>
-          <div id="printSummaryList" class="summary-list"></div>
-          <div class="print-total">
-            <p data-i18n="print_total_label">Totale</p>
-            <h2 id="printTotal">€ 0</h2>
-          </div>
-        </div>
-      </div>
+      <table class="print-page">
+        <thead>
+          <tr>
+            <td>
+              <div class="print-page-header">
+                <div class="print-logos">
+                  <img src="loghi/Logo_ENEX_2022_Black.png" alt="ENEX" class="print-logo">
+                  <img src="loghi/ECOVADIS.jpg" alt="ECOVADIS" class="print-logo">
+                  <img src="loghi/SISCERT1.jpg" alt="SISCERT1" class="print-logo">
+                  <img src="loghi/SISCERT2.jpg" alt="SISCERT2" class="print-logo">
+                  <img src="loghi/ACCREDIA.jpg" alt="ACCREDIA" class="print-logo">
+                  <img src="loghi/IIS.jpg" alt="IIS" class="print-logo">
+                </div>
+              </div>
+            </td>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <td>
+              <div class="print-company-footer">
+                <div class="print-footer-text">
+                  <div class="print-footer-line">ENEX S.R.L con Socio Unico</div>
+                  <div class="print-footer-line">P.I./Cod. Fisc. n° 02328320300 | Reg. Imp. Treviso REA 320849 | Capitale sociale euro 5.000.000,00 i.v.</div>
+                  <div class="print-footer-line">Società soggetta all'attività di Direzione e Coordinamento di CCC Holdings Europe spa</div>
+                  <div class="print-footer-line">Sede legale e amministrativa: Via delle Industrie 7, Vacil di Breda di Piave (TV) - ITALY</div>
+                  <div class="print-footer-line">Tel: +39 0422 440429 - Fax: +39 0422 961021 - Info@enex.it</div>
+                  <div class="print-footer-line">www.enex.it</div>
+                </div>
+                <div class="print-footer-image-box">
+                  <img class="print-footer-image" src="loghi/r744.png" alt="R744">
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr>
+            <td>
+              <header class="print-head">
+                <div id="printProjectMeta" class="meta-view"></div>
+              </header>
+              <div class="print-body">
+                <div class="print-config">
+                  <h4 data-i18n="print_config">Configurazione</h4>
+                  <div id="printSummaryList" class="summary-list"></div>
+                  <div id="printDescriptions" class="print-description-tago"></div>
+                  <div class="print-total">
+                    <p data-i18n="print_total_label">Totale</p>
+                    <h2 id="printTotal">€ 0</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="print-signature">
+                <div class="print-signature-line">ENEX TECHNOLOGIES</div>
+                <div class="print-signature-line">Francesco Fadigà</div>
+                <div class="print-signature-line">Chief Technology Office</div>
+                <div class="print-signature-image-space"></div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
     <div id="pasteModal" class="modal hidden">
