@@ -261,6 +261,7 @@
             <h2 id="totalPrice">€ 0</h2>
             <div class="inline-actions">
               <button id="printBtn" class="button ghost" data-i18n="summary_print">Stampa offerta</button>
+              <button id="printPreviewBtn" class="button ghost" data-i18n="summary_print_preview">Anteprima stampa</button>
               <button id="resetBtn" class="button ghost" data-i18n="summary_reset">Reset</button>
             </div>
           </div>
@@ -312,12 +313,14 @@
           <div class="print-debug-strip print-debug-blue"></div>
           <div class="print-page-header">
             <div class="print-logos">
-              <img src="loghi/Logo_ENEX_2022_Black.png" alt="ENEX" class="print-logo">
-              <img src="loghi/ECOVADIS.jpg" alt="ECOVADIS" class="print-logo">
-              <img src="loghi/SISCERT1.jpg" alt="SISCERT1" class="print-logo">
-              <img src="loghi/SISCERT2.jpg" alt="SISCERT2" class="print-logo">
-              <img src="loghi/ACCREDIA.jpg" alt="ACCREDIA" class="print-logo">
-              <img src="loghi/IIS.jpg" alt="IIS" class="print-logo">
+              <img src="loghi/Logo_ENEX_2022_Black.png" alt="ENEX" class="print-logo print-logo-enex">
+              <div class="print-logos-right">
+                <img src="loghi/ECOVADIS.jpg" alt="ECOVADIS" class="print-logo">
+                <img src="loghi/SISCERT1.jpg" alt="SISCERT1" class="print-logo">
+                <img src="loghi/SISCERT2.jpg" alt="SISCERT2" class="print-logo">
+                <img src="loghi/ACCREDIA.jpg" alt="ACCREDIA" class="print-logo">
+                <img src="loghi/IIS.jpg" alt="IIS" class="print-logo">
+              </div>
             </div>
           </div>
           <div class="print-page-body"></div>
@@ -383,6 +386,9 @@
         </div>
       </div>
     </div>
+  </div>
+  <div id="printPreviewToolbar" class="print-preview-toolbar hidden">
+    <button id="printPreviewExitBtn" class="button ghost slim" data-i18n="print_preview_exit">Esci anteprima</button>
   </div>
   <script type="module" src="app.js"></script>
 </body>

@@ -93,6 +93,7 @@ const translations = {
     summary_km_suffix: "km",
     summary_total_label: "Totale",
     summary_print: "Stampa offerta",
+    summary_print_preview: "Anteprima stampa",
     summary_reset: "Reset",
     admin_title: "Area admin",
     admin_matrix: "Matrice prezzi",
@@ -110,6 +111,7 @@ const translations = {
     print_title: "Offerta",
     print_config: "Configurazione",
     print_total_label: "Totale",
+    print_preview_exit: "Esci anteprima",
   },
   EN: {
     hero_eyebrow: "TAGO, MINIBOOSTER SWISSLINE & MICROBOOSTER CONFIGURATOR STUDIO",
@@ -194,6 +196,7 @@ const translations = {
     summary_km_suffix: "km",
     summary_total_label: "Total",
     summary_print: "Print offer",
+    summary_print_preview: "Print preview",
     summary_reset: "Reset",
     admin_title: "Admin area",
     admin_matrix: "Price matrix",
@@ -211,6 +214,7 @@ const translations = {
     print_title: "Offer",
     print_config: "Configuration",
     print_total_label: "Total",
+    print_preview_exit: "Exit preview",
   },
   FR: {
     hero_eyebrow: "TAGO, MINIBOOSTER SWISSLINE & MICROBOOSTER CONFIGURATOR STUDIO",
@@ -297,6 +301,7 @@ const translations = {
     summary_km_suffix: "km",
     summary_total_label: "Total",
     summary_print: "Imprimer l'offre",
+    summary_print_preview: "Apercu impression",
     summary_reset: "Réinitialiser",
     admin_title: "Zone admin",
     admin_matrix: "Matrice des prix",
@@ -314,6 +319,7 @@ const translations = {
     print_title: "Offre",
     print_config: "Configuration",
     print_total_label: "Total",
+    print_preview_exit: "Quitter apercu",
   },
   "DE/CH": {
     hero_eyebrow: "TAGO, MINIBOOSTER SWISSLINE & MICROBOOSTER CONFIGURATOR STUDIO",
@@ -400,6 +406,7 @@ const translations = {
     summary_km_suffix: "km",
     summary_total_label: "Summe",
     summary_print: "Angebot drucken",
+    summary_print_preview: "Druckvorschau",
     summary_reset: "Zurücksetzen",
     admin_title: "Admin-Bereich",
     admin_matrix: "Preis-Matrix",
@@ -417,6 +424,7 @@ const translations = {
     print_title: "Angebot",
     print_config: "Konfiguration",
     print_total_label: "Summe",
+    print_preview_exit: "Vorschau schliessen",
   },
 };
 

@@ -365,6 +365,129 @@ const paginatePrintPages = () => {
   }
 };
 
+export const renderPrintPreview = () => {
+  renderPrintSheet();
+  paginatePrintPages();
+};
+
+let activePrintFrame = null;
+
+const buildPreviewPrintHtml = (pagesHtml) => {
+  const baseHref = (document.baseURI || "").replace(/"/g, "&quot;");
+  const lang = document.documentElement.lang || "it";
+  return `<!DOCTYPE html>
+<html lang="${lang}">
+<head>
+  <meta charset="utf-8">
+  <base href="${baseHref}">
+  <title>Print preview</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { margin: 0; }
+    body.print-preview,
+    body.print-preview.dark-mode { background: #ffffff; }
+    .print-preview-toolbar { display: none !important; }
+    @page { size: A4; margin: 0; }
+    @media print {
+      body.print-preview { margin: 0; background: #ffffff !important; }
+      body.print-preview .print-sheet { --print-page-trim: 0mm !important; }
+      body.print-preview .print-page {
+        page-break-after: always;
+        break-after: page;
+        box-shadow: none !important;
+        outline: none !important;
+        margin: 0;
+      }
+      body.print-preview .print-page:last-child {
+        page-break-after: auto;
+        break-after: auto;
+      }
+      body.print-preview .print-debug-strip { display: none !important; }
+    }
+  </style>
+</head>
+<body class="print-preview">
+  <section class="print-sheet">
+    <div class="print-pages">${pagesHtml}</div>
+  </section>
+</body>
+</html>`;
+};
+
+const waitForImages = (doc) => {
+  const images = Array.from(doc.images || []);
+  if (images.length === 0) {
+    return Promise.resolve();
+  }
+  return Promise.all(
+    images.map(
+      (img) =>
+        new Promise((resolve) => {
+          if (img.complete) {
+            resolve();
+            return;
+          }
+          img.addEventListener("load", resolve, { once: true });
+          img.addEventListener("error", resolve, { once: true });
+        })
+    )
+  );
+};
+
+const cleanupPrintFrame = () => {
+  if (activePrintFrame) {
+    activePrintFrame.remove();
+    activePrintFrame = null;
+  }
+};
+
+export const printFromPreview = () => {
+  renderPrintPreview();
+  const pages = document.getElementById("printPages");
+  if (!pages || pages.childElementCount === 0 || !document.body) {
+    return false;
+  }
+
+  cleanupPrintFrame();
+  const html = buildPreviewPrintHtml(pages.innerHTML);
+
+  const frame = document.createElement("iframe");
+  frame.setAttribute("title", "print-preview");
+  frame.setAttribute("aria-hidden", "true");
+  frame.style.position = "fixed";
+  frame.style.right = "0";
+  frame.style.bottom = "0";
+  frame.style.width = "0";
+  frame.style.height = "0";
+  frame.style.border = "0";
+  frame.style.visibility = "hidden";
+  frame.style.pointerEvents = "none";
+
+  frame.addEventListener(
+    "load",
+    () => {
+      const doc = frame.contentDocument;
+      const win = frame.contentWindow;
+      if (!doc || !win) {
+        cleanupPrintFrame();
+        return;
+      }
+      win.addEventListener("afterprint", cleanupPrintFrame, { once: true });
+      waitForImages(doc).then(() => {
+        win.focus();
+        win.print();
+        setTimeout(cleanupPrintFrame, 5000);
+      });
+    },
+    { once: true }
+  );
+
+  activePrintFrame = frame;
+  frame.srcdoc = html;
+  document.body.appendChild(frame);
+  return true;
+};
+
 let printHandlersBound = false;
 
 export const setupPrintButton = () => {
@@ -372,19 +495,19 @@ export const setupPrintButton = () => {
 
   if (!printHandlersBound) {
     window.addEventListener("beforeprint", () => {
-      renderPrintSheet();
-      paginatePrintPages();
+      renderPrintPreview();
     });
     printHandlersBound = true;
   }
 
   if (printBtn) {
     printBtn.addEventListener("click", () => {
-      renderPrintSheet();
-      paginatePrintPages();
-      setTimeout(() => {
-        window.print();
-      }, 100);
+      if (!printFromPreview()) {
+        renderPrintPreview();
+        setTimeout(() => {
+          window.print();
+        }, 100);
+      }
     });
   }
 };

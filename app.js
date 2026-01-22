@@ -22,7 +22,7 @@ import {
   renderAdminTables,
   saveAdminChanges,
 } from "./admin.js";
-import { setupPrintButton } from "./print.js";
+import { renderPrintPreview, setupPrintButton } from "./print.js";
 
 const projectNameInput = document.getElementById("projectName");
 const requestDateInput = document.getElementById("requestDate");
@@ -35,6 +35,12 @@ const requestedByInput = document.getElementById("requestedBy");
 const i18nNodes = document.querySelectorAll("[data-i18n]");
 const adminPanel = document.getElementById("adminPanel");
 const discountInput = document.getElementById("discountInput");
+const printPreviewBtn = document.getElementById("printPreviewBtn");
+const printPreviewExitBtn = document.getElementById("printPreviewExitBtn");
+const printPreviewToolbar = document.getElementById("printPreviewToolbar");
+let printPreviewEnabled = new URLSearchParams(window.location.search).has("printPreview");
+let previewFrame = null;
+let previewListenersBound = false;
 
 const initProjectInputs = () => {
   const today = new Date();
@@ -128,6 +134,61 @@ const initNavControls = () => {
   document.getElementById("exportBtn")?.addEventListener("click", exportJson);
   
   setupPrintButton();
+};
+
+const schedulePrintPreview = () => {
+  if (!printPreviewEnabled) return;
+  if (previewFrame) cancelAnimationFrame(previewFrame);
+  previewFrame = requestAnimationFrame(() => {
+    if (!printPreviewEnabled) {
+      previewFrame = null;
+      return;
+    }
+    renderPrintPreview();
+    previewFrame = null;
+  });
+};
+
+const bindPrintPreviewListeners = () => {
+  if (previewListenersBound) return;
+  previewListenersBound = true;
+  ["input", "change", "click"].forEach((eventName) => {
+    document.addEventListener(eventName, schedulePrintPreview);
+  });
+  window.addEventListener("resize", schedulePrintPreview);
+};
+
+const setPrintPreviewEnabled = (enabled, opts = {}) => {
+  const { updateUrl = true } = opts;
+  const nextEnabled = Boolean(enabled);
+  printPreviewEnabled = nextEnabled;
+  document.body.classList.toggle("print-preview", nextEnabled);
+  if (printPreviewToolbar) {
+    printPreviewToolbar.classList.toggle("hidden", !nextEnabled);
+  }
+  if (!nextEnabled && previewFrame) {
+    cancelAnimationFrame(previewFrame);
+    previewFrame = null;
+  }
+  if (updateUrl) {
+    const url = new URL(window.location.href);
+    if (nextEnabled) {
+      url.searchParams.set("printPreview", "1");
+    } else {
+      url.searchParams.delete("printPreview");
+    }
+    history.replaceState(null, "", url);
+  }
+  schedulePrintPreview();
+};
+
+const initPrintPreview = () => {
+  bindPrintPreviewListeners();
+  printPreviewBtn?.addEventListener("click", () => setPrintPreviewEnabled(!printPreviewEnabled));
+  printPreviewExitBtn?.addEventListener("click", () => setPrintPreviewEnabled(false));
+  if (printPreviewEnabled) {
+    setPrintPreviewEnabled(true, { updateUrl: false });
+  }
 };
 
 const initFrostCursor = () => {
@@ -507,9 +568,13 @@ const bootstrap = () => {
   loadExtraCosts().then(() => {
     renderUserPanels();
     updateSummary();
+    schedulePrintPreview();
   });
-  loadPricingMatrix();
+  loadPricingMatrix().then(() => {
+    schedulePrintPreview();
+  });
   initNavControls();
+  initPrintPreview();
 };
 
 bootstrap();
