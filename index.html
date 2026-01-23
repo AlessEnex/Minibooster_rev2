@@ -52,7 +52,7 @@
             <p class="eyebrow" data-i18n="meta_eyebrow">Dati progetto</p>
             <h2 data-i18n="meta_title">Identifica la richiesta</h2>
           </div>
-          <button id="fillTestData" class="button ghost" style="background: #ff6b6b; color: white;">🧪 Compila Test</button>
+          <button id="fillTestData" class="button ghost hidden" style="background: #ff6b6b; color: white;">🧪 Compila Test</button>
         </div>
         <div class="meta-grid">
           <label class="field">
@@ -212,6 +212,46 @@
                 <input type="checkbox" id="gascoolerToggle">
                 <span data-i18n="step7_label">Aggiungi gascooler</span>
               </label>
+              <div id="gascoolerFields" class="gascooler-fields hidden">
+                <p class="hint" data-i18n="step7_specs">Vedi specifiche allegate</p>
+                <label class="field inline-field">
+                  <span data-i18n="step7_price_label">Prezzo Gascooler</span>
+                  <input id="gascoolerPrice" type="number" min="0" step="0.01" placeholder="0.00">
+                </label>
+                <div class="gascooler-custom-items">
+                  <h4 data-i18n="step7_custom_items">Voci personalizzate</h4>
+                  <div class="custom-item">
+                    <label class="field">
+                      <span data-i18n="step7_custom_desc">Descrizione</span>
+                      <input id="gascoolerCustom1Desc" type="text" placeholder="Descrizione voce 1">
+                    </label>
+                    <label class="field">
+                      <span data-i18n="step7_custom_price">Prezzo</span>
+                      <input id="gascoolerCustom1Price" type="number" min="0" step="0.01" placeholder="0.00">
+                    </label>
+                  </div>
+                  <div class="custom-item">
+                    <label class="field">
+                      <span data-i18n="step7_custom_desc">Descrizione</span>
+                      <input id="gascoolerCustom2Desc" type="text" placeholder="Descrizione voce 2">
+                    </label>
+                    <label class="field">
+                      <span data-i18n="step7_custom_price">Prezzo</span>
+                      <input id="gascoolerCustom2Price" type="number" min="0" step="0.01" placeholder="0.00">
+                    </label>
+                  </div>
+                  <div class="custom-item">
+                    <label class="field">
+                      <span data-i18n="step7_custom_desc">Descrizione</span>
+                      <input id="gascoolerCustom3Desc" type="text" placeholder="Descrizione voce 3">
+                    </label>
+                    <label class="field">
+                      <span data-i18n="step7_custom_price">Prezzo</span>
+                      <input id="gascoolerCustom3Price" type="number" min="0" step="0.01" placeholder="0.00">
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="step" data-step="8">
@@ -284,6 +324,7 @@
             <div class="inline-actions">
               <button id="printBtn" class="button ghost" data-i18n="summary_print">Stampa offerta</button>
               <button id="printPreviewBtn" class="button ghost" data-i18n="summary_print_preview">Anteprima stampa</button>
+              <button id="view3DBtn" class="button ghost" data-i18n="summary_view_3d">Visualizza 3D</button>
               <button id="resetBtn" class="button ghost" data-i18n="summary_reset">Reset</button>
             </div>
           </div>
@@ -410,8 +451,32 @@
     </div>
   </div>
   <div id="printPreviewToolbar" class="print-preview-toolbar hidden">
+    <button id="printPreviewPrintBtn" class="button primary slim" data-i18n="summary_print">Stampa offerta</button>
     <button id="printPreviewExitBtn" class="button ghost slim" data-i18n="print_preview_exit">Esci anteprima</button>
   </div>
+
+  <!-- 3D Viewer Modal -->
+  <div id="viewer3DModal" class="modal-overlay hidden">
+    <div class="modal viewer-3d-modal">
+      <div class="modal-header">
+        <h3 data-i18n="viewer_3d_title">Visualizzazione 3D</h3>
+        <button id="viewer3DClose" class="button ghost slim" data-i18n="viewer_3d_close">Chiudi</button>
+      </div>
+      <div class="viewer-3d-controls">
+        <input type="file" id="stlFileInput" accept=".stl" style="display: none;" />
+        <button id="loadSTLBtn" class="button primary" data-i18n="viewer_3d_load">Carica file STL</button>
+        <button id="resetCameraBtn" class="button ghost" data-i18n="viewer_3d_reset_camera">Reset Camera</button>
+        <label class="toggle-label">
+          <input type="checkbox" id="wireframeToggle" />
+          <span data-i18n="viewer_3d_wireframe">Wireframe</span>
+        </label>
+      </div>
+      <div id="viewer3DContainer" class="viewer-3d-container">
+        <div class="viewer-3d-placeholder" data-i18n="viewer_3d_placeholder">Carica un file STL per visualizzarlo</div>
+      </div>
+    </div>
+  </div>
+
   <script type="module" src="app.js"></script>
 </body>
 </html>

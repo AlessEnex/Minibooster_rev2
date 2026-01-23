@@ -11,7 +11,7 @@ import {
   getFilteredConfigs,
   getExtraCosts,
 } from "./state.js";
-import { getDictionary } from "./i18n.js";
+import { getDictionary, translateOptionName } from "./i18n.js";
 import {
   buildSummaryData,
   getCablingExtraPrice,
@@ -20,6 +20,7 @@ import {
   isCablingExtraInvalid,
   parseCablingMeters,
 } from "./summary.js";
+import pricingExtras from "./pricing-extras.json" with { type: "json" };
 
 const machineTypeOptions = document.getElementById("machineTypeOptions");
 const machineTypeSelector = document.getElementById("machineTypeSelector");
@@ -53,6 +54,14 @@ const printProjectMeta = document.getElementById("printProjectMeta");
 const totalPriceEl = document.getElementById("totalPrice");
 const discountInput = document.getElementById("discountInput");
 const gascoolerToggle = document.getElementById("gascoolerToggle");
+const gascoolerFields = document.getElementById("gascoolerFields");
+const gascoolerPriceInput = document.getElementById("gascoolerPrice");
+const gascoolerCustom1Desc = document.getElementById("gascoolerCustom1Desc");
+const gascoolerCustom1Price = document.getElementById("gascoolerCustom1Price");
+const gascoolerCustom2Desc = document.getElementById("gascoolerCustom2Desc");
+const gascoolerCustom2Price = document.getElementById("gascoolerCustom2Price");
+const gascoolerCustom3Desc = document.getElementById("gascoolerCustom3Desc");
+const gascoolerCustom3Price = document.getElementById("gascoolerCustom3Price");
 const transportToggle = document.getElementById("transportToggle");
 const transportCountrySelect = document.getElementById("transportCountry");
 const transportCityInput = document.getElementById("transportCity");
@@ -93,6 +102,16 @@ const probesOptionIds = [
   "probes_customer_supplied",
   "probes_included",
 ];
+
+function getTransportPrice(km) {
+  const tiers = pricingExtras.transportPricing || [];
+  for (const tier of tiers) {
+    if (km <= tier.maxKm) {
+      return tier.price;
+    }
+  }
+  return tiers.length > 0 ? tiers[tiers.length - 1].price : 0;
+}
 
 const hideElectricalPanelChoiceHint = () => {
   electricalPanelChoiceHint?.classList.add("hidden");
@@ -514,12 +533,13 @@ const renderElectricalPanelOptions = () => {
   }
 
   if (!isTago) {
+    const dict = getDictionary();
     const noneCard = renderOptionCard(
       {
         id: "none",
-        name: "Nessun quadro",
+        name: dict.opt_none_panel || "Nessun quadro",
         price: 0,
-        badge: "Scelta",
+        badge: dict.badge_choice || "Scelta",
       },
       "electricalPanelChoice",
       false
@@ -528,12 +548,13 @@ const renderElectricalPanelOptions = () => {
   }
 
   if (electricalPanelOpt && electricalPanelOpt.price !== null && electricalPanelOpt.price !== undefined) {
+    const dict = getDictionary();
     const panelCard = renderOptionCard(
       {
         id: "electrical_panel",
-        name: electricalPanelOpt.name,
+        name: translateOptionName("electrical_panel", electricalPanelOpt.name),
         price: electricalPanelOpt.price,
-        badge: "Main",
+        badge: dict.badge_main || "Main",
       },
       "electricalPanelChoice",
       false
@@ -549,8 +570,9 @@ const renderElectricalPanelOptions = () => {
   // Verifica se c'e LT selezionato (diverso da null e "none")
   const hasLT = appState.selections.ltChoice && appState.selections.ltChoice !== "none";
 
+  const dict = getDictionary();
   const groups = [
-    { title: "Componenti quadro", ids: ["diff_mt", "diff_mt_lt", "mx_coil"], exclusiveIds: ["diff_mt", "diff_mt_lt"] },
+    { title: dict.opt_components_label || "Componenti quadro", ids: ["diff_mt", "diff_mt_lt", "mx_coil"], exclusiveIds: ["diff_mt", "diff_mt_lt"] },
   ];
 
   groups.forEach((group) => {
@@ -573,7 +595,7 @@ const renderElectricalPanelOptions = () => {
       const optionEl = renderOptionCard(
         {
           id: opt.id,
-          name: opt.name,
+          name: translateOptionName(opt.id, opt.name),
           price: opt.price,
           badge: opt.category === "onboard" ? "On-board" : "Spare",
         },
@@ -742,7 +764,7 @@ const renderControlOptions = () => {
       const optionEl = renderOptionCard(
         {
           id: opt.id,
-          name: opt.name,
+          name: translateOptionName(opt.id, opt.name),
           price: opt.price,
           badge: opt.category === "onboard" ? "On-board" : "Spare",
         },
@@ -812,7 +834,7 @@ const renderProbesOptions = (optionals) => {
     const optionEl = renderOptionCard(
       {
         id: opt.id,
-        name: opt.name,
+        name: translateOptionName(opt.id, opt.name),
         price: opt.price,
       },
       "probesChoice",
@@ -864,7 +886,7 @@ const renderOptionalOptions = () => {
       const optionEl = renderOptionCard(
         {
           id: opt.id,
-          name: opt.name,
+          name: translateOptionName(opt.id, opt.name),
           price: opt.price,
           badge: opt.category === "onboard" ? "On-board" : "Spare",
         },
@@ -988,7 +1010,7 @@ export const updateSummary = () => {
 
   // Aggiungi "Nessun quadro fornito" se selezionato none
   if (appState.selections.electricalPanelChoice === "none") {
-    rows.push([dict.summary_optional_label || "Optional", "Nessun quadro fornito", 0]);
+    rows.push([dict.summary_optional_label || "Optional", dict.step4_electrical_panel_none || "Nessun quadro fornito", 0]);
   }
 
   if (!isCablingChoiceMissing()) {
@@ -1037,10 +1059,6 @@ export const updateSummary = () => {
     total += oilPrice;
   }
 
-  if (appState.selections.gascooler) {
-    rows.push([dict.summary_gascooler_label || "Gascooler", dict.step5_label || "Gascooler", 0]);
-  }
-
   if (appState.selections.transport.enabled) {
     const km = appState.selections.transport.km || 0;
     const price = appState.selections.transport.price || 0;
@@ -1056,16 +1074,38 @@ export const updateSummary = () => {
     total -= discountValue;
   }
 
+  // Gascooler sempre alla fine
+  if (appState.selections.gascooler) {
+    const gascoolerPrice = Number(appState.selections.gascoolerPrice) || 0;
+    rows.push([dict.summary_gascooler_label || "Gascooler", dict.step7_label || "Gascooler", gascoolerPrice, true]);
+    total += gascoolerPrice;
+    
+    // Aggiungi voci custom gascooler
+    appState.selections.gascoolerCustomItems.forEach((item) => {
+      if (item.description && item.description.trim()) {
+        const itemPrice = Number(item.price) || 0;
+        rows.push([dict.summary_optional_label || "Optional", item.description, itemPrice, true]);
+        total += itemPrice;
+      }
+    });
+  }
+
   // Traccia le righe esistenti per rilevare le nuove aggiunte
   const previousRowKeys = Array.from(summaryList?.querySelectorAll('.summary-row') || []).map(row => row.textContent);
   
   const summaryHtml = rows
     .map(
-      ([label, name, price]) => {
+      ([label, name, price, isGascooler]) => {
         const priceLabel = price === null || price === undefined ? "" : formatPrice(price);
         const rowKey = `${label}: ${name}${priceLabel}`;
         const isNew = !previousRowKeys.includes(rowKey);
-        return `<div class="summary-row${isNew ? ' added' : ''}"><span>${label}: ${name}</span><span>${priceLabel}</span></div>`;
+        const classes = ['summary-row'];
+        if (isNew) classes.push('added');
+        if (isGascooler) classes.push('gascooler-row');
+        const content = isGascooler 
+          ? `<span><strong>${label}: ${name}</strong></span><span><strong>${priceLabel}</strong></span>`
+          : `<span>${label}: ${name}</span><span>${priceLabel}</span>`;
+        return `<div class="${classes.join(' ')}">${content}</div>`;
       }
     )
     .join("");
@@ -1226,11 +1266,18 @@ const canProceedFromCurrentStep = () => {
 export const updateNextButtonState = () => {
   if (!nextBtn) return;
   const canProceed = canProceedFromCurrentStep();
+  const dict = getDictionary();
   nextBtn.disabled = !canProceed;
   if (canProceed) {
     nextBtn.classList.remove("disabled");
   } else {
     nextBtn.classList.add("disabled");
+  }
+  // Al passo 8 mostra "Anteprima di stampa" invece di "Avanti"
+  if (appState.step === 8) {
+    nextBtn.textContent = dict.nav_preview || "Anteprima di stampa";
+  } else {
+    nextBtn.textContent = dict.nav_next || "Avanti";
   }
 };
 
@@ -1250,6 +1297,12 @@ export const resetSelections = () => {
     discount: 0,
     project: appState.selections.project,
     gascooler: false,
+    gascoolerPrice: 0,
+    gascoolerCustomItems: [
+      { description: "", price: 0 },
+      { description: "", price: 0 },
+      { description: "", price: 0 },
+    ],
     transport: {
       enabled: false,
       city: "",
@@ -1260,6 +1313,14 @@ export const resetSelections = () => {
   };
   if (discountInput) discountInput.value = 0;
   if (gascoolerToggle) gascoolerToggle.checked = false;
+  if (gascoolerFields) gascoolerFields.classList.add("hidden");
+  if (gascoolerPriceInput) gascoolerPriceInput.value = "";
+  if (gascoolerCustom1Desc) gascoolerCustom1Desc.value = "";
+  if (gascoolerCustom1Price) gascoolerCustom1Price.value = "";
+  if (gascoolerCustom2Desc) gascoolerCustom2Desc.value = "";
+  if (gascoolerCustom2Price) gascoolerCustom2Price.value = "";
+  if (gascoolerCustom3Desc) gascoolerCustom3Desc.value = "";
+  if (gascoolerCustom3Price) gascoolerCustom3Price.value = "";
   if (transportToggle) transportToggle.checked = false;
   if (transportCityInput) {
     transportCityInput.value = "";
@@ -1320,6 +1381,12 @@ export const setTheme = (theme) => {
   appState.ui.theme = theme === "dark" ? "dark" : "light";
   document.body.classList.toggle("dark-mode", appState.ui.theme === "dark");
   updateThemeToggleLabel();
+  
+  // Update 3D viewer theme if available
+  if (typeof window.updateViewer3DTheme === 'function') {
+    window.updateViewer3DTheme(appState.ui.theme === "dark");
+  }
+  
   try {
     localStorage.setItem("tago_theme", appState.ui.theme);
   } catch (err) {
@@ -1700,7 +1767,7 @@ const updateTransport = async (opts = {}) => {
     km = haversineKm(trevisoCoords, coords);
   }
   const isEuropean = coords ? europeanIso.has(coords.country) : false;
-  const price = enabled && coords && countryMatches && isEuropean ? km * 1 : 0;
+  const price = enabled && coords && countryMatches && isEuropean ? getTransportPrice(km) : 0;
   appState.selections.transport.city = cityRaw;
   appState.selections.transport.country = countryFilter;
   appState.selections.transport.km = km;
@@ -1741,8 +1808,42 @@ const updateTransport = async (opts = {}) => {
 export const wireTransportControls = () => {
   gascoolerToggle?.addEventListener("change", (e) => {
     appState.selections.gascooler = e.target.checked;
+    if (gascoolerFields) {
+      gascoolerFields.classList.toggle("hidden", !e.target.checked);
+    }
     updateSummary();
   });
+
+  const updateGascoolerPrice = () => {
+    const price = parseFloat(gascoolerPriceInput?.value) || 0;
+    appState.selections.gascoolerPrice = price;
+    updateSummary();
+  };
+
+  const updateGascoolerCustom = (index) => {
+    const descInput = [gascoolerCustom1Desc, gascoolerCustom2Desc, gascoolerCustom3Desc][index];
+    const priceInput = [gascoolerCustom1Price, gascoolerCustom2Price, gascoolerCustom3Price][index];
+    if (descInput && priceInput && appState.selections.gascoolerCustomItems[index]) {
+      appState.selections.gascoolerCustomItems[index].description = descInput.value.trim();
+      appState.selections.gascoolerCustomItems[index].price = parseFloat(priceInput.value) || 0;
+      updateSummary();
+    }
+  };
+
+  gascoolerPriceInput?.addEventListener("input", updateGascoolerPrice);
+  gascoolerPriceInput?.addEventListener("change", updateGascoolerPrice);
+
+  gascoolerCustom1Desc?.addEventListener("input", () => updateGascoolerCustom(0));
+  gascoolerCustom1Price?.addEventListener("input", () => updateGascoolerCustom(0));
+  gascoolerCustom1Price?.addEventListener("change", () => updateGascoolerCustom(0));
+
+  gascoolerCustom2Desc?.addEventListener("input", () => updateGascoolerCustom(1));
+  gascoolerCustom2Price?.addEventListener("input", () => updateGascoolerCustom(1));
+  gascoolerCustom2Price?.addEventListener("change", () => updateGascoolerCustom(1));
+
+  gascoolerCustom3Desc?.addEventListener("input", () => updateGascoolerCustom(2));
+  gascoolerCustom3Price?.addEventListener("input", () => updateGascoolerCustom(2));
+  gascoolerCustom3Price?.addEventListener("change", () => updateGascoolerCustom(2));
 
   transportToggle?.addEventListener("change", () => {
     updateTransport();

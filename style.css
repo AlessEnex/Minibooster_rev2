@@ -474,6 +474,45 @@ body.dark-mode .field input[type="date"]::-webkit-calendar-picker-indicator:hove
   width: 100%;
 }
 
+/* Gascooler Fields */
+.gascooler-fields {
+  display: grid;
+  gap: 12px;
+  max-width: 500px;
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-card);
+}
+
+.gascooler-custom-items {
+  display: grid;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.gascooler-custom-items h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.custom-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+body.dark-mode .custom-item {
+  background: rgba(0, 0, 0, 0.2);
+}
+
 /* Transport */
 .transport-block {
   display: grid;
@@ -1034,6 +1073,10 @@ body.dark-mode .meta-view {
   flex: 1;
 }
 
+.summary-row.gascooler-row {
+  margin-top: 8px;
+}
+
 .total {
   text-align: right;
   min-width: 220px;
@@ -1044,6 +1087,11 @@ body.dark-mode .meta-view {
   gap: 8px;
   margin-top: 8px;
   justify-content: flex-end;
+}
+
+/* Pulsanti stampa verticali */
+.total .inline-actions {
+  flex-direction: column;
 }
 
 .hidden {
@@ -1419,20 +1467,20 @@ body.print-preview .print-debug-strip {
   left: 0;
   right: 0;
   height: var(--print-header-height);
-  opacity: 0.3;
+  opacity: 0;
   z-index: 2;
   pointer-events: none;
 }
 
 body.print-preview .print-debug-red {
   top: 0;
-  background: red;
+  background: transparent;
 }
 
 body.print-preview .print-debug-blue {
   bottom: 0;
   height: var(--print-footer-height);
-  background: blue;
+  background: transparent;
 }
 
 body.print-preview .print-page {
@@ -1713,11 +1761,23 @@ body.print-preview .print-total {
   top: 16px;
   right: 16px;
   z-index: 10000;
+  padding: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 body.print-preview .print-preview-toolbar {
   display: flex;
   gap: 8px;
+}
+
+/* Stile per tema dark - migliore visibilità */
+body.dark-mode .print-preview-toolbar {
+  background: #1e1e1e;
+  border-color: #404040;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
 }
 
 .print-body {
@@ -1872,20 +1932,20 @@ body.print-preview .print-preview-toolbar {
     left: 0 !important;
     right: 0 !important;
     height: var(--print-header-height) !important;
-    opacity: 0.3 !important;
+    opacity: 0 !important;
     z-index: 9999 !important;
     pointer-events: none !important;
   }
 
   .print-debug-red {
     top: 0 !important;
-    background: red !important;
+    background: transparent !important;
   }
 
   .print-debug-blue {
     bottom: 0 !important;
     height: var(--print-footer-height) !important;
-    background: blue !important;
+    background: transparent !important;
   }
 
   .print-page {
@@ -2201,4 +2261,71 @@ body.print-preview .print-preview-toolbar {
     display: none !important;
     margin-top: 2cm;
   }
+}
+
+/* 3D Viewer Modal */
+.viewer-3d-modal {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 1200px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.viewer-3d-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.viewer-3d-modal .modal-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.viewer-3d-controls {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.viewer-3d-controls .toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.viewer-3d-controls .toggle-label input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.viewer-3d-container {
+  flex: 1;
+  position: relative;
+  background: var(--bg-secondary);
+  overflow: hidden;
+}
+
+.viewer-3d-placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text-muted);
+  font-size: 1.125rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+#viewer3DCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
 }

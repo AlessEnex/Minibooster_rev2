@@ -133,7 +133,18 @@ export const buildSummaryData = (dict = getDictionary()) => {
   }
 
   if (appState.selections.gascooler) {
-    rows.push([dict.summary_gascooler_label || "Gascooler", dict.step5_label || "Gascooler", 0]);
+    const gascoolerPrice = Number(appState.selections.gascoolerPrice) || 0;
+    rows.push([dict.summary_gascooler_label || "Gascooler", dict.step7_label || "Gascooler", gascoolerPrice]);
+    total += gascoolerPrice;
+    
+    // Aggiungi voci custom gascooler
+    appState.selections.gascoolerCustomItems.forEach((item) => {
+      if (item.description && item.description.trim()) {
+        const itemPrice = Number(item.price) || 0;
+        rows.push([dict.summary_optional_label || "Optional", item.description, itemPrice]);
+        total += itemPrice;
+      }
+    });
   }
 
   if (appState.selections.transport.enabled) {

@@ -24,31 +24,31 @@ export const renderPrintSheet = () => {
     printProjectMeta.innerHTML = `
       <div class="print-meta-grid">
         <div class="print-meta-row">
-          <span class="print-meta-label">OFFERTA N°:</span>
+          <span class="print-meta-label">${(dict.meta_offer_number || "OFFERTA N°").toUpperCase()}:</span>
           <span class="print-meta-value">${offerNumber || "—"}</span>
         </div>
         <div class="print-meta-row">
-          <span class="print-meta-label">REVISIONE:</span>
+          <span class="print-meta-label">${(dict.meta_revision || "REVISIONE").toUpperCase()}:</span>
           <span class="print-meta-value">${revision || "—"}</span>
         </div>
         <div class="print-meta-row">
-          <span class="print-meta-label">CLIENTE:</span>
+          <span class="print-meta-label">${(dict.meta_client || "CLIENTE").toUpperCase()}:</span>
           <span class="print-meta-value">${client || "—"}</span>
         </div>
         <div class="print-meta-row">
-          <span class="print-meta-label">RICHIESTO DA:</span>
+          <span class="print-meta-label">${(dict.meta_requested_by || "RICHIESTO DA").toUpperCase()}:</span>
           <span class="print-meta-value">${requestedBy || "—"}</span>
         </div>
         <div class="print-meta-row">
-          <span class="print-meta-label">OWNER:</span>
+          <span class="print-meta-label">${(dict.meta_owner || "OWNER").toUpperCase()}:</span>
           <span class="print-meta-value">${owner || "—"}</span>
         </div>
         <div class="print-meta-row">
-          <span class="print-meta-label">PROGETTO:</span>
+          <span class="print-meta-label">${(dict.meta_project_name || "PROGETTO").toUpperCase()}:</span>
           <span class="print-meta-value">${name || "—"}</span>
         </div>
         <div class="print-meta-row">
-          <span class="print-meta-label">MODELLO SELEZIONATO:</span>
+          <span class="print-meta-label">${(dict.machine_title || "MODELLO SELEZIONATO").toUpperCase()}:</span>
           <span class="print-meta-value">${machineTypeName}</span>
         </div>
       </div>
@@ -120,10 +120,6 @@ export const renderPrintSheet = () => {
     total += oilPrice;
   }
 
-  if (appState.selections.gascooler) {
-    rows.push([dict.summary_gascooler_label || "Gascooler", dict.step5_label || "Gascooler", 0]);
-  }
-
   if (appState.selections.transport.enabled) {
     const km = appState.selections.transport.km || 0;
     const price = appState.selections.transport.price || 0;
@@ -139,6 +135,23 @@ export const renderPrintSheet = () => {
     total -= discountValue;
   }
 
+  // Gascooler sempre alla fine in grassetto
+  const gascoolerRows = [];
+  if (appState.selections.gascooler) {
+    const gascoolerPrice = Number(appState.selections.gascoolerPrice) || 0;
+    gascoolerRows.push([dict.summary_gascooler_label || "Gascooler", dict.step7_label || "Gascooler", gascoolerPrice, true]);
+    total += gascoolerPrice;
+    
+    // Aggiungi voci custom gascooler
+    appState.selections.gascoolerCustomItems.forEach((item) => {
+      if (item.description && item.description.trim()) {
+        const itemPrice = Number(item.price) || 0;
+        gascoolerRows.push([dict.summary_optional_label || "Optional", item.description, itemPrice, true]);
+        total += itemPrice;
+      }
+    });
+  }
+
   const summaryHtml = rows
     .map(
       ([label, name, price]) => {
@@ -148,11 +161,20 @@ export const renderPrintSheet = () => {
     )
     .join("");
 
+  const gascoolerHtml = gascoolerRows
+    .map(
+      ([label, name, price]) => {
+        const priceLabel = price === null || price === undefined ? "" : formatPrice(price);
+        return `<div class="summary-row gascooler-row"><span><strong>${label}: ${name}</strong></span><span><strong>${priceLabel}</strong></span></div>`;
+      }
+    )
+    .join("");
+
   const totalLabel = dict.print_total_label || "Totale";
   const totalRow = `<div class="summary-row total-row"><span><strong>${totalLabel}</strong></span><span><strong>${formatPrice(total)}</strong></span></div>`;
 
   if (printSummaryList) {
-    printSummaryList.innerHTML = summaryHtml + totalRow;
+    printSummaryList.innerHTML = summaryHtml + gascoolerHtml + totalRow;
   }
 
   if (printTotal) {
@@ -552,7 +574,7 @@ const withPrintPaginationTrim = (callback) => {
   }
 };
 
-const renderPrintPreviewForPrint = () => {
+export const renderPrintPreviewForPrint = () => {
   withPrintPreviewClass(() => {
     withPrintPaginationTrim(() => {
       renderPrintPreview();

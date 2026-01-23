@@ -23,7 +23,8 @@ import {
   renderAdminTables,
   saveAdminChanges,
 } from "./admin.js";
-import { renderPrintPreview, setupPrintButton } from "./print.js";
+import { renderPrintPreview, setupPrintButton, printFromPreview, renderPrintPreviewForPrint } from "./print.js";
+import { initViewer3D, loadSTLFile, resetCamera, setWireframe, disposeViewer, updateTheme as updateViewer3DTheme } from "./viewer3d.js";
 
 const projectNameInput = document.getElementById("projectName");
 const requestDateInput = document.getElementById("requestDate");
@@ -38,6 +39,7 @@ const adminPanel = document.getElementById("adminPanel");
 const discountInput = document.getElementById("discountInput");
 const printPreviewBtn = document.getElementById("printPreviewBtn");
 const printPreviewExitBtn = document.getElementById("printPreviewExitBtn");
+const printPreviewPrintBtn = document.getElementById("printPreviewPrintBtn");
 const printPreviewToolbar = document.getElementById("printPreviewToolbar");
 let printPreviewEnabled = new URLSearchParams(window.location.search).has("printPreview");
 let previewFrame = null;
@@ -121,8 +123,12 @@ const initNavControls = () => {
   });
 
   document.getElementById("nextBtn")?.addEventListener("click", () => {
-    goToStep(appState.step + 1);
-    document.getElementById("funnel")?.scrollIntoView({ behavior: "smooth" });
+    if (appState.step === 8) {
+      setPrintPreviewEnabled(true);
+    } else {
+      goToStep(appState.step + 1);
+      document.getElementById("funnel")?.scrollIntoView({ behavior: "smooth" });
+    }
   });
 
   document.getElementById("prevBtn")?.addEventListener("click", () =>
@@ -187,9 +193,84 @@ const initPrintPreview = () => {
   bindPrintPreviewListeners();
   printPreviewBtn?.addEventListener("click", () => setPrintPreviewEnabled(!printPreviewEnabled));
   printPreviewExitBtn?.addEventListener("click", () => setPrintPreviewEnabled(false));
+  printPreviewPrintBtn?.addEventListener("click", () => {
+    if (!printFromPreview()) {
+      renderPrintPreviewForPrint();
+      setTimeout(() => {
+        window.print();
+      }, 100);
+    }
+  });
   if (printPreviewEnabled) {
     setPrintPreviewEnabled(true, { updateUrl: false });
   }
+};
+
+// 3D Viewer initialization
+let viewer3DInitialized = false;
+
+const init3DViewer = () => {
+  const modal = document.getElementById('viewer3DModal');
+  const closeBtn = document.getElementById('viewer3DClose');
+  const view3DBtn = document.getElementById('view3DBtn');
+  const loadSTLBtn = document.getElementById('loadSTLBtn');
+  const stlFileInput = document.getElementById('stlFileInput');
+  const resetCameraBtn = document.getElementById('resetCameraBtn');
+  const wireframeToggle = document.getElementById('wireframeToggle');
+  const container = document.getElementById('viewer3DContainer');
+  const placeholder = container.querySelector('.viewer-3d-placeholder');
+  
+  const openModal = () => {
+    modal?.classList.remove('hidden');
+    if (!viewer3DInitialized) {
+      initViewer3D(container);
+      viewer3DInitialized = true;
+      // Update theme
+      const isDark = document.body.classList.contains('dark-mode');
+      updateViewer3DTheme(isDark);
+    }
+  };
+  
+  const closeModal = () => {
+    modal?.classList.add('hidden');
+  };
+  
+  view3DBtn?.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+  
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  
+  loadSTLBtn?.addEventListener('click', () => {
+    stlFileInput?.click();
+  });
+  
+  stlFileInput?.addEventListener('change', async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    
+    try {
+      loadSTLBtn.disabled = true;
+      loadSTLBtn.textContent = 'Caricamento...';
+      await loadSTLFile(file);
+      if (placeholder) placeholder.style.display = 'none';
+    } catch (error) {
+      console.error('Error loading STL:', error);
+      alert('Errore nel caricamento del file STL');
+    } finally {
+      loadSTLBtn.disabled = false;
+      loadSTLBtn.textContent = 'Carica file STL';
+    }
+  });
+  
+  resetCameraBtn?.addEventListener('click', () => {
+    resetCamera();
+  });
+  
+  wireframeToggle?.addEventListener('change', (e) => {
+    setWireframe(e.target.checked);
+  });
 };
 
 const initFrostCursor = () => {
@@ -567,6 +648,7 @@ const bootstrap = () => {
   updateProjectFlow();
   goToStep(1);
   initFrostCursor();
+  init3DViewer();
   loadExtraCosts().then(() => {
     renderUserPanels();
     updateSummary();

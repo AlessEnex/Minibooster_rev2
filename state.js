@@ -16,6 +16,12 @@ export const appState = {
     oilKg: 0,
     optionals: new Set(),
     gascooler: false,
+    gascoolerPrice: 0,
+    gascoolerCustomItems: [
+      { description: "", price: 0 },
+      { description: "", price: 0 },
+      { description: "", price: 0 },
+    ],
     discount: 0,
     transport: {
       enabled: false,
