@@ -218,7 +218,10 @@ const init3DViewer = () => {
   const resetCameraBtn = document.getElementById('resetCameraBtn');
   const wireframeToggle = document.getElementById('wireframeToggle');
   const container = document.getElementById('viewer3DContainer');
-  const placeholder = container.querySelector('.viewer-3d-placeholder');
+  const placeholder = container?.querySelector('.viewer-3d-placeholder');
+  
+  // Expose theme updater globally for ui.js
+  window.updateViewer3DTheme = updateViewer3DTheme;
   
   const openModal = () => {
     modal?.classList.remove('hidden');
