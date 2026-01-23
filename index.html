@@ -180,6 +180,28 @@
               <h3 data-i18n="step6_title">6. Optionals</h3>
               <p class="hint" data-i18n="step6_hint">Componenti a bordo o spare parts.</p>
             <div id="optionalOptions" class="option-grid"></div>
+            <div id="oilOptionGroup" class="option-group">
+              <h4 data-i18n="step6_oil_title">Olio</h4>
+              <div id="oilOptionCard" class="option">
+                <div class="title-row">
+                  <div>
+                    <strong data-i18n="step6_oil_label">Olio</strong>
+                    <div class="subtitle" data-i18n="step6_oil_subtitle">Aggiungi olio (kg multipli di 5).</div>
+                  </div>
+                </div>
+              </div>
+              <div id="oilKgWrap" class="oil-input-row hidden">
+                <label class="field inline-field">
+                  <span data-i18n="step6_oil_kg_label">Kg olio (multipli di 5)</span>
+                  <input id="oilKgInput" type="number" min="5" step="5" inputmode="numeric" placeholder="0">
+                </label>
+                <div class="oil-price">
+                  <span class="subtitle" data-i18n="step6_oil_price_label">Prezzo</span>
+                  <span id="oilPriceValue" class="price">€ 0</span>
+                </div>
+              </div>
+              <p id="oilKgHint" class="hint hidden" data-i18n="step6_oil_hint">Inserisci i kg in multipli di 5.</p>
+            </div>
             <p id="probesChoiceHint" class="hint hidden">Seleziona le sonde per continuare.</p>
           </div>
 

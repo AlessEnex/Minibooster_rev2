@@ -122,6 +122,16 @@ export const buildSummaryData = (dict = getDictionary()) => {
     }
   }
 
+  const oilKgRaw = parseInt(appState.selections.oilKg, 10);
+  const oilKg = Number.isNaN(oilKgRaw) ? 0 : Math.max(0, oilKgRaw);
+  if (appState.selections.oilEnabled && oilKg > 0 && oilKg % 5 === 0) {
+    const oilPricePerKg = getExtraCosts().oilPricePerKg;
+    const oilPrice = (Number.isFinite(oilPricePerKg) ? oilPricePerKg : 0) * oilKg;
+    const oilLabel = dict.step6_oil_label || "Olio";
+    rows.push([dict.summary_optional_label || "Optional", `${oilLabel} (${oilKg} kg)`, oilPrice]);
+    total += oilPrice;
+  }
+
   if (appState.selections.gascooler) {
     rows.push([dict.summary_gascooler_label || "Gascooler", dict.step5_label || "Gascooler", 0]);
   }

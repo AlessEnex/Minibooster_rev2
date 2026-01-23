@@ -12,6 +12,8 @@ export const appState = {
     probesChoice: null,
     cablingChoice: null,
     cablingExtraMeters: 0,
+    oilEnabled: false,
+    oilKg: 0,
     optionals: new Set(),
     gascooler: false,
     discount: 0,
@@ -46,6 +48,7 @@ const defaultExtraCosts = {
     MBS: 0,
     MCB: 0,
   },
+  oilPricePerKg: 50,
 };
 
 let extraCosts = clone(defaultExtraCosts);
@@ -69,6 +72,10 @@ export const loadExtraCosts = async () => {
         ...base.cablingExtraPerMeter,
         ...(data?.cablingExtraPerMeter || {}),
       },
+      oilPricePerKg:
+        typeof data?.oilPricePerKg === "number" && Number.isFinite(data.oilPricePerKg)
+          ? data.oilPricePerKg
+          : base.oilPricePerKg,
     };
     setExtraCosts(merged);
   } catch (err) {

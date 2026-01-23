@@ -7,7 +7,6 @@ const salesConditionsByLanguage = {
     {
       title: "Condizioni di vendita",
       className: "print-sales-conditions",
-      pageBreakBefore: true,
       items: [
         "Condizioni di consegna: Partenza stabilimento (EX-WORKS)",
         "Condizioni di pagamento: Da concordare all'ordine",

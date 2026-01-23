@@ -1,4 +1,4 @@
-import { appState, formatDate, formatPrice, getOptionals, groupMtByName, machineTypes } from "./state.js";
+import { appState, formatDate, formatPrice, getExtraCosts, getOptionals, groupMtByName, machineTypes } from "./state.js";
 import { getDictionary } from "./i18n.js";
 import { getPrintDescriptions } from "./print-descriptions.js";
 
@@ -110,6 +110,16 @@ export const renderPrintSheet = () => {
     }
   }
 
+  const oilKgRaw = parseInt(appState.selections.oilKg, 10);
+  const oilKg = Number.isNaN(oilKgRaw) ? 0 : Math.max(0, oilKgRaw);
+  if (appState.selections.oilEnabled && oilKg > 0 && oilKg % 5 === 0) {
+    const oilPricePerKg = getExtraCosts().oilPricePerKg;
+    const oilPrice = (Number.isFinite(oilPricePerKg) ? oilPricePerKg : 0) * oilKg;
+    const oilLabel = dict.step6_oil_label || "Olio";
+    rows.push([dict.summary_optional_label || "Optional", `${oilLabel} (${oilKg} kg)`, oilPrice]);
+    total += oilPrice;
+  }
+
   if (appState.selections.gascooler) {
     rows.push([dict.summary_gascooler_label || "Gascooler", dict.step5_label || "Gascooler", 0]);
   }
@@ -131,8 +141,10 @@ export const renderPrintSheet = () => {
 
   const summaryHtml = rows
     .map(
-      ([label, name, price]) =>
-        `<div class="summary-row"><span>${label}: ${name}</span><span>${formatPrice(price)}</span></div>`
+      ([label, name, price]) => {
+        const priceLabel = price === null || price === undefined ? "" : formatPrice(price);
+        return `<div class="summary-row"><span>${label}: ${name}</span><span>${priceLabel}</span></div>`;
+      }
     )
     .join("");
 
@@ -225,6 +237,7 @@ const paginatePrintPages = () => {
   const headClone = head ? head.cloneNode(true) : null;
   const configClone = config ? config.cloneNode(true) : null;
   const signatureClone = signature ? signature.cloneNode(true) : null;
+  let summaryRows = [];
   const descriptionSections = descriptions
     ? Array.from(descriptions.children).filter((child) => child.classList.contains("print-desc-section"))
     : [];
@@ -333,14 +346,80 @@ const paginatePrintPages = () => {
     if (configDescriptions) {
       configDescriptions.remove();
     }
+    const configSummaryList = configClone.querySelector(".summary-list");
+    if (configSummaryList) {
+      summaryRows = Array.from(configSummaryList.children);
+      configSummaryList.innerHTML = "";
+    }
+  }
+
+  if (summaryRows.length > 0 && !summaryRows.some((row) => row.classList.contains("total-row"))) {
+    const dict = getDictionary();
+    const totalLabel = dict.print_total_label || "Totale";
+    const printTotalEl = document.getElementById("printTotal");
+    const totalValue = printTotalEl ? printTotalEl.textContent : "";
+    const totalRow = document.createElement("div");
+    totalRow.className = "summary-row total-row";
+    totalRow.innerHTML = `<span><strong>${totalLabel}</strong></span><span><strong>${totalValue}</strong></span>`;
+    summaryRows.push(totalRow);
   }
 
   if (headClone) {
     appendBlock(headClone);
   }
 
+  const appendConfigRows = () => {
+    if (!configClone || summaryRows.length === 0) {
+      return;
+    }
+    const buildShell = () => {
+      const shell = configClone.cloneNode(true);
+      const list = shell.querySelector(".summary-list");
+      if (list) {
+        list.innerHTML = "";
+      }
+      return shell;
+    };
+
+    let shell = buildShell();
+    let list = shell.querySelector(".summary-list");
+    body.appendChild(shell);
+    if (isOverflowing()) {
+      body.removeChild(shell);
+      startNewPage();
+      shell = buildShell();
+      list = shell.querySelector(".summary-list");
+      body.appendChild(shell);
+    }
+
+    summaryRows.forEach((row) => {
+      if (!list) {
+        return;
+      }
+      list.appendChild(row.cloneNode(true));
+      if (isOverflowing()) {
+        list.removeChild(list.lastChild);
+        if (list.children.length === 0) {
+          list.appendChild(row.cloneNode(true));
+          return;
+        }
+        startNewPage();
+        shell = buildShell();
+        list = shell.querySelector(".summary-list");
+        if (list) {
+          body.appendChild(shell);
+          list.appendChild(row.cloneNode(true));
+        }
+      }
+    });
+  };
+
   if (configClone) {
-    appendBlock(configClone);
+    if (summaryRows.length > 0) {
+      appendConfigRows();
+    } else {
+      appendBlock(configClone);
+    }
   }
 
   descriptionSections.forEach((section) => {
@@ -371,6 +450,7 @@ export const renderPrintPreview = () => {
 };
 
 let activePrintFrame = null;
+const PRINT_PAGINATION_TRIM = "8mm";
 
 const buildPreviewPrintHtml = (pagesHtml) => {
   const baseHref = (document.baseURI || "").replace(/"/g, "&quot;");
@@ -388,9 +468,10 @@ const buildPreviewPrintHtml = (pagesHtml) => {
     body.print-preview.dark-mode { background: #ffffff; }
     .print-preview-toolbar { display: none !important; }
     @page { size: A4; margin: 0; }
+    body.print-preview .print-sheet { --print-page-trim: ${PRINT_PAGINATION_TRIM} !important; }
     @media print {
       body.print-preview { margin: 0; background: #ffffff !important; }
-      body.print-preview .print-sheet { --print-page-trim: 0mm !important; }
+      body.print-preview .print-sheet { --print-page-trim: ${PRINT_PAGINATION_TRIM} !important; }
       body.print-preview .print-page {
         page-break-after: always;
         break-after: page;
@@ -403,6 +484,8 @@ const buildPreviewPrintHtml = (pagesHtml) => {
         break-after: auto;
       }
       body.print-preview .print-debug-strip { display: none !important; }
+      body.print-preview .print-page::before,
+      body.print-preview .print-page::after { content: none !important; }
     }
   </style>
 </head>
@@ -441,8 +524,44 @@ const cleanupPrintFrame = () => {
   }
 };
 
+const withPrintPreviewClass = (callback) => {
+  const body = document.body;
+  const hadClass = body ? body.classList.contains("print-preview") : false;
+  if (body && !hadClass) {
+    body.classList.add("print-preview");
+  }
+  callback();
+  if (body && !hadClass) {
+    body.classList.remove("print-preview");
+  }
+};
+
+const withPrintPaginationTrim = (callback) => {
+  const printSheet = document.querySelector(".print-sheet");
+  const previous = printSheet ? printSheet.style.getPropertyValue("--print-page-trim") : "";
+  if (printSheet) {
+    printSheet.style.setProperty("--print-page-trim", PRINT_PAGINATION_TRIM);
+  }
+  callback();
+  if (printSheet) {
+    if (previous) {
+      printSheet.style.setProperty("--print-page-trim", previous);
+    } else {
+      printSheet.style.removeProperty("--print-page-trim");
+    }
+  }
+};
+
+const renderPrintPreviewForPrint = () => {
+  withPrintPreviewClass(() => {
+    withPrintPaginationTrim(() => {
+      renderPrintPreview();
+    });
+  });
+};
+
 export const printFromPreview = () => {
-  renderPrintPreview();
+  renderPrintPreviewForPrint();
   const pages = document.getElementById("printPages");
   if (!pages || pages.childElementCount === 0 || !document.body) {
     return false;
@@ -495,7 +614,7 @@ export const setupPrintButton = () => {
 
   if (!printHandlersBound) {
     window.addEventListener("beforeprint", () => {
-      renderPrintPreview();
+      renderPrintPreviewForPrint();
     });
     printHandlersBound = true;
   }
@@ -503,7 +622,7 @@ export const setupPrintButton = () => {
   if (printBtn) {
     printBtn.addEventListener("click", () => {
       if (!printFromPreview()) {
-        renderPrintPreview();
+        renderPrintPreviewForPrint();
         setTimeout(() => {
           window.print();
         }, 100);

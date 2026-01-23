@@ -13,6 +13,7 @@ import {
   updateSummary,
   updateThemeToggleLabel,
   wireCatalogFilters,
+  wireOilControls,
   wireTransportControls,
 } from "./ui.js";
 import {
@@ -555,6 +556,7 @@ const bootstrap = () => {
   setMachineTypeSelectorCollapsed(appState.ui.machineTypeSelectorCollapsed);
   wireCatalogFilters();
   wireTransportControls();
+  wireOilControls();
   initAdminEvents();
   initProjectInputs();
   applyTranslations(i18nNodes, updateThemeToggleLabel, updateCatalogCollapseLabel);

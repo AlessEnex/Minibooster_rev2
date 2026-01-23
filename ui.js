@@ -9,6 +9,7 @@ import {
   machineTypes,
   isProjectComplete,
   getFilteredConfigs,
+  getExtraCosts,
 } from "./state.js";
 import { getDictionary } from "./i18n.js";
 import {
@@ -33,6 +34,12 @@ const electricalPanelChoiceHint = document.getElementById("electricalPanelChoice
 const controlOptions = document.getElementById("controlOptions");
 const optionalOptions = document.getElementById("optionalOptions");
 const probesChoiceHint = document.getElementById("probesChoiceHint");
+const oilOptionGroup = document.getElementById("oilOptionGroup");
+const oilOptionCard = document.getElementById("oilOptionCard");
+const oilKgWrap = document.getElementById("oilKgWrap");
+const oilKgInput = document.getElementById("oilKgInput");
+const oilKgHint = document.getElementById("oilKgHint");
+const oilPriceValue = document.getElementById("oilPriceValue");
 const cablingOptions = document.getElementById("cablingOptions");
 const cablingChoiceHint = document.getElementById("cablingChoiceHint");
 const cablingExtraWrap = document.getElementById("cablingExtraWrap");
@@ -159,6 +166,64 @@ const resetCablingChoice = () => {
   hideCablingExtraHint();
 };
 
+const parseOilKg = (value) => {
+  const parsed = parseInt(value, 10);
+  return Number.isNaN(parsed) ? 0 : Math.max(0, parsed);
+};
+
+const getOilPricePerKg = () => {
+  const rate = getExtraCosts().oilPricePerKg;
+  return Number.isFinite(rate) ? rate : 0;
+};
+
+const hideOilKgHint = () => {
+  oilKgHint?.classList.add("hidden");
+};
+
+const showOilKgHint = () => {
+  oilKgHint?.classList.remove("hidden");
+};
+
+const isOilKgInvalid = () => {
+  if (!appState.selections.oilEnabled) return false;
+  const kg = parseOilKg(appState.selections.oilKg);
+  return !Number.isInteger(kg) || kg <= 0 || kg % 5 !== 0;
+};
+
+const updateOilUI = () => {
+  if (!oilOptionCard) return;
+  const enabled = Boolean(appState.selections.oilEnabled);
+  oilOptionCard.classList.toggle("selected", enabled);
+  if (oilKgWrap) {
+    oilKgWrap.classList.toggle("hidden", !enabled);
+  }
+  if (!enabled) {
+    hideOilKgHint();
+    if (oilKgInput) {
+      oilKgInput.value = "";
+    }
+    if (oilPriceValue) {
+      oilPriceValue.textContent = formatPrice(0);
+    }
+    return;
+  }
+
+  const kg = parseOilKg(appState.selections.oilKg);
+  if (oilKgInput) {
+    oilKgInput.value = kg > 0 ? String(kg) : "";
+  }
+  const valid = kg > 0 && kg % 5 === 0;
+  if (!valid) {
+    showOilKgHint();
+  } else {
+    hideOilKgHint();
+  }
+  const totalPrice = valid ? kg * getOilPricePerKg() : 0;
+  if (oilPriceValue) {
+    oilPriceValue.textContent = formatPrice(totalPrice);
+  }
+};
+
 const setCablingChoice = (choice) => {
   appState.selections.cablingChoice = choice;
   if (choice !== "extra") {
@@ -212,6 +277,8 @@ const renderOptionCard = (item, group, multiple, opts = {}) => {
         appState.selections.ltPressure = null;
         appState.selections.ltChoice = null;
         appState.selections.optionals = new Set();
+        appState.selections.oilEnabled = false;
+        appState.selections.oilKg = 0;
         resetElectricalPanelChoice();
         resetProbesChoice();
         resetCablingChoice();
@@ -813,6 +880,11 @@ const renderOptionalOptions = () => {
       optionalOptions.appendChild(container);
     }
   });
+
+  if (oilOptionGroup) {
+    oilOptionGroup.classList.toggle("hidden", !appState.selections.machineType);
+  }
+  updateOilUI();
 };
 
 const renderProjectMeta = () => {
@@ -957,6 +1029,14 @@ export const updateSummary = () => {
     }
   }
 
+  const oilKg = parseOilKg(appState.selections.oilKg);
+  if (appState.selections.oilEnabled && oilKg > 0 && oilKg % 5 === 0) {
+    const oilPrice = oilKg * getOilPricePerKg();
+    const oilLabel = dict.step6_oil_label || "Olio";
+    rows.push([dict.summary_optional_label || "Optional", `${oilLabel} (${oilKg} kg)`, oilPrice]);
+    total += oilPrice;
+  }
+
   if (appState.selections.gascooler) {
     rows.push([dict.summary_gascooler_label || "Gascooler", dict.step5_label || "Gascooler", 0]);
   }
@@ -982,9 +1062,10 @@ export const updateSummary = () => {
   const summaryHtml = rows
     .map(
       ([label, name, price]) => {
-        const rowKey = `${label}: ${name}${formatPrice(price)}`;
+        const priceLabel = price === null || price === undefined ? "" : formatPrice(price);
+        const rowKey = `${label}: ${name}${priceLabel}`;
         const isNew = !previousRowKeys.includes(rowKey);
-        return `<div class="summary-row${isNew ? ' added' : ''}"><span>${label}: ${name}</span><span>${formatPrice(price)}</span></div>`;
+        return `<div class="summary-row${isNew ? ' added' : ''}"><span>${label}: ${name}</span><span>${priceLabel}</span></div>`;
       }
     )
     .join("");
@@ -1104,9 +1185,12 @@ export const goToStep = (step) => {
     if (invalidCabling) showCablingExtraHint();
     if (missingPanel || missingCabling || invalidCabling) return;
   }
-  if (currentStep === 6 && nextStep > currentStep && isProbesChoiceMissing()) {
-    showProbesChoiceHint();
-    return;
+  if (currentStep === 6 && nextStep > currentStep) {
+    const missingProbes = isProbesChoiceMissing();
+    const invalidOil = isOilKgInvalid();
+    if (missingProbes) showProbesChoiceHint();
+    if (invalidOil) showOilKgHint();
+    if (missingProbes || invalidOil) return;
   }
   appState.step = nextStep;
   if (stepDots) {
@@ -1133,7 +1217,7 @@ const canProceedFromCurrentStep = () => {
   }
   
   if (step === 6) {
-    return !isProbesChoiceMissing();
+    return !isProbesChoiceMissing() && !isOilKgInvalid();
   }
   
   return true;
@@ -1160,6 +1244,8 @@ export const resetSelections = () => {
     probesChoice: null,
     cablingChoice: null,
     cablingExtraMeters: 0,
+    oilEnabled: false,
+    oilKg: 0,
     optionals: new Set(),
     discount: 0,
     project: appState.selections.project,
@@ -1199,6 +1285,8 @@ export const applyCatalogSelection = (brand, mtKey) => {
   appState.selections.probesChoice = null;
   appState.selections.cablingChoice = null;
   appState.selections.cablingExtraMeters = 0;
+  appState.selections.oilEnabled = false;
+  appState.selections.oilKg = 0;
   appState.selections.optionals = new Set();
   hideElectricalPanelChoiceHint();
   hideProbesChoiceHint();
@@ -1692,4 +1780,29 @@ export const wireTransportControls = () => {
     }
     updateSummary();
   });
+};
+
+export const wireOilControls = () => {
+  if (!oilOptionCard) return;
+  const handleOilToggle = () => {
+    appState.selections.oilEnabled = !appState.selections.oilEnabled;
+    if (!appState.selections.oilEnabled) {
+      appState.selections.oilKg = 0;
+    }
+    updateOilUI();
+    updateSummary();
+    updateNextButtonState();
+  };
+
+  const handleOilKgChange = (event) => {
+    const value = parseOilKg(event.target.value);
+    appState.selections.oilKg = value;
+    updateOilUI();
+    updateSummary();
+    updateNextButtonState();
+  };
+
+  oilOptionCard.addEventListener("click", handleOilToggle);
+  oilKgInput?.addEventListener("input", handleOilKgChange);
+  oilKgInput?.addEventListener("change", handleOilKgChange);
 };
