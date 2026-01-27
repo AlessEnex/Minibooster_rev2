@@ -720,6 +720,34 @@ body.dark-mode .step-dots .dot {
   width: 100%;
 }
 
+.option.locked {
+  cursor: pointer;
+  position: relative;
+}
+
+.option.locked .locked-tooltip {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: calc(100% + 8px);
+  background: #111827;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.option.locked.show-locked-tooltip .locked-tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 body.dark-mode .option {
   background: var(--card);
   border-color: var(--line);

@@ -13,6 +13,7 @@ import { getPrintDescriptions } from "./print-descriptions.js";
 import {
   getCablingExtraPrice,
   getCablingStandardPrice,
+  getTagoProbesRule,
   isCablingChoiceMissing,
   parseCablingMeters,
 } from "./summary.js";
@@ -83,6 +84,7 @@ export const renderPrintSheet = () => {
       : [];
   const ltSelected = ltOptionsList.find((o) => o.id === appState.selections.ltChoice);
   const selectedConfig = getSelectedConfig();
+  const tagoProbes = getTagoProbesRule();
 
   if (appState.selections.brand) {
     rows.push([dict.summary_brand_label || "Brand", appState.selections.brand === "dorin" ? "Dorin" : "Bitzer", null]);
@@ -96,9 +98,6 @@ export const renderPrintSheet = () => {
     }
   }
 
-  if (appState.selections.configCode) {
-    rows.push([dict.summary_code_label || "Stringamot", appState.selections.configCode, null]);
-  }
 
   if (ltSelected && appState.selections.ltChoice !== "none") {
     rows.push([
@@ -142,7 +141,7 @@ export const renderPrintSheet = () => {
     }
   }
 
-  const probeSelectedId = appState.selections.probesChoice;
+  const probeSelectedId = tagoProbes.optionId || appState.selections.probesChoice;
   if (probeSelectedId) {
     const probe = getOptionalsForConfig().find((o) => o.id === probeSelectedId);
     if (probe) {

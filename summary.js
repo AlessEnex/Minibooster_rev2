@@ -45,6 +45,39 @@ export const getCablingExtraPrice = (basePrice, meters, machineTypeId = appState
   return null;
 };
 
+const getSelectedControllerId = () => {
+  const selected = appState.selections.optionals;
+  const controllerIds = ["danfoss_572a", "danfoss_782", "carel", "wurm", "wurm_customer"];
+  return controllerIds.find((id) => selected.has(id)) || null;
+};
+
+export const getTagoProbesRule = () => {
+  if (appState.selections.machineType !== "TAGO") {
+    return { optionId: null, price: 0, controllerId: null, hasLT: false };
+  }
+  const controllerId = getSelectedControllerId();
+  if (!controllerId) {
+    return { optionId: null, price: 0, controllerId: null, hasLT: false };
+  }
+  const hasLT = appState.selections.ltChoice && appState.selections.ltChoice !== "none";
+  const suffix = hasLT ? "mtlt" : "mt";
+  let probeOptionId = null;
+  if (controllerId === "carel") {
+    probeOptionId = `probes_generic_${suffix}`;
+  } else if (controllerId === "wurm" || controllerId === "wurm_customer") {
+    probeOptionId = `probes_wurm_${suffix}`;
+  } else {
+    probeOptionId = `probes_danfoss_${suffix}`;
+  }
+  const price = getOptionPriceForConfig(probeOptionId);
+  return {
+    optionId: probeOptionId,
+    price: Number.isFinite(price) ? price : 0,
+    controllerId,
+    hasLT: Boolean(hasLT),
+  };
+};
+
 export const buildSummaryData = (dict = getDictionary()) => {
   const rows = [];
   let total = 0;
@@ -58,6 +91,7 @@ export const buildSummaryData = (dict = getDictionary()) => {
       : [];
   const ltSelected = ltOptionsList.find((o) => o.id === appState.selections.ltChoice);
   const selectedConfig = getSelectedConfig();
+  const tagoProbes = getTagoProbesRule();
 
   if (appState.selections.brand) {
     rows.push([
@@ -75,9 +109,6 @@ export const buildSummaryData = (dict = getDictionary()) => {
     }
   }
 
-  if (appState.selections.configCode) {
-    rows.push([dict.summary_code_label || "Stringamot", appState.selections.configCode, null]);
-  }
 
   if (ltSelected && appState.selections.ltChoice !== "none") {
     rows.push([
@@ -120,7 +151,7 @@ export const buildSummaryData = (dict = getDictionary()) => {
     }
   }
 
-  const probeSelectedId = appState.selections.probesChoice;
+  const probeSelectedId = tagoProbes.optionId || appState.selections.probesChoice;
   if (probeSelectedId) {
     const probe = getOptionalsForConfig().find((o) => o.id === probeSelectedId);
     if (probe) {

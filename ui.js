@@ -20,6 +20,7 @@ import {
   getCablingStandardPrice,
   isCablingChoiceMissing,
   isCablingExtraInvalid,
+  getTagoProbesRule,
   parseCablingMeters,
 } from "./summary.js";
 import pricingExtras from "./pricing-extras.json" with { type: "json" };
@@ -165,6 +166,11 @@ const resetProbesChoice = () => {
 
 const isProbesChoiceMissing = () => {
   if (!appState.selections.machineType) return false;
+  const tagoRule = getTagoProbesRule();
+  if (appState.selections.machineType === "TAGO") {
+    if (!tagoRule.optionId) return false;
+    return appState.selections.probesChoice !== tagoRule.optionId;
+  }
   const availableProbeIds = getOptionalsForConfig()
     .filter((opt) => opt.category === "probes")
     .map((opt) => opt.id);
@@ -184,6 +190,23 @@ const hideCablingExtraHint = () => {
   if (cablingExtraHint) {
     cablingExtraHint.style.display = 'none';
   }
+};
+
+const showLockedChoiceTooltip = (optionEl) => {
+  if (!optionEl) return;
+  const dict = getDictionary();
+  const message = dict.tooltip_locked_choice || "La scelta non puo essere rimossa";
+  const existing = optionEl.querySelector(".locked-tooltip");
+  if (existing) existing.remove();
+  const tooltip = document.createElement("div");
+  tooltip.className = "locked-tooltip";
+  tooltip.textContent = message;
+  optionEl.appendChild(tooltip);
+  optionEl.classList.add("show-locked-tooltip");
+  setTimeout(() => {
+    tooltip.remove();
+    optionEl.classList.remove("show-locked-tooltip");
+  }, 1800);
 };
 
 const showCablingExtraHint = () => {
@@ -274,6 +297,11 @@ const setCablingChoice = (choice) => {
 const renderOptionCard = (item, group, multiple, opts = {}) => {
   const option = document.createElement("div");
   option.className = "option";
+  const locked = Boolean(opts.locked);
+  if (locked) {
+    option.classList.add("locked");
+    option.setAttribute("aria-disabled", "true");
+  }
   const showPrice = item.price !== null && item.price !== undefined;
   option.innerHTML = `
     <div class="title-row">
@@ -295,6 +323,10 @@ const renderOptionCard = (item, group, multiple, opts = {}) => {
   }
 
   option.addEventListener("click", () => {
+    if (locked) {
+      showLockedChoiceTooltip(option);
+      return;
+    }
     if (multiple) {
       if (appState.selections[group].has(item.id)) {
         appState.selections[group].delete(item.id);
@@ -623,7 +655,8 @@ const renderElectricalPanelOptions = () => {
         badge: dict.badge_main || "Main",
       },
       "electricalPanelChoice",
-      false
+      false,
+      { locked: isTago }
     );
     electricalPanelOptions.appendChild(panelCard);
   }
@@ -890,11 +923,21 @@ const renderProbesOptions = (optionals) => {
   let optionsToRender = probeOptions;
 
   if (isTago) {
-    const included = probeOptions.find((opt) => opt.id === "probes_included") || probeOptions[0];
-    if (included && appState.selections.probesChoice !== included.id) {
-      appState.selections.probesChoice = included.id;
+    const rule = getTagoProbesRule();
+    const forced = rule.optionId ? probeOptions.find((opt) => opt.id === rule.optionId) : null;
+    if (!forced) {
+      appState.selections.probesChoice = null;
+      const hint = document.createElement("p");
+      hint.className = "hint";
+      hint.textContent = "Seleziona il controllo per definire le sonde.";
+      container.appendChild(hint);
+      optionalOptions.appendChild(container);
+      return;
     }
-    optionsToRender = included ? [included] : probeOptions.slice(0, 1);
+    if (appState.selections.probesChoice !== forced.id) {
+      appState.selections.probesChoice = forced.id;
+    }
+    optionsToRender = [forced];
   } else {
     if (appState.selections.probesChoice === "probes_included") {
       appState.selections.probesChoice = null;
@@ -915,18 +958,19 @@ const renderProbesOptions = (optionals) => {
     appState.selections.probesChoice = null;
   }
 
-  optionsToRender.forEach((opt) => {
-    const optionEl = renderOptionCard(
-      {
-        id: opt.id,
-        name: translateOptionName(opt.id, opt.name),
-        price: opt.price,
-      },
-      "probesChoice",
-      false
-    );
-    container.appendChild(optionEl);
-  });
+    optionsToRender.forEach((opt) => {
+      const optionEl = renderOptionCard(
+        {
+          id: opt.id,
+          name: translateOptionName(opt.id, opt.name),
+          price: opt.price,
+        },
+        "probesChoice",
+        false,
+        { locked: isTago }
+      );
+      container.appendChild(optionEl);
+    });
 
   if (probesOptionIds.includes(appState.selections.probesChoice)) {
     hideProbesChoiceHint();
@@ -1073,6 +1117,7 @@ export const updateSummary = () => {
       : [];
   const ltSelected = ltOptionsList.find((o) => o.id === appState.selections.ltChoice);
   const selectedConfig = getSelectedConfig();
+  const tagoProbes = getTagoProbesRule();
 
   if (appState.selections.brand) {
     rows.push([dict.summary_brand_label || "Brand", appState.selections.brand === "dorin" ? "Dorin" : "Bitzer", null]);
@@ -1086,9 +1131,6 @@ export const updateSummary = () => {
     }
   }
 
-  if (appState.selections.configCode) {
-    rows.push([dict.summary_code_label || "Stringamot", appState.selections.configCode, null]);
-  }
 
   if (ltSelected && appState.selections.ltChoice !== "none") {
     rows.push([
@@ -1135,7 +1177,7 @@ export const updateSummary = () => {
     }
   }
 
-  const probeSelectedId = appState.selections.probesChoice;
+  const probeSelectedId = tagoProbes.optionId || appState.selections.probesChoice;
   if (probeSelectedId) {
     const probe = getOptionalsForConfig().find((o) => o.id === probeSelectedId);
     if (probe) {
