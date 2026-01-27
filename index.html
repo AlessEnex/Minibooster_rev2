@@ -15,7 +15,6 @@
   </script>
 </head>
 <body>
-  <canvas id="frostCanvas"></canvas>
   <div class="app-shell">
     <header class="hero">
       <div>
@@ -33,6 +32,9 @@
             <option value="DE/CH">DE/CH</option>
           </select>
         </div>
+        <button id="exportProjectBtn" class="button ghost" data-i18n="cta_export_project">Esporta</button>
+        <button id="importProjectBtn" class="button ghost" data-i18n="cta_import_project">Importa</button>
+        <input id="importProjectInput" type="file" accept=".json" style="display: none;">
         <button id="adminToggle" class="button ghost" data-i18n="cta_admin">Area admin</button>
         <button id="themeToggle" class="button ghost slim icon-btn" aria-label="Toggle theme">
           <svg class="theme-icon sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -65,19 +67,19 @@
         <div class="meta-grid">
           <label class="field">
             <span data-i18n="meta_offer_number">Offerta N°</span>
-            <input id="offerNumber" type="text" placeholder="Es. 2024-001">
+            <input id="offerNumber" type="text" placeholder="Es. 2024-001" required>
           </label>
           <label class="field">
             <span data-i18n="meta_revision">Revisione</span>
-            <input id="revisionNumber" type="text" placeholder="Es. Rev. 1">
+            <input id="revisionNumber" type="text" placeholder="Es. Rev. 1" required>
           </label>
           <label class="field">
             <span data-i18n="meta_client">Cliente</span>
-            <input id="clientName" type="text" placeholder="Nome cliente">
+            <input id="clientName" type="text" placeholder="Nome cliente" required>
           </label>
           <label class="field">
             <span data-i18n="meta_requested_by">Richiesto da</span>
-            <input id="requestedBy" type="text" placeholder="Nome richiedente">
+            <input id="requestedBy" type="text" placeholder="Nome richiedente" required>
           </label>
           <label class="field">
             <span data-i18n="meta_project_name">Nome progetto</span>
@@ -89,9 +91,10 @@
           </label>
           <label class="field">
             <span data-i18n="meta_owner">Owner</span>
-            <input id="projectOwner" type="text" placeholder="Nome referente">
+            <input id="projectOwner" type="text" data-i18n-placeholder="meta_owner_placeholder" placeholder="Nome referente">
           </label>
         </div>
+        <p class="meta-required-hint" data-i18n="meta_required_hint">Compila tutti i campi per avviare il configuratore</p>
       </section>
 
       <section id="catalog" class="card hidden">
@@ -132,7 +135,6 @@
             <h2 data-i18n="machine_title">Seleziona la famiglia</h2>
             <p class="hint" data-i18n="machine_hint">Scegli il tipo di macchina da configurare.</p>
           </div>
-          <span id="machineTypeSelected" class="pill subtle hidden"></span>
         </div>
         <div id="machineTypeOptions" class="option-grid"></div>
       </section>
@@ -163,7 +165,7 @@
               <h3 data-i18n="step4_title">4. Quadro elettrico</h3>
               <p class="hint" data-i18n="step4_hint">Scegli se includere il quadro elettrico, differenziali e MX coil.</p>
             <div id="electricalPanelOptions" class="option-grid"></div>
-            <p id="electricalPanelChoiceHint" class="hint hidden">Seleziona &quot;Nessun quadro&quot; o &quot;Quadro elettrico&quot; per continuare.</p>
+            <p id="electricalPanelChoiceHint" class="meta-required-hint" data-i18n="step4_choice_hint">Seleziona "Nessun quadro" o "Quadro elettrico" per continuare</p>
             <div class="option-group cabling-group">
               <h4 data-i18n="step4_cabling_title">Cablaggio</h4>
               <div id="cablingOptions" class="option-grid"></div>
@@ -172,7 +174,7 @@
                   <span data-i18n="step4_cabling_extra_meters_label">Metri extra</span>
                   <input id="cablingExtraMeters" type="number" min="1" step="1" inputmode="numeric" placeholder="0">
                 </label>
-                <p id="cablingExtraHint" class="hint hidden" data-i18n="step4_cabling_extra_hint">Inserisci i metri extra per continuare.</p>
+                <p id="cablingExtraHint" class="meta-required-hint" style="display: none;" data-i18n="step4_cabling_extra_hint">Inserisci i metri extra per continuare.</p>
               </div>
               <p id="cablingChoiceHint" class="hint hidden" data-i18n="step4_cabling_choice_hint">Seleziona il tipo di cablaggio per continuare.</p>
             </div>
@@ -208,7 +210,7 @@
                   <span id="oilPriceValue" class="price">€ 0</span>
                 </div>
               </div>
-              <p id="oilKgHint" class="hint hidden" data-i18n="step6_oil_hint">Inserisci i kg in multipli di 5.</p>
+              <p id="oilKgHint" class="meta-required-hint" style="display: none;" data-i18n="step6_oil_hint">Inserisci i kg in multipli di 5.</p>
             </div>
             <p id="probesChoiceHint" class="hint hidden">Seleziona le sonde per continuare.</p>
           </div>
@@ -273,17 +275,17 @@
                 <label class="field inline-field">
                   <span data-i18n="step8_country_label">Paese</span>
                   <select id="transportCountry" disabled>
-                    <option value="">EU/Altro</option>
-                    <option value="IT">Italia</option>
-                    <option value="FR">Francia</option>
-                    <option value="ES">Spagna</option>
-                    <option value="DE">Germania</option>
-                    <option value="GB">UK</option>
-                    <option value="PT">Portogallo</option>
-                    <option value="NL">Olanda</option>
-                    <option value="BE">Belgio</option>
-                    <option value="AT">Austria</option>
-                    <option value="CH">Svizzera</option>
+                    <option value="" data-i18n="country_eu_other">EU/Altro</option>
+                    <option value="IT" data-i18n="country_it">Italia</option>
+                    <option value="FR" data-i18n="country_fr">Francia</option>
+                    <option value="ES" data-i18n="country_es">Spagna</option>
+                    <option value="DE" data-i18n="country_de">Germania</option>
+                    <option value="GB" data-i18n="country_gb">UK</option>
+                    <option value="PT" data-i18n="country_pt">Portogallo</option>
+                    <option value="NL" data-i18n="country_nl">Olanda</option>
+                    <option value="BE" data-i18n="country_be">Belgio</option>
+                    <option value="AT" data-i18n="country_at">Austria</option>
+                    <option value="CH" data-i18n="country_ch">Svizzera</option>
                   </select>
                 </label>
                 <label class="field inline-field">
@@ -322,7 +324,7 @@
           <p class="eyebrow" data-i18n="summary_title">Riepilogo</p>
           <div id="projectMetaView" class="meta-view"></div>
           <div id="summaryList" class="summary-list"></div>
-          <label class="field inline-field">
+          <label class="field inline-field hidden">
             <span data-i18n="summary_discount_label">Discount %</span>
             <input id="discountInput" type="number" min="0" max="100" step="0.5" value="0" placeholder="0%">
           </label>
@@ -332,7 +334,7 @@
             <div class="inline-actions">
               <button id="printBtn" class="button ghost" data-i18n="summary_print">Stampa offerta</button>
               <button id="printPreviewBtn" class="button ghost" data-i18n="summary_print_preview">Anteprima stampa</button>
-              <button id="view3DBtn" class="button ghost" data-i18n="summary_view_3d">Visualizza 3D</button>
+              <button id="view3DBtn" class="button ghost hidden" data-i18n="summary_view_3d">Visualizza 3D</button>
               <button id="resetBtn" class="button ghost" data-i18n="summary_reset">Reset</button>
             </div>
           </div>
@@ -474,6 +476,7 @@
         <input type="file" id="stlFileInput" accept=".stl" style="display: none;" />
         <button id="loadSTLBtn" class="button primary" data-i18n="viewer_3d_load">Carica file STL</button>
         <button id="resetCameraBtn" class="button ghost" data-i18n="viewer_3d_reset_camera">Reset Camera</button>
+        <button id="measureBtn" class="button ghost" data-i18n="viewer_3d_measure">📏 Misura</button>
         <label class="toggle-label">
           <input type="checkbox" id="wireframeToggle" />
           <span data-i18n="viewer_3d_wireframe">Wireframe</span>
@@ -481,6 +484,7 @@
       </div>
       <div id="viewer3DContainer" class="viewer-3d-container">
         <div class="viewer-3d-placeholder" data-i18n="viewer_3d_placeholder">Carica un file STL per visualizzarlo</div>
+        <div id="measureInfo" class="measure-info hidden"></div>
       </div>
     </div>
   </div>

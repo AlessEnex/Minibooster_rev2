@@ -9,8 +9,11 @@ export const printDescriptionsByLanguage = {
 };
 
 export const getPrintDescriptions = (lang) => {
-  if (printDescriptionsByLanguage[lang]) {
-    return printDescriptionsByLanguage[lang];
+  // Normalizza DE/CH -> DE
+  const normalizedLang = lang === "DE/CH" ? "DE" : lang;
+  
+  if (printDescriptionsByLanguage[normalizedLang]) {
+    return printDescriptionsByLanguage[normalizedLang];
   }
   if (printDescriptionsByLanguage.ITA) {
     return printDescriptionsByLanguage.ITA;

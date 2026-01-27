@@ -16,6 +16,45 @@ const salesConditionsByLanguage = {
       note: "Cordiali saluti,",
     },
   ],
+  EN: [
+    {
+      title: "Sales Conditions",
+      className: "print-sales-conditions",
+      items: [
+        "Delivery terms: Ex-works",
+        "Payment terms: To be agreed upon order",
+        "ORGALIMES2012 for special supplementary conditions see https://www.enex.it/sales-terms-and-conditions/",
+        "Offer validity: 30 days",
+      ],
+      note: "Best regards,",
+    },
+  ],
+  FR: [
+    {
+      title: "Conditions de vente",
+      className: "print-sales-conditions",
+      items: [
+        "Conditions de livraison: Départ usine (EX-WORKS)",
+        "Conditions de paiement: À convenir à la commande",
+        "ORGALIMES2012 pour conditions supplémentaires spéciales voir https://www.enex.it/sales-terms-and-conditions/",
+        "Validité de l'offre: 30 jours",
+      ],
+      note: "Cordialement,",
+    },
+  ],
+  "DE/CH": [
+    {
+      title: "Verkaufsbedingungen",
+      className: "print-sales-conditions",
+      items: [
+        "Lieferbedingungen: Ab Werk (EX-WORKS)",
+        "Zahlungsbedingungen: Bei Bestellung zu vereinbaren",
+        "ORGALIMES2012 für spezielle Zusatzbedingungen siehe https://www.enex.it/sales-terms-and-conditions/",
+        "Gültigkeit des Angebots: 30 Tage",
+      ],
+      note: "Mit freundlichen Grüßen,",
+    },
+  ],
 };
 
 const getSalesConditions = (lang) => {

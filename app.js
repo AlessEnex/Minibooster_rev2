@@ -24,7 +24,7 @@ import {
   saveAdminChanges,
 } from "./admin.js";
 import { renderPrintPreview, setupPrintButton, printFromPreview, renderPrintPreviewForPrint } from "./print.js";
-import { initViewer3D, loadSTLFile, resetCamera, setWireframe, disposeViewer, updateTheme as updateViewer3DTheme } from "./viewer3d.js";
+import { initViewer3D, loadSTLFile, loadSTLFromPath, resetCamera, setWireframe, disposeViewer, updateTheme as updateViewer3DTheme, toggleMeasureMode, clearMeasurements, handleMeasureClick } from "./viewer3d.js";
 
 const projectNameInput = document.getElementById("projectName");
 const requestDateInput = document.getElementById("requestDate");
@@ -60,8 +60,21 @@ const initProjectInputs = () => {
   if (clientNameInput) clientNameInput.value = appState.selections.project.client;
   if (requestedByInput) requestedByInput.value = appState.selections.project.requestedBy;
 
+  const checkRequiredFields = () => {
+    const hint = document.querySelector('.meta-required-hint');
+    if (!hint) return;
+    
+    const allFilled = offerNumberInput?.value.trim() &&
+                      revisionNumberInput?.value.trim() &&
+                      clientNameInput?.value.trim() &&
+                      requestedByInput?.value.trim();
+    
+    hint.style.display = allFilled ? 'none' : 'block';
+  };
+
   const assign = (field, value) => {
     appState.selections.project[field] = value;
+    checkRequiredFields();
     updateSummary();
     renderCatalog();
     updateProjectFlow();
@@ -76,6 +89,9 @@ const initProjectInputs = () => {
   revisionNumberInput?.addEventListener("input", (e) => assign("revision", e.target.value));
   clientNameInput?.addEventListener("input", (e) => assign("client", e.target.value));
   requestedByInput?.addEventListener("input", (e) => assign("requestedBy", e.target.value));
+  
+  // Check on init
+  checkRequiredFields();
 
   const setDiscount = (value) => {
     const parsed = Number(value);
@@ -91,10 +107,117 @@ const initProjectInputs = () => {
   }
 };
 
+const exportProject = () => {
+  // Converti Set in Array per JSON
+  const exportData = {
+    ...appState.selections,
+    optionals: Array.from(appState.selections.optionals),
+  };
+  
+  const json = JSON.stringify(exportData, null, 2);
+  const blob = new Blob([json], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  
+  // Nome file: Progetto_CLIENTE_YYYYMMDD_HHMM.json
+  const client = appState.selections.project.client || "Progetto";
+  const now = new Date();
+  const dateStr = now.toISOString().slice(0, 10).replace(/-/g, "");
+  const timeStr = now.toTimeString().slice(0, 5).replace(/:/g, "");
+  const filename = `${client.replace(/[^a-zA-Z0-9]/g, "_")}_${dateStr}_${timeStr}.json`;
+  
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
+const importProject = (event) => {
+  const file = event.target.files?.[0];
+  if (!file) return;
+  
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const data = JSON.parse(e.target.result);
+      
+      // Ripristina tutti i campi
+      if (data.project) {
+        appState.selections.project = { ...appState.selections.project, ...data.project };
+      }
+      appState.selections.machineType = data.machineType || null;
+      appState.selections.brand = data.brand || null;
+      appState.selections.mtKey = data.mtKey || null;
+      appState.selections.ltPressure = data.ltPressure || null;
+      appState.selections.ltChoice = data.ltChoice || null;
+      appState.selections.electricalPanelChoice = data.electricalPanelChoice || null;
+      appState.selections.probesChoice = data.probesChoice || null;
+      appState.selections.cablingChoice = data.cablingChoice || null;
+      appState.selections.cablingExtraMeters = data.cablingExtraMeters || 0;
+      appState.selections.oilEnabled = data.oilEnabled || false;
+      appState.selections.oilKg = data.oilKg || 0;
+      appState.selections.optionals = new Set(data.optionals || []);
+      appState.selections.gascooler = data.gascooler || false;
+      appState.selections.gascoolerPrice = data.gascoolerPrice || 0;
+      appState.selections.gascoolerCustomItems = data.gascoolerCustomItems || [
+        { description: "", price: 0 },
+        { description: "", price: 0 },
+        { description: "", price: 0 },
+      ];
+      appState.selections.discount = data.discount || 0;
+      appState.selections.transport = data.transport || {
+        enabled: false,
+        city: "",
+        country: "",
+        km: 0,
+        price: 0,
+      };
+      
+      // Aggiorna tutti gli input
+      if (projectNameInput) projectNameInput.value = appState.selections.project.name;
+      if (requestDateInput) requestDateInput.value = appState.selections.project.date;
+      if (projectOwnerInput) projectOwnerInput.value = appState.selections.project.owner;
+      if (projectLanguageInput) projectLanguageInput.value = appState.selections.project.language;
+      if (offerNumberInput) offerNumberInput.value = appState.selections.project.offerNumber;
+      if (revisionNumberInput) revisionNumberInput.value = appState.selections.project.revision;
+      if (clientNameInput) clientNameInput.value = appState.selections.project.client;
+      if (requestedByInput) requestedByInput.value = appState.selections.project.requestedBy;
+      if (discountInput) discountInput.value = appState.selections.discount || 0;
+      
+      // Applica traduzioni
+      applyTranslations(i18nNodes, updateThemeToggleLabel, updateCatalogCollapseLabel);
+      
+      // Aggiorna tutta l'UI
+      renderUserPanels();
+      updateProjectFlow();
+      updateSummary();
+      renderCatalog();
+      wireTransportControls();
+      wireOilControls();
+      
+      // Reset input file
+      event.target.value = "";
+      
+      alert("Progetto importato con successo!");
+    } catch (err) {
+      console.error("Errore importazione progetto:", err);
+      alert("Errore durante l'importazione del progetto. File non valido.");
+    }
+  };
+  reader.readAsText(file);
+};
+
 const initNavControls = () => {
   document.getElementById("startBtn")?.addEventListener("click", () => {
     document.getElementById("funnel")?.scrollIntoView({ behavior: "smooth" });
   });
+
+  // Export/Import progetto
+  document.getElementById("exportProjectBtn")?.addEventListener("click", exportProject);
+  document.getElementById("importProjectBtn")?.addEventListener("click", () => {
+    document.getElementById("importProjectInput")?.click();
+  });
+  document.getElementById("importProjectInput")?.addEventListener("change", importProject);
 
   // Pulsante temporaneo per compilare dati di test
   document.getElementById("fillTestData")?.addEventListener("click", () => {
@@ -131,9 +254,10 @@ const initNavControls = () => {
     }
   });
 
-  document.getElementById("prevBtn")?.addEventListener("click", () =>
-    goToStep(appState.step - 1)
-  );
+  document.getElementById("prevBtn")?.addEventListener("click", () => {
+    goToStep(appState.step - 1);
+    document.getElementById("funnel")?.scrollIntoView({ behavior: "smooth" });
+  });
 
   document.getElementById("resetBtn")?.addEventListener("click", resetSelections);
 
@@ -223,7 +347,7 @@ const init3DViewer = () => {
   // Expose theme updater globally for ui.js
   window.updateViewer3DTheme = updateViewer3DTheme;
   
-  const openModal = () => {
+  const openModal = async () => {
     modal?.classList.remove('hidden');
     if (!viewer3DInitialized) {
       initViewer3D(container);
@@ -231,6 +355,36 @@ const init3DViewer = () => {
       // Update theme
       const isDark = document.body.classList.contains('dark-mode');
       updateViewer3DTheme(isDark);
+      
+      // Auto-load STL based on machine type
+      const machineType = appState.selections.machineType;
+      if (machineType) {
+        // Map machine types to STL files
+        const stlFiles = {
+          'TAGO': 'TAGO.STL',
+          'MBS': 'MBS.STL',
+          'MCB': 'MCB.STL'
+        };
+        const fileName = stlFiles[machineType] || `${machineType}.STL`;
+        const stlPath = `STL/${fileName}`;
+        
+        // Show loading message
+        if (placeholder) {
+          placeholder.textContent = 'Caricamento modello 3D...';
+        }
+        
+        try {
+          await loadSTLFromPath(stlPath);
+          if (placeholder) {
+            placeholder.remove();
+          }
+        } catch (error) {
+          console.error('Error auto-loading STL:', error);
+          if (placeholder) {
+            placeholder.textContent = 'Errore nel caricamento. Usa il pulsante per caricare manualmente.';
+          }
+        }
+      }
     }
   };
   
@@ -257,7 +411,7 @@ const init3DViewer = () => {
       loadSTLBtn.disabled = true;
       loadSTLBtn.textContent = 'Caricamento...';
       await loadSTLFile(file);
-      if (placeholder) placeholder.style.display = 'none';
+      if (placeholder) placeholder.remove();
     } catch (error) {
       console.error('Error loading STL:', error);
       alert('Errore nel caricamento del file STL');
@@ -273,6 +427,53 @@ const init3DViewer = () => {
   
   wireframeToggle?.addEventListener('change', (e) => {
     setWireframe(e.target.checked);
+  });
+  
+  // Measure button
+  const measureBtn = document.getElementById('measureBtn');
+  const measureInfo = document.getElementById('measureInfo');
+  let isMeasuring = false;
+  
+  measureBtn?.addEventListener('click', () => {
+    isMeasuring = !isMeasuring;
+    toggleMeasureMode(isMeasuring);
+    
+    if (isMeasuring) {
+      measureBtn.classList.add('active');
+      measureBtn.textContent = '📏 Stop Misura';
+      if (measureInfo) {
+        measureInfo.textContent = 'Clicca due punti sul modello per misurare';
+        measureInfo.classList.remove('hidden');
+      }
+    } else {
+      measureBtn.classList.remove('active');
+      measureBtn.textContent = '📏 Misura';
+      clearMeasurements();
+      if (measureInfo) {
+        measureInfo.classList.add('hidden');
+      }
+    }
+  });
+  
+  // Handle clicks for measurement
+  container?.addEventListener('click', (e) => {
+    if (!isMeasuring) return;
+    
+    const result = handleMeasureClick(e);
+    if (result === 'first_point') {
+      if (measureInfo) {
+        measureInfo.textContent = 'Clicca il secondo punto';
+      }
+    } else if (typeof result === 'number') {
+      if (measureInfo) {
+        measureInfo.textContent = `Distanza: ${result.toFixed(2)} mm`;
+      }
+      setTimeout(() => {
+        if (measureInfo && isMeasuring) {
+          measureInfo.textContent = 'Clicca due punti sul modello per misurare';
+        }
+      }, 3000);
+    }
   });
 };
 
@@ -650,7 +851,7 @@ const bootstrap = () => {
   renderCatalog();
   updateProjectFlow();
   goToStep(1);
-  initFrostCursor();
+  // initFrostCursor(); // Disabled
   init3DViewer();
   loadExtraCosts().then(() => {
     renderUserPanels();

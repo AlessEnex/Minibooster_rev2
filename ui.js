@@ -10,6 +10,7 @@ import {
   isProjectComplete,
   getFilteredConfigs,
   getExtraCosts,
+  getConfigs,
 } from "./state.js";
 import { getDictionary, translateOptionName } from "./i18n.js";
 import {
@@ -114,11 +115,15 @@ function getTransportPrice(km) {
 }
 
 const hideElectricalPanelChoiceHint = () => {
-  electricalPanelChoiceHint?.classList.add("hidden");
+  if (electricalPanelChoiceHint) {
+    electricalPanelChoiceHint.style.display = 'none';
+  }
 };
 
 const showElectricalPanelChoiceHint = () => {
-  electricalPanelChoiceHint?.classList.remove("hidden");
+  if (electricalPanelChoiceHint) {
+    electricalPanelChoiceHint.style.display = 'block';
+  }
 };
 
 const resetElectricalPanelChoice = () => {
@@ -171,11 +176,15 @@ const showCablingChoiceHint = () => {
 };
 
 const hideCablingExtraHint = () => {
-  cablingExtraHint?.classList.add("hidden");
+  if (cablingExtraHint) {
+    cablingExtraHint.style.display = 'none';
+  }
 };
 
 const showCablingExtraHint = () => {
-  cablingExtraHint?.classList.remove("hidden");
+  if (cablingExtraHint) {
+    cablingExtraHint.style.display = 'block';
+  }
 };
 
 const resetCablingChoice = () => {
@@ -196,11 +205,15 @@ const getOilPricePerKg = () => {
 };
 
 const hideOilKgHint = () => {
-  oilKgHint?.classList.add("hidden");
+  if (oilKgHint) {
+    oilKgHint.style.display = 'none';
+  }
 };
 
 const showOilKgHint = () => {
-  oilKgHint?.classList.remove("hidden");
+  if (oilKgHint) {
+    oilKgHint.style.display = 'block';
+  }
 };
 
 const isOilKgInvalid = () => {
@@ -263,7 +276,6 @@ const renderOptionCard = (item, group, multiple, opts = {}) => {
         <strong>${item.name}</strong>
         ${item.subtitle ? `<div class="subtitle">${item.subtitle}</div>` : ""}
       </div>
-      ${item.badge ? `<span class="pill subtle">${item.badge}</span>` : ""}
     </div>
     ${showPrice ? `<p class="price">${formatPrice(item.price)}</p>` : ""}
   `;
@@ -404,10 +416,34 @@ const renderMachineTypeOptions = () => {
 const renderBrandOptions = () => {
   if (!brandOptions) return;
   brandOptions.innerHTML = "";
-  [
+  
+  // Filter brands based on available configurations for selected machine type
+  const availableBrands = [
     { id: "dorin", name: "Dorin" },
     { id: "bitzer", name: "Bitzer" },
-  ].forEach((item) =>
+  ].filter(brand => {
+    // Check if this brand has at least one configuration for the selected machine type
+    if (!appState.selections.machineType) return true; // Show all if no machine type selected
+    
+    const machinePrefix = machineTypes.find(m => m.id === appState.selections.machineType)?.prefix;
+    if (!machinePrefix) return true;
+    
+    const configs = getConfigs();
+    const relevantConfigs = configs.filter(cfg => cfg.code?.startsWith(machinePrefix));
+    
+    const hasConfigs = relevantConfigs.some(cfg => {
+      const brandData = cfg.mt?.[brand.id];
+      // Check if brand data exists and has a valid price (not null and not NA)
+      return brandData && 
+             brandData.price !== null && 
+             brandData.price !== undefined &&
+             brandData.name !== 'NA';
+    });
+    
+    return hasConfigs;
+  });
+  
+  availableBrands.forEach((item) =>
     brandOptions.appendChild(
       renderOptionCard(
         {
@@ -480,7 +516,8 @@ const renderLtOptions = () => {
     ltOptions.appendChild(pressureRow);
   }
 
-  const options = [{ id: "none", name: "Nessun LT", subtitle: "Solo MT", price: 0, pressure: null }];
+  const dict = getDictionary();
+  const options = [{ id: "none", name: dict.step3_none_lt || "Nessun LT", subtitle: dict.step3_none_lt_subtitle || "Solo MT", price: 0, pressure: null }];
   const selectedPressure = appState.selections.ltPressure || pressures[0] || null;
   if (selectedPressure === "36") {
     mtSelected.lt36Options.forEach((opt) =>
@@ -732,7 +769,6 @@ const renderControlOptions = () => {
     card.innerHTML = `
       <div class="title-row">
         <div><strong>${supplied?.name || "Controlli forniti dal cliente"}</strong></div>
-        <span class="pill subtle">Default</span>
       </div>
       <p class="price">${formatPrice(supplied?.price ?? 0)}</p>
     `;
@@ -740,9 +776,10 @@ const renderControlOptions = () => {
     return;
   }
   
+  const dict = getDictionary();
   const groups = [
     {
-      title: "Controllori",
+      title: dict.step5_controllers_title || "Controllori",
       ids: ["danfoss_572a", "danfoss_782", "carel", "wurm", "wurm_customer"],
       exclusiveIds: ["danfoss_572a", "danfoss_782", "carel", "wurm", "wurm_customer"],
     },
@@ -786,6 +823,13 @@ const renderElectricalOptions = () => {
   renderElectricalPanelOptions();
   renderCablingOptions();
   renderControlOptions();
+  
+  // Show/hide hint based on electrical panel choice
+  if (isElectricalPanelChoiceMissing()) {
+    showElectricalPanelChoiceHint();
+  } else {
+    hideElectricalPanelChoiceHint();
+  }
 };
 
 const renderProbesOptions = (optionals) => {
@@ -798,7 +842,8 @@ const renderProbesOptions = (optionals) => {
 
   const container = document.createElement("div");
   container.className = "option-group";
-  container.innerHTML = "<h4>Sonde</h4>";
+  const dict = getDictionary();
+  container.innerHTML = `<h4>${dict.step6_probes_title || "Sonde"}</h4>`;
 
   const isTago = appState.selections.machineType === "TAGO";
   const hasLT = appState.selections.ltChoice && appState.selections.ltChoice !== "none";
@@ -859,12 +904,13 @@ const renderOptionalOptions = () => {
 
   renderProbesOptions(optionals);
   
+  const dict = getDictionary();
   const groups = [
-    { title: "Opzioni", ids: ["heat_recovery", "ducting", "valvole_meccaniche"], exclusiveIds: [] },
-    { title: "Carenatura", ids: ["cladding_indoor", "cladding_outdoor"], exclusiveIds: ["cladding_indoor", "cladding_outdoor"] },
-    { title: "Inverter", ids: ["inverter_fc280", "inverter_fc103"], exclusiveIds: ["inverter_fc280", "inverter_fc103"] },
+    { title: dict.step6_options_title || "Opzioni", ids: ["heat_recovery", "ducting", "valvole_meccaniche"], exclusiveIds: [] },
+    { title: dict.step6_cladding_title || "Carenatura", ids: ["cladding_indoor", "cladding_outdoor"], exclusiveIds: ["cladding_indoor", "cladding_outdoor"] },
+    { title: dict.step6_inverter_title || "Inverter", ids: ["inverter_fc280", "inverter_fc103"], exclusiveIds: ["inverter_fc280", "inverter_fc103"] },
     {
-      title: "Accessori spare parts",
+      title: dict.step6_accessories_title || "Accessori spare parts",
       ids: ["muffler_sp", "ccmt_sp", "gascooler_spare", "watergate", "carton_572a", "carton_300t", "carton_782a"],
       exclusiveIds: [],
     },
@@ -911,12 +957,13 @@ const renderOptionalOptions = () => {
 
 const renderProjectMeta = () => {
   if (!projectMetaView) return;
+  const dict = getDictionary();
   const { name, date, owner, language } = appState.selections.project;
   projectMetaView.innerHTML = `
-    <div><strong>Progetto:</strong> ${name || "—"}</div>
-    <div><strong>Data richiesta:</strong> ${formatDate(date) || "—"}</div>
-    <div><strong>Owner:</strong> ${owner || "—"}</div>
-    <div><strong>Lingua:</strong> ${language || "—"}</div>
+    <div><strong>${dict.summary_project_label || "Progetto"}:</strong> ${name || "—"}</div>
+    <div><strong>${dict.summary_request_date_label || "Data richiesta"}:</strong> ${formatDate(date) || "—"}</div>
+    <div><strong>${dict.summary_owner_label || "Owner"}:</strong> ${owner || "—"}</div>
+    <div><strong>${dict.summary_language_label || "Lingua"}:</strong> ${language || "—"}</div>
   `;
   if (printProjectMeta) {
     printProjectMeta.innerHTML = projectMetaView.innerHTML;
@@ -1184,7 +1231,6 @@ export const renderCatalog = () => {
           .map(
             (lt) => `
         <div class="lt-line">
-          <span class="pill subtle">${lt.pressure} bar</span>
           <div class="lt-line-name">${lt.name}</div>
           <span class="price">${formatPrice(lt.price)}</span>
         </div>
@@ -1197,7 +1243,7 @@ export const renderCatalog = () => {
     card.className = "catalog-card";
     card.innerHTML = `
       <div class="catalog-head">
-        <span class="pill">${brandLabel}</span>
+        ${brandLabel}
       </div>
       <div class="catalog-title">${item.mtName}</div>
       <div class="catalog-meta">
