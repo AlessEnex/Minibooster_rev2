@@ -10,6 +10,12 @@ import {
 } from "./state.js";
 import { getDictionary } from "./i18n.js";
 import { getPrintDescriptions } from "./print-descriptions.js";
+import {
+  getCablingExtraPrice,
+  getCablingStandardPrice,
+  isCablingChoiceMissing,
+  parseCablingMeters,
+} from "./summary.js";
 
 export const renderPrintSheet = () => {
   const dict = getDictionary();
@@ -110,6 +116,31 @@ export const renderPrintSheet = () => {
       total += o.price;
     }
   });
+
+  if (appState.selections.electricalPanelChoice === "none") {
+    rows.push([dict.summary_optional_label || "Optional", dict.step4_electrical_panel_none || "Nessun quadro fornito", 0]);
+  }
+
+  if (!isCablingChoiceMissing()) {
+    const basePrice = getCablingStandardPrice();
+    const meters = parseCablingMeters(appState.selections.cablingExtraMeters);
+    const cablingChoice = appState.selections.cablingChoice;
+    const cablingName =
+      cablingChoice === "extra"
+        ? `${dict.step4_cabling_extra || "Cablaggio extra"} (${meters} m)`
+        : dict.step4_cabling_standard || "Cablaggio standard";
+    const cablingPrice = cablingChoice === "extra" ? getCablingExtraPrice(basePrice, meters) : basePrice;
+
+    rows.push([dict.summary_cabling_label || "Cablaggio", cablingName, cablingPrice]);
+    if (
+      cablingPrice !== null &&
+      cablingPrice !== undefined &&
+      cablingPrice !== -1 &&
+      cablingPrice !== -2
+    ) {
+      total += cablingPrice;
+    }
+  }
 
   const probeSelectedId = appState.selections.probesChoice;
   if (probeSelectedId) {
