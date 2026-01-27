@@ -150,6 +150,7 @@ const importProject = (event) => {
       appState.selections.mtKey = data.mtKey || null;
       appState.selections.ltPressure = data.ltPressure || null;
       appState.selections.ltChoice = data.ltChoice || null;
+      appState.selections.configCode = data.configCode || null;
       appState.selections.electricalPanelChoice = data.electricalPanelChoice || null;
       appState.selections.probesChoice = data.probesChoice || null;
       appState.selections.cablingChoice = data.cablingChoice || null;

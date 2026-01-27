@@ -1,4 +1,11 @@
-import { appState, getExtraCosts, getOptionals, groupMtByName } from "./state.js";
+import {
+  appState,
+  getExtraCosts,
+  getOptionPriceForConfig,
+  getOptionalsForConfig,
+  getSelectedConfig,
+  groupMtByName,
+} from "./state.js";
 import { getDictionary } from "./i18n.js";
 
 export const parseCablingMeters = (value) => {
@@ -17,8 +24,7 @@ export const isCablingExtraInvalid = () => {
 };
 
 export const getCablingStandardPrice = () => {
-  const opt = getOptionals().find((o) => o.id === "cabling_standard");
-  return opt ? opt.price : null;
+  return getOptionPriceForConfig("cabling_standard");
 };
 
 export const getCablingExtraRate = (machineTypeId = appState.selections.machineType) => {
@@ -51,6 +57,7 @@ export const buildSummaryData = (dict = getDictionary()) => {
       ? mtSelected?.lt60Options || []
       : [];
   const ltSelected = ltOptionsList.find((o) => o.id === appState.selections.ltChoice);
+  const selectedConfig = getSelectedConfig();
 
   if (appState.selections.brand) {
     rows.push([
@@ -61,8 +68,15 @@ export const buildSummaryData = (dict = getDictionary()) => {
   }
 
   if (mtSelected) {
-    rows.push([dict.summary_mt_label || "MT", `${mtSelected.mtName}`, mtSelected.mtPrice]);
-    total += mtSelected.mtPrice;
+    const mtPrice = selectedConfig?.mt?.[appState.selections.brand]?.price ?? mtSelected.mtPrice;
+    rows.push([dict.summary_mt_label || "MT", `${mtSelected.mtName}`, mtPrice]);
+    if (mtPrice !== null && mtPrice !== undefined) {
+      total += mtPrice;
+    }
+  }
+
+  if (appState.selections.configCode) {
+    rows.push([dict.summary_code_label || "Stringamot", appState.selections.configCode, null]);
   }
 
   if (ltSelected && appState.selections.ltChoice !== "none") {
@@ -74,7 +88,7 @@ export const buildSummaryData = (dict = getDictionary()) => {
     total += ltSelected.price;
   }
 
-  const optItems = getOptionals().filter((o) => appState.selections.optionals.has(o.id));
+  const optItems = getOptionalsForConfig().filter((o) => appState.selections.optionals.has(o.id));
   optItems.forEach((o) => {
     rows.push([dict.summary_optional_label || "Optional", o.name, o.price]);
     if (o.price !== null && o.price !== undefined && o.price !== -1 && o.price !== -2) {
@@ -108,7 +122,7 @@ export const buildSummaryData = (dict = getDictionary()) => {
 
   const probeSelectedId = appState.selections.probesChoice;
   if (probeSelectedId) {
-    const probe = getOptionals().find((o) => o.id === probeSelectedId);
+    const probe = getOptionalsForConfig().find((o) => o.id === probeSelectedId);
     if (probe) {
       rows.push([dict.summary_probes_label || "Sonde", probe.name, probe.price]);
       if (

@@ -4,7 +4,8 @@ import {
   formatDate,
   formatPrice,
   getOptionals,
-  getAvailableOptionals,
+  getOptionalsForConfig,
+  getSelectedConfig,
   groupMtByName,
   machineTypes,
   isProjectComplete,
@@ -164,7 +165,11 @@ const resetProbesChoice = () => {
 
 const isProbesChoiceMissing = () => {
   if (!appState.selections.machineType) return false;
-  return !probesOptionIds.includes(appState.selections.probesChoice);
+  const availableProbeIds = getOptionalsForConfig()
+    .filter((opt) => opt.category === "probes")
+    .map((opt) => opt.id);
+  if (!availableProbeIds.length) return false;
+  return !availableProbeIds.includes(appState.selections.probesChoice);
 };
 
 const hideCablingChoiceHint = () => {
@@ -307,6 +312,7 @@ const renderOptionCard = (item, group, multiple, opts = {}) => {
         appState.selections.mtKey = null;
         appState.selections.ltPressure = null;
         appState.selections.ltChoice = null;
+        appState.selections.configCode = null;
         appState.selections.optionals = new Set();
         appState.selections.oilEnabled = false;
         appState.selections.oilKg = 0;
@@ -345,6 +351,7 @@ const renderOptionCard = (item, group, multiple, opts = {}) => {
         appState.selections.mtKey = null;
         appState.selections.ltPressure = null;
         appState.selections.ltChoice = null;
+        appState.selections.configCode = null;
         appState.selections.optionals = new Set();
         resetElectricalPanelChoice();
         resetCablingChoice();
@@ -352,11 +359,14 @@ const renderOptionCard = (item, group, multiple, opts = {}) => {
       if (group === "mtKey") {
         appState.selections.ltPressure = null;
         appState.selections.ltChoice = null;
+        appState.selections.configCode = null;
         appState.selections.optionals = new Set();
         resetElectricalPanelChoice();
         resetCablingChoice();
       }
       if (group === "ltChoice") {
+        const previousCode = appState.selections.configCode;
+        appState.selections.configCode = item.code || null;
         if (item.pressure) {
           appState.selections.ltPressure = item.pressure;
         }
@@ -368,6 +378,12 @@ const renderOptionCard = (item, group, multiple, opts = {}) => {
         } else {
           // Se ora NON c'è LT, rimuovi "diff_mt_lt" e mantieni solo "diff_mt"
           appState.selections.optionals.delete("diff_mt_lt");
+        }
+        if (previousCode && previousCode !== appState.selections.configCode) {
+          appState.selections.optionals = new Set();
+          resetElectricalPanelChoice();
+          resetProbesChoice();
+          resetCablingChoice();
         }
       }
       if (group === "electricalPanelChoice") {
@@ -517,7 +533,14 @@ const renderLtOptions = () => {
   }
 
   const dict = getDictionary();
-  const options = [{ id: "none", name: dict.step3_none_lt || "Nessun LT", subtitle: dict.step3_none_lt_subtitle || "Solo MT", price: 0, pressure: null }];
+  const options = [{
+    id: "none",
+    name: dict.step3_none_lt || "Nessun LT",
+    subtitle: dict.step3_none_lt_subtitle || "Solo MT",
+    price: 0,
+    pressure: null,
+    code: mtSelected.noLtCode || null,
+  }];
   const selectedPressure = appState.selections.ltPressure || pressures[0] || null;
   if (selectedPressure === "36") {
     mtSelected.lt36Options.forEach((opt) =>
@@ -527,6 +550,7 @@ const renderLtOptions = () => {
         subtitle: "",
         price: opt.price,
         pressure: "36",
+        code: opt.code,
       })
     );
   }
@@ -538,6 +562,7 @@ const renderLtOptions = () => {
         subtitle: "",
         price: opt.price,
         pressure: "60",
+        code: opt.code,
       })
     );
   }
@@ -558,9 +583,13 @@ const renderLtOptions = () => {
 const renderElectricalPanelOptions = () => {
   if (!electricalPanelOptions) return;
   electricalPanelOptions.innerHTML = "";
+  if (!appState.selections.configCode) {
+    electricalPanelOptions.innerHTML = `<p class="hint">Seleziona la configurazione LT per vedere i prezzi del quadro.</p>`;
+    return;
+  }
 
   // Ottieni optionals filtrati in base al machineType selezionato
-  const optionals = getAvailableOptionals(appState.selections.machineType);
+  const optionals = getOptionalsForConfig(appState.selections.machineType);
 
   const electricalPanelOpt = optionals.find((o) => o.id === "electrical_panel");
   const isTago = appState.selections.machineType === "TAGO";
@@ -691,6 +720,10 @@ const renderCablingOptions = () => {
   if (!cablingOptions) return;
   cablingOptions.innerHTML = "";
   if (!appState.selections.machineType) return;
+  if (!appState.selections.configCode) {
+    cablingOptions.innerHTML = `<p class="hint">Seleziona la configurazione LT per vedere il cablaggio.</p>`;
+    return;
+  }
 
   if (isCablingChoiceMissing()) {
     setCablingChoice("standard");
@@ -746,9 +779,16 @@ const renderCablingOptions = () => {
 const renderControlOptions = () => {
   if (!controlOptions) return;
   controlOptions.innerHTML = "";
+  if (!appState.selections.configCode) {
+    const message = document.createElement("p");
+    message.className = "hint";
+    message.textContent = "Seleziona la configurazione LT per vedere i prezzi dei controlli.";
+    controlOptions.appendChild(message);
+    return;
+  }
   
   // Ottieni optionals filtrati in base al machineType selezionato
-  const optionals = getAvailableOptionals(appState.selections.machineType);
+  const optionals = getOptionalsForConfig(appState.selections.machineType);
   
   const panelChoice = appState.selections.electricalPanelChoice;
   if (panelChoice === "electrical_panel") {
@@ -898,9 +938,14 @@ const renderProbesOptions = (optionals) => {
 const renderOptionalOptions = () => {
   if (!optionalOptions) return;
   optionalOptions.innerHTML = "";
+  if (!appState.selections.machineType) return;
+  if (!appState.selections.configCode) {
+    optionalOptions.innerHTML = `<p class="hint">Seleziona la configurazione LT per vedere gli optional.</p>`;
+    return;
+  }
   
   // Ottieni optionals filtrati in base al machineType selezionato
-  const optionals = getAvailableOptionals(appState.selections.machineType);
+  const optionals = getOptionalsForConfig(appState.selections.machineType);
 
   renderProbesOptions(optionals);
   
@@ -1027,14 +1072,22 @@ export const updateSummary = () => {
       ? mtSelected?.lt60Options || []
       : [];
   const ltSelected = ltOptionsList.find((o) => o.id === appState.selections.ltChoice);
+  const selectedConfig = getSelectedConfig();
 
   if (appState.selections.brand) {
     rows.push([dict.summary_brand_label || "Brand", appState.selections.brand === "dorin" ? "Dorin" : "Bitzer", null]);
   }
 
   if (mtSelected) {
-    rows.push([dict.summary_mt_label || "MT", `${mtSelected.mtName}`, mtSelected.mtPrice]);
-    total += mtSelected.mtPrice;
+    const mtPrice = selectedConfig?.mt?.[appState.selections.brand]?.price ?? mtSelected.mtPrice;
+    rows.push([dict.summary_mt_label || "MT", `${mtSelected.mtName}`, mtPrice]);
+    if (mtPrice !== null && mtPrice !== undefined) {
+      total += mtPrice;
+    }
+  }
+
+  if (appState.selections.configCode) {
+    rows.push([dict.summary_code_label || "Stringamot", appState.selections.configCode, null]);
   }
 
   if (ltSelected && appState.selections.ltChoice !== "none") {
@@ -1046,7 +1099,7 @@ export const updateSummary = () => {
     total += ltSelected.price;
   }
 
-  const optItems = getOptionals().filter((o) => appState.selections.optionals.has(o.id));
+  const optItems = getOptionalsForConfig().filter((o) => appState.selections.optionals.has(o.id));
   optItems.forEach((o) => {
     rows.push([dict.summary_optional_label || "Optional", o.name, o.price]);
     // Somma al totale solo se e' un valore numerico reale (esclude null, -1, -2)
@@ -1084,7 +1137,7 @@ export const updateSummary = () => {
 
   const probeSelectedId = appState.selections.probesChoice;
   if (probeSelectedId) {
-    const probe = getOptionals().find((o) => o.id === probeSelectedId);
+    const probe = getOptionalsForConfig().find((o) => o.id === probeSelectedId);
     if (probe) {
       rows.push([dict.summary_probes_label || "Sonde", probe.name, probe.price]);
       if (
@@ -1295,6 +1348,14 @@ export const goToStep = (step) => {
 const canProceedFromCurrentStep = () => {
   const step = appState.step;
   
+  if (step === 2) {
+    return Boolean(appState.selections.mtKey);
+  }
+
+  if (step === 3) {
+    return Boolean(appState.selections.ltChoice && appState.selections.configCode);
+  }
+
   if (step === 4) {
     const missingPanel = isElectricalPanelChoiceMissing();
     const missingCabling = isCablingChoiceMissing();
@@ -1333,6 +1394,7 @@ export const resetSelections = () => {
     mtKey: null,
     ltPressure: null,
     ltChoice: null,
+    configCode: null,
     electricalPanelChoice: null,
     probesChoice: null,
     cablingChoice: null,
@@ -1388,6 +1450,7 @@ export const applyCatalogSelection = (brand, mtKey) => {
   appState.selections.mtKey = mtKey;
   appState.selections.ltPressure = null;
   appState.selections.ltChoice = null;
+  appState.selections.configCode = null;
   appState.selections.electricalPanelChoice = null;
   appState.selections.probesChoice = null;
   appState.selections.cablingChoice = null;

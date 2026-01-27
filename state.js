@@ -8,6 +8,7 @@ export const appState = {
     mtKey: null,
     ltPressure: null,
     ltChoice: null,
+    configCode: null,
     electricalPanelChoice: null,
     probesChoice: null,
     cablingChoice: null,
@@ -237,6 +238,51 @@ export const getAvailableOptionals = (machineTypeId = null) => {
   });
 };
 
+export const getConfigByCode = (code) => {
+  if (!code) return null;
+  return getConfigs().find((cfg) => cfg.code === code) || null;
+};
+
+export const getSelectedConfig = () => getConfigByCode(appState.selections.configCode);
+
+const resolveOptionPrice = (optionId, configCode, machineTypeId) => {
+  const opt = getOptionals().find((o) => o.id === optionId);
+  const config = configCode ? getConfigByCode(configCode) : null;
+
+  if (config?.optionals && Object.prototype.hasOwnProperty.call(config.optionals, optionId)) {
+    return config.optionals[optionId];
+  }
+
+  if (
+    machineTypeId &&
+    opt?.availability &&
+    Array.isArray(opt.availability) &&
+    opt.availability.length > 0 &&
+    !opt.availability.includes(machineTypeId)
+  ) {
+    return null;
+  }
+
+  return opt?.price ?? null;
+};
+
+export const getOptionPriceForConfig = (
+  optionId,
+  configCode = appState.selections.configCode,
+  machineTypeId = appState.selections.machineType
+) => resolveOptionPrice(optionId, configCode, machineTypeId);
+
+export const getOptionalsForConfig = (
+  machineTypeId = appState.selections.machineType,
+  configCode = appState.selections.configCode
+) =>
+  getOptionals()
+    .map((opt) => ({
+      ...opt,
+      price: resolveOptionPrice(opt.id, configCode, machineTypeId),
+    }))
+    .filter((opt) => opt.price !== null && opt.price !== undefined);
+
 export const setConfigs = (next) => {
   configs = next;
   pricingMatrix.configs = configs;
@@ -252,6 +298,50 @@ export const resetDataToDefaults = () => {
   optionals = clone(defaultOptionals);
   pricingMatrix.configs = configs;
   pricingMatrix.optionals = optionals;
+};
+
+const OPTIONAL_FIELD_DEFS = [
+  { field: "danfoss_572a", id: "danfoss_572a", name: "Danfoss 572A", category: "onboard" },
+  { field: "danfoss_782", id: "danfoss_782", name: "Danfoss 782", category: "onboard" },
+  { field: "carel", id: "carel", name: "Carel", category: "onboard" },
+  { field: "wurm", id: "wurm", name: "WURM", category: "onboard" },
+  { field: "heat_recovery", id: "heat_recovery", name: "Heat Recovery", category: "onboard" },
+  { field: "ducting", id: "ducting", name: "Ducting", category: "onboard" },
+  { field: "valvole_meccaniche", id: "valvole_meccaniche", name: "Valvole meccaniche", category: "onboard" },
+  { field: "cladding_indoor", id: "cladding_indoor", name: "Cladding indoor", category: "onboard" },
+  { field: "cladding_outdoor", id: "cladding_outdoor", name: "Cladding outdoor", category: "onboard" },
+  { field: "inverter_fc280", id: "inverter_fc280", name: "Inverter FC280", category: "onboard" },
+  { field: "inverter_fc103", id: "inverter_fc103", name: "Inverter FC103", category: "onboard" },
+  { field: "muffler_sp", id: "muffler_sp", name: "Muffler spare parts", category: "spare" },
+  { field: "ccmt_sp", id: "ccmt_sp", name: "CCMT spare parts", category: "spare" },
+  { field: "gascooler_spare", id: "gascooler_spare", name: "3W gascooler Spare", category: "spare" },
+  { field: "watergate", id: "watergate", name: "Watergate", category: "spare" },
+  { field: "diff_mt", id: "diff_mt", name: "Differential MT", category: "spare" },
+  { field: "diff_mt_lt", id: "diff_mt_lt", name: "Differentials MT/LT", category: "spare" },
+  { field: "mx_coil", id: "mx_coil", name: "MX coil", category: "spare" },
+  { field: "carton_572a", id: "carton_572a", name: "572A en carton", category: "spare" },
+  { field: "carton_300t", id: "carton_300t", name: "300T en carton", category: "spare" },
+  { field: "carton_782a", id: "carton_782a", name: "782A en carton", category: "spare" },
+  { field: "probes_danfoss_mt", id: "probes_danfoss_mt", name: "Sonde Danfoss MT (PT1000 + AKS11/21)", category: "probes" },
+  { field: "probes_danfoss_mtlt", id: "probes_danfoss_mtlt", name: "Sonde Danfoss MT+LT (PT1000 + AKS11/21)", category: "probes" },
+  { field: "probes_wurm_mt", id: "probes_wurm_mt", name: "Sonde WURM MT", category: "probes" },
+  { field: "probes_wurm_mtlt", id: "probes_wurm_mtlt", name: "Sonde WURM MT+LT", category: "probes" },
+  { field: "probes_generic_mt", id: "probes_generic_mt", name: "Sonde generiche MT (NTC + 4-20mA)", category: "probes" },
+  { field: "probes_generic_mtlt", id: "probes_generic_mtlt", name: "Sonde generiche MT+LT (NTC + 4-20mA)", category: "probes" },
+  { field: "electrical_panel", id: "electrical_panel", name: "Quadro elettrico", category: "electrical" },
+  { field: "cabling_standard", id: "cabling_standard", name: "Cablaggio standard", category: "cabling" },
+];
+
+const extractOptionalsFromRecord = (record) => {
+  const result = {};
+  let hasAny = false;
+  OPTIONAL_FIELD_DEFS.forEach(({ field, id }) => {
+    if (!(field in record)) return;
+    const value = record[field];
+    result[id] = value ?? null;
+    hasAny = true;
+  });
+  return hasAny ? result : null;
 };
 
 export const buildConfigsFromRecords = (records) => {
@@ -285,42 +375,16 @@ export const buildConfigsFromRecords = (records) => {
     if (r.lt_bitzer_60_name || r.lt_bitzer_60_price !== null) {
       cfg.lt60.bitzer = { name: r.lt_bitzer_60_name || "", price: r.lt_bitzer_60_price ?? null };
     }
+    const optionals = extractOptionalsFromRecord(r);
+    if (optionals) {
+      cfg.optionals = { ...(cfg.optionals || {}), ...optionals };
+    }
   });
   return Array.from(map.values());
 };
 
 export const buildOptionalsFromRecords = (records) => {
-  const optionalFields = [
-    { field: "danfoss_572a", id: "danfoss_572a", name: "Danfoss 572A", category: "onboard" },
-    { field: "danfoss_782", id: "danfoss_782", name: "Danfoss 782", category: "onboard" },
-    { field: "carel", id: "carel", name: "Carel", category: "onboard" },
-    { field: "wurm", id: "wurm", name: "WURM", category: "onboard" },
-    { field: "heat_recovery", id: "heat_recovery", name: "Heat Recovery", category: "onboard" },
-    { field: "ducting", id: "ducting", name: "Ducting", category: "onboard" },
-    { field: "valvole_meccaniche", id: "valvole_meccaniche", name: "Valvole meccaniche", category: "onboard" },
-    { field: "cladding_indoor", id: "cladding_indoor", name: "Cladding indoor", category: "onboard" },
-    { field: "cladding_outdoor", id: "cladding_outdoor", name: "Cladding outdoor", category: "onboard" },
-    { field: "inverter_fc280", id: "inverter_fc280", name: "Inverter FC280", category: "onboard" },
-    { field: "inverter_fc103", id: "inverter_fc103", name: "Inverter FC103", category: "onboard" },
-    { field: "muffler_sp", id: "muffler_sp", name: "Muffler spare parts", category: "spare" },
-    { field: "ccmt_sp", id: "ccmt_sp", name: "CCMT spare parts", category: "spare" },
-    { field: "gascooler_spare", id: "gascooler_spare", name: "3W gascooler Spare", category: "spare" },
-    { field: "watergate", id: "watergate", name: "Watergate", category: "spare" },
-    { field: "diff_mt", id: "diff_mt", name: "Differential MT", category: "spare" },
-    { field: "diff_mt_lt", id: "diff_mt_lt", name: "Differentials MT/LT", category: "spare" },
-    { field: "mx_coil", id: "mx_coil", name: "MX coil", category: "spare" },
-    { field: "carton_572a", id: "carton_572a", name: "572A en carton", category: "spare" },
-    { field: "carton_300t", id: "carton_300t", name: "300T en carton", category: "spare" },
-    { field: "carton_782a", id: "carton_782a", name: "782A en carton", category: "spare" },
-    { field: "probes_danfoss_mt", id: "probes_danfoss_mt", name: "Sonde Danfoss MT (PT1000 + AKS11/21)", category: "probes" },
-    { field: "probes_danfoss_mtlt", id: "probes_danfoss_mtlt", name: "Sonde Danfoss MT+LT (PT1000 + AKS11/21)", category: "probes" },
-    { field: "probes_wurm_mt", id: "probes_wurm_mt", name: "Sonde WURM MT", category: "probes" },
-    { field: "probes_wurm_mtlt", id: "probes_wurm_mtlt", name: "Sonde WURM MT+LT", category: "probes" },
-    { field: "probes_generic_mt", id: "probes_generic_mt", name: "Sonde generiche MT (NTC + 4-20mA)", category: "probes" },
-    { field: "probes_generic_mtlt", id: "probes_generic_mtlt", name: "Sonde generiche MT+LT (NTC + 4-20mA)", category: "probes" },
-    { field: "electrical_panel", id: "electrical_panel", name: "Quadro elettrico", category: "electrical" },
-    { field: "cabling_standard", id: "cabling_standard", name: "Cablaggio standard", category: "cabling" },
-  ];
+  const optionalFields = OPTIONAL_FIELD_DEFS;
 
   const priceMap = new Map();
   const availabilityMap = new Map();
@@ -421,6 +485,7 @@ export const groupMtByName = (brand) => {
         codes: [],
         lt36Options: [],
         lt60Options: [],
+        noLtCode: null,
       });
     }
     const bucket = grouped.get(key);
@@ -444,6 +509,9 @@ export const groupMtByName = (brand) => {
         price: lt60.price,
         pressure: "60",
       });
+    }
+    if ((!lt36 || lt36.price === null) && (!lt60 || lt60.price === null) && !bucket.noLtCode) {
+      bucket.noLtCode = cfg.code;
     }
   });
   return Array.from(grouped.values());

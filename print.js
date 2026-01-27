@@ -1,4 +1,13 @@
-import { appState, formatDate, formatPrice, getExtraCosts, getOptionals, groupMtByName, machineTypes } from "./state.js";
+import {
+  appState,
+  formatDate,
+  formatPrice,
+  getExtraCosts,
+  getOptionalsForConfig,
+  getSelectedConfig,
+  groupMtByName,
+  machineTypes,
+} from "./state.js";
 import { getDictionary } from "./i18n.js";
 import { getPrintDescriptions } from "./print-descriptions.js";
 
@@ -67,14 +76,22 @@ export const renderPrintSheet = () => {
       ? mtSelected?.lt60Options || []
       : [];
   const ltSelected = ltOptionsList.find((o) => o.id === appState.selections.ltChoice);
+  const selectedConfig = getSelectedConfig();
 
   if (appState.selections.brand) {
     rows.push([dict.summary_brand_label || "Brand", appState.selections.brand === "dorin" ? "Dorin" : "Bitzer", null]);
   }
 
   if (mtSelected) {
-    rows.push([dict.summary_mt_label || "MT", `${mtSelected.mtName}`, mtSelected.mtPrice]);
-    total += mtSelected.mtPrice;
+    const mtPrice = selectedConfig?.mt?.[appState.selections.brand]?.price ?? mtSelected.mtPrice;
+    rows.push([dict.summary_mt_label || "MT", `${mtSelected.mtName}`, mtPrice]);
+    if (mtPrice !== null && mtPrice !== undefined) {
+      total += mtPrice;
+    }
+  }
+
+  if (appState.selections.configCode) {
+    rows.push([dict.summary_code_label || "Stringamot", appState.selections.configCode, null]);
   }
 
   if (ltSelected && appState.selections.ltChoice !== "none") {
@@ -86,7 +103,7 @@ export const renderPrintSheet = () => {
     total += ltSelected.price;
   }
 
-  const optItems = getOptionals().filter((o) => appState.selections.optionals.has(o.id));
+  const optItems = getOptionalsForConfig().filter((o) => appState.selections.optionals.has(o.id));
   optItems.forEach((o) => {
     rows.push([dict.summary_optional_label || "Optional", o.name, o.price]);
     if (o.price !== null && o.price !== undefined && o.price !== -1 && o.price !== -2) {
@@ -96,7 +113,7 @@ export const renderPrintSheet = () => {
 
   const probeSelectedId = appState.selections.probesChoice;
   if (probeSelectedId) {
-    const probe = getOptionals().find((o) => o.id === probeSelectedId);
+    const probe = getOptionalsForConfig().find((o) => o.id === probeSelectedId);
     if (probe) {
       rows.push([dict.summary_probes_label || "Sonde", probe.name, probe.price]);
       if (
