@@ -10,7 +10,7 @@ const salesConditionsByLanguage = {
       items: [
         "Condizioni di consegna: Partenza stabilimento (EX-WORKS)",
         "Condizioni di pagamento: Da concordare all'ordine",
-        "ORGALIMES2012 per condizioni supplementari speciali vedere https://www.enex.it/sales-terms-and-conditions/",
+        "Per condizioni vedi https://www.enex.it/compliance/",
         "Validita dell'offerta: 30 giorni",
       ],
       note: "Cordiali saluti,",
@@ -23,7 +23,7 @@ const salesConditionsByLanguage = {
       items: [
         "Delivery terms: Ex-works",
         "Payment terms: To be agreed upon order",
-        "ORGALIMES2012 for special supplementary conditions see https://www.enex.it/sales-terms-and-conditions/",
+        "For conditions see https://www.enex.it/compliance/",
         "Offer validity: 30 days",
       ],
       note: "Best regards,",
@@ -36,7 +36,7 @@ const salesConditionsByLanguage = {
       items: [
         "Conditions de livraison: Départ usine (EX-WORKS)",
         "Conditions de paiement: À convenir à la commande",
-        "ORGALIMES2012 pour conditions supplémentaires spéciales voir https://www.enex.it/sales-terms-and-conditions/",
+        "Pour les conditions voir https://www.enex.it/compliance/",
         "Validité de l'offre: 30 jours",
       ],
       note: "Cordialement,",
@@ -49,7 +49,7 @@ const salesConditionsByLanguage = {
       items: [
         "Lieferbedingungen: Ab Werk (EX-WORKS)",
         "Zahlungsbedingungen: Bei Bestellung zu vereinbaren",
-        "ORGALIMES2012 für spezielle Zusatzbedingungen siehe https://www.enex.it/sales-terms-and-conditions/",
+        "Für Bedingungen siehe https://www.enex.it/compliance/",
         "Gültigkeit des Angebots: 30 Tage",
       ],
       note: "Mit freundlichen Grüßen,",

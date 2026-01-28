@@ -237,10 +237,60 @@ export const renderPrintSheet = () => {
       }
       return true;
     });
+    const hasLT = appState.selections.ltChoice && appState.selections.ltChoice !== "none";
+    const isLt60 = hasLT && appState.selections.ltPressure === "60";
+    const mtSuction = isLt60 ? 60 : 52;
+    const brand = appState.selections.brand;
+    const ltSuction = !hasLT ? null : isLt60 ? 60 : brand === "bitzer" ? 30 : 36;
+    const psMaxItems = [
+      `${dict.psmax_hp_label || "HP"}: 120 bar`,
+      `${dict.psmax_liquid_receiver_label || "Liquid receiver"}: ${
+        dict.psmax_liquid_receiver_values || "60 bar during operation, 80 bar during maintenance"
+      }`,
+      `${dict.psmax_mt_suction_label || "MT suction"}: ${mtSuction} bar`,
+    ];
+    if (ltSuction !== null) {
+      psMaxItems.push(`${dict.psmax_lt_suction_label || "LT suction"}: ${ltSuction} bar`);
+    }
+    const psMaxSection = {
+      title: dict.psmax_title || "PS MAX",
+      items: psMaxItems,
+      className: "print-desc-psmax",
+    };
     if (filteredSections.length === 0) {
-      printDescriptions.innerHTML = "";
+      const renderedOnly = [psMaxSection]
+        .map((section) => {
+          const cleanedItems = Array.isArray(section.items)
+            ? section.items.filter((item) => typeof item === "string" && item.trim().length > 0)
+            : [];
+          const hasItems = cleanedItems.length > 0;
+          const hasNote = typeof section.note === "string" && section.note.trim().length > 0;
+          const hasTitle = typeof section.title === "string" && section.title.trim().length > 0;
+
+          if (!hasItems && !hasNote) {
+            return "";
+          }
+
+          const title = hasTitle ? `<h4 class="print-desc-title">${section.title}</h4>` : "";
+          const items = hasItems
+            ? `<ul class="print-desc-list">${cleanedItems
+                .map((item) => `<li>${item}</li>`)
+                .join("")}</ul>`
+            : "";
+          const note = hasNote ? `<p class="print-desc-note">${section.note}</p>` : "";
+          const classNames = ["print-desc-section"];
+          if (section.className) {
+            classNames.push(section.className);
+          }
+          if (section.pageBreakBefore) {
+            classNames.push("print-desc-page-break");
+          }
+          return `<div class="${classNames.join(" ")}">${title}${items}${note}</div>`;
+        })
+        .filter(Boolean);
+      printDescriptions.innerHTML = renderedOnly.length ? renderedOnly.join("") : "";
     } else {
-      const renderedSections = filteredSections
+      const renderedSections = [psMaxSection, ...filteredSections]
         .map((section) => {
           const cleanedItems = Array.isArray(section.items)
             ? section.items.filter((item) => typeof item === "string" && item.trim().length > 0)
