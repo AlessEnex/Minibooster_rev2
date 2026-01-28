@@ -233,8 +233,17 @@ export const renderPrintSheet = () => {
   if (printDescriptions) {
     const sections = getPrintDescriptions(appState.selections.machineType, appState.selections.project.language);
     const hasElectricalPanel = appState.selections.electricalPanelChoice === "electrical_panel";
+    const hasWurmCustomer = appState.selections.optionals.has("wurm_customer");
+    const hasProbesCustomer = appState.selections.probesChoice === "probes_customer_supplied";
+    
     const filteredSections = sections.filter((section) => {
       if (section.requiresElectricalPanel && !hasElectricalPanel) {
+        return false;
+      }
+      if (section.id === "controller_wurm_customer" && !hasWurmCustomer) {
+        return false;
+      }
+      if (section.id === "probes_customer" && !hasProbesCustomer) {
         return false;
       }
       return true;
