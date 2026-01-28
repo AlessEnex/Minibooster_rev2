@@ -45,6 +45,11 @@ export const getCablingExtraPrice = (basePrice, meters, machineTypeId = appState
   return null;
 };
 
+export const getLtDisplayPressure = (pressure, brand = appState.selections.brand) => {
+  if (pressure === "36" && brand === "bitzer") return "30";
+  return pressure;
+};
+
 const getSelectedControllerId = () => {
   const selected = appState.selections.optionals;
   const controllerIds = ["danfoss_572a", "danfoss_782", "carel", "wurm", "wurm_customer"];
@@ -111,9 +116,10 @@ export const buildSummaryData = (dict = getDictionary()) => {
 
 
   if (ltSelected && appState.selections.ltChoice !== "none") {
+    const displayPressure = getLtDisplayPressure(ltSelected.pressure, appState.selections.brand);
     rows.push([
       dict.summary_lt_label || "LT",
-      `${appState.selections.brand === "dorin" ? "Dorin" : "Bitzer"} ${ltSelected.pressure} bar - ${ltSelected.name}`,
+      `${appState.selections.brand === "dorin" ? "Dorin" : "Bitzer"} ${displayPressure} bar - ${ltSelected.name}`,
       ltSelected.price,
     ]);
     total += ltSelected.price;

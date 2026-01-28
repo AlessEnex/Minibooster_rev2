@@ -21,6 +21,7 @@ import {
   isCablingChoiceMissing,
   isCablingExtraInvalid,
   getTagoProbesRule,
+  getLtDisplayPressure,
   parseCablingMeters,
 } from "./summary.js";
 import pricingExtras from "./pricing-extras.json" with { type: "json" };
@@ -551,7 +552,8 @@ const renderLtOptions = () => {
   pressures.forEach((p) => {
     const btn = document.createElement("button");
     btn.className = "button" + (appState.selections.ltPressure === p ? " primary" : " ghost");
-    btn.textContent = `${p} bar`;
+    const displayPressure = getLtDisplayPressure(p, appState.selections.brand);
+    btn.textContent = `${displayPressure} bar`;
     btn.addEventListener("click", () => {
       appState.selections.ltPressure = p;
       appState.selections.ltChoice = null;
@@ -574,11 +576,12 @@ const renderLtOptions = () => {
     code: mtSelected.noLtCode || null,
   }];
   const selectedPressure = appState.selections.ltPressure || pressures[0] || null;
+  const displaySelectedPressure = getLtDisplayPressure(selectedPressure, appState.selections.brand);
   if (selectedPressure === "36") {
     mtSelected.lt36Options.forEach((opt) =>
       options.push({
         id: opt.id,
-        name: `${selectedPressure} bar - ${opt.name}`,
+        name: `${displaySelectedPressure} bar - ${opt.name}`,
         subtitle: "",
         price: opt.price,
         pressure: "36",
@@ -590,7 +593,7 @@ const renderLtOptions = () => {
     mtSelected.lt60Options.forEach((opt) =>
       options.push({
         id: opt.id,
-        name: `${selectedPressure} bar - ${opt.name}`,
+        name: `${displaySelectedPressure} bar - ${opt.name}`,
         subtitle: "",
         price: opt.price,
         pressure: "60",
@@ -1133,9 +1136,10 @@ export const updateSummary = () => {
 
 
   if (ltSelected && appState.selections.ltChoice !== "none") {
+    const displayPressure = getLtDisplayPressure(ltSelected.pressure, appState.selections.brand);
     rows.push([
       dict.summary_lt_label || "LT",
-      `${appState.selections.brand === "dorin" ? "Dorin" : "Bitzer"} ${ltSelected.pressure} bar - ${ltSelected.name}`,
+      `${appState.selections.brand === "dorin" ? "Dorin" : "Bitzer"} ${displayPressure} bar - ${ltSelected.name}`,
       ltSelected.price,
     ]);
     total += ltSelected.price;

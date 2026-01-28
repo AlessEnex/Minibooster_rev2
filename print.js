@@ -13,6 +13,7 @@ import { getPrintDescriptions } from "./print-descriptions.js";
 import {
   getCablingExtraPrice,
   getCablingStandardPrice,
+  getLtDisplayPressure,
   getTagoProbesRule,
   isCablingChoiceMissing,
   parseCablingMeters,
@@ -100,9 +101,10 @@ export const renderPrintSheet = () => {
 
 
   if (ltSelected && appState.selections.ltChoice !== "none") {
+    const displayPressure = getLtDisplayPressure(ltSelected.pressure, appState.selections.brand);
     rows.push([
       dict.summary_lt_label || "LT",
-      `${appState.selections.brand === "dorin" ? "Dorin" : "Bitzer"} ${ltSelected.pressure} bar - ${ltSelected.name}`,
+      `${appState.selections.brand === "dorin" ? "Dorin" : "Bitzer"} ${displayPressure} bar - ${ltSelected.name}`,
       ltSelected.price,
     ]);
     total += ltSelected.price;
