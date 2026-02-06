@@ -460,21 +460,21 @@
       "lt36": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2680
+          "price": 5810
         },
         "bitzer": {
           "name": "2NSL-05Z",
-          "price": 4230
+          "price": 5210
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 3200
+          "price": 6310
         },
         "bitzer": {
           "name": "CD0 18-1,5M",
-          "price": 5395
+          "price": 6375
         }
       },
       "optionals": {
@@ -524,21 +524,21 @@
       "lt36": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2680
+          "price": 5810
         },
         "bitzer": {
           "name": "2NSL-05Z",
-          "price": 4230
+          "price": 5210
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 3200
+          "price": 6310
         },
         "bitzer": {
           "name": "CD0 18-1,5M",
-          "price": 5395
+          "price": 6375
         }
       },
       "optionals": {
@@ -588,21 +588,21 @@
       "lt36": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2680
+          "price": 5810
         },
         "bitzer": {
           "name": "2NSL-05Z",
-          "price": 4230
+          "price": 5210
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 3200
+          "price": 6310
         },
         "bitzer": {
           "name": "CD0 18-1,5M",
-          "price": 5395
+          "price": 6375
         }
       },
       "optionals": {
@@ -652,21 +652,21 @@
       "lt36": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2680
+          "price": 5810
         },
         "bitzer": {
           "name": "2NSL-05Z",
-          "price": 4230
+          "price": 5210
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 3200
+          "price": 6310
         },
         "bitzer": {
           "name": "CD0 18-1,5M",
-          "price": 5395
+          "price": 6375
         }
       },
       "optionals": {
@@ -716,21 +716,21 @@
       "lt36": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2680
+          "price": 5810
         },
         "bitzer": {
           "name": "2NSL-05Z",
-          "price": 4230
+          "price": 5210
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 3200
+          "price": 6310
         },
         "bitzer": {
           "name": "CD0 18-1,5M",
-          "price": 5395
+          "price": 6375
         }
       },
       "optionals": {
@@ -780,21 +780,21 @@
       "lt36": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2680
+          "price": 5810
         },
         "bitzer": {
           "name": "2NSL-05Z",
-          "price": 4230
+          "price": 5210
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 3200
+          "price": 6310
         },
         "bitzer": {
           "name": "CD0 18-1,5M",
-          "price": 5395
+          "price": 6375
         }
       },
       "optionals": {
@@ -844,11 +844,11 @@
       "lt36": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2680
+          "price": 5810
         },
         "bitzer": {
           "name": "2NSL-05Z",
-          "price": 4230
+          "price": 5210
         }
       },
       "lt60": {
@@ -858,7 +858,7 @@
         },
         "bitzer": {
           "name": "CD0 18-1,5M",
-          "price": 5395
+          "price": 6375
         }
       },
       "optionals": {
@@ -908,21 +908,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 101 B",
-          "price": 2760
+          "price": 5860
         },
         "bitzer": {
           "name": "2MSL-07Z",
-          "price": 4310
+          "price": 5260
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 3350
+          "price": 6545
         },
         "bitzer": {
           "name": "CD0 30-1,9M",
-          "price": 5475
+          "price": 6425
         }
       },
       "optionals": {
@@ -972,21 +972,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 101 B",
-          "price": 2760
+          "price": 5860
         },
         "bitzer": {
           "name": "2MSL-07Z",
-          "price": 4310
+          "price": 5260
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 3350
+          "price": 6545
         },
         "bitzer": {
           "name": "CD0 30-1,9M",
-          "price": 5475
+          "price": 6425
         }
       },
       "optionals": {
@@ -1036,21 +1036,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 101 B",
-          "price": 2760
+          "price": 5860
         },
         "bitzer": {
           "name": "2MSL-07Z",
-          "price": 4310
+          "price": 5260
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 3350
+          "price": 6545
         },
         "bitzer": {
           "name": "CD0 30-1,9M",
-          "price": 5475
+          "price": 6425
         }
       },
       "optionals": {
@@ -1100,21 +1100,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 101 B",
-          "price": 2760
+          "price": 5860
         },
         "bitzer": {
           "name": "2MSL-07Z",
-          "price": 4310
+          "price": 5260
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 3350
+          "price": 6545
         },
         "bitzer": {
           "name": "CD0 30-1,9M",
-          "price": 5475
+          "price": 6425
         }
       },
       "optionals": {
@@ -1164,21 +1164,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 101 B",
-          "price": 2760
+          "price": 5860
         },
         "bitzer": {
           "name": "2MSL-07Z",
-          "price": 4310
+          "price": 5260
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 3350
+          "price": 6545
         },
         "bitzer": {
           "name": "CD0 30-1,9M",
-          "price": 5475
+          "price": 6425
         }
       },
       "optionals": {
@@ -1228,21 +1228,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 101 B",
-          "price": 2760
+          "price": 5860
         },
         "bitzer": {
           "name": "2MSL-07Z",
-          "price": 4310
+          "price": 5260
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 3350
+          "price": 6545
         },
         "bitzer": {
           "name": "CD0 30-1,9M",
-          "price": 5475
+          "price": 6425
         }
       },
       "optionals": {
@@ -1292,11 +1292,11 @@
       "lt36": {
         "dorin": {
           "name": "CDS 101 B",
-          "price": 2760
+          "price": 5860
         },
         "bitzer": {
           "name": "2MSL-07Z",
-          "price": 4310
+          "price": 5260
         }
       },
       "lt60": {
@@ -1306,7 +1306,7 @@
         },
         "bitzer": {
           "name": "CD0 30-1,9M",
-          "price": 5475
+          "price": 6425
         }
       },
       "optionals": {
@@ -1356,21 +1356,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 151 B",
-          "price": 2840
+          "price": 5905
         },
         "bitzer": {
           "name": "2LSL-1Z",
-          "price": 4390
+          "price": 5305
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 3510
+          "price": 6560
         },
         "bitzer": {
           "name": "CD0 35-2,4M",
-          "price": 5555
+          "price": 6470
         }
       },
       "optionals": {
@@ -1420,21 +1420,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 151 B",
-          "price": 2840
+          "price": 5905
         },
         "bitzer": {
           "name": "2LSL-1Z",
-          "price": 4390
+          "price": 5305
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 3510
+          "price": 6560
         },
         "bitzer": {
           "name": "CD0 35-2,4M",
-          "price": 5555
+          "price": 6470
         }
       },
       "optionals": {
@@ -1484,21 +1484,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 151 B",
-          "price": 2840
+          "price": 5905
         },
         "bitzer": {
           "name": "2LSL-1Z",
-          "price": 4390
+          "price": 5305
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 3510
+          "price": 6560
         },
         "bitzer": {
           "name": "CD0 35-2,4M",
-          "price": 5555
+          "price": 6470
         }
       },
       "optionals": {
@@ -1548,21 +1548,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 151 B",
-          "price": 2840
+          "price": 5905
         },
         "bitzer": {
           "name": "2LSL-1Z",
-          "price": 4390
+          "price": 5305
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 3510
+          "price": 6560
         },
         "bitzer": {
           "name": "CD0 35-2,4M",
-          "price": 5555
+          "price": 6470
         }
       },
       "optionals": {
@@ -1612,21 +1612,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 151 B",
-          "price": 2840
+          "price": 5905
         },
         "bitzer": {
           "name": "2LSL-1Z",
-          "price": 4390
+          "price": 5305
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 3510
+          "price": 6560
         },
         "bitzer": {
           "name": "CD0 35-2,4M",
-          "price": 5555
+          "price": 6470
         }
       },
       "optionals": {
@@ -1676,21 +1676,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 151 B",
-          "price": 2840
+          "price": 5905
         },
         "bitzer": {
           "name": "2LSL-1Z",
-          "price": 4390
+          "price": 5305
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 3510
+          "price": 6560
         },
         "bitzer": {
           "name": "CD0 35-2,4M",
-          "price": 5555
+          "price": 6470
         }
       },
       "optionals": {
@@ -1740,21 +1740,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 151 B",
-          "price": 2840
+          "price": 5905
         },
         "bitzer": {
           "name": "2LSL-1Z",
-          "price": 4390
+          "price": 5305
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 3510
+          "price": 6560
         },
         "bitzer": {
           "name": "CD0 35-2,4M",
-          "price": 5555
+          "price": 6470
         }
       },
       "optionals": {
@@ -1804,21 +1804,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 181 B",
-          "price": 2920
+          "price": 5990
         },
         "bitzer": {
           "name": "2JSL-2Z",
-          "price": 4470
+          "price": 5390
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 36-3,0M",
-          "price": 3600
+          "price": 6695
         },
         "bitzer": {
           "name": "CD0 36-3,0M",
-          "price": 5635
+          "price": 6555
         }
       },
       "optionals": {
@@ -1868,21 +1868,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 181 B",
-          "price": 2920
+          "price": 5990
         },
         "bitzer": {
           "name": "2JSL-2Z",
-          "price": 4470
+          "price": 5390
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 36-3,0M",
-          "price": 3600
+          "price": 6695
         },
         "bitzer": {
           "name": "CD0 36-3,0M",
-          "price": 5635
+          "price": 6555
         }
       },
       "optionals": {
@@ -1932,21 +1932,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 181 B",
-          "price": 2920
+          "price": 5990
         },
         "bitzer": {
           "name": "2JSL-2Z",
-          "price": 4470
+          "price": 5390
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 36-3,0M",
-          "price": 3600
+          "price": 6695
         },
         "bitzer": {
           "name": "CD0 36-3,0M",
-          "price": 5635
+          "price": 6555
         }
       },
       "optionals": {
@@ -1996,21 +1996,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 181 B",
-          "price": 2920
+          "price": 5990
         },
         "bitzer": {
           "name": "2JSL-2Z",
-          "price": 4470
+          "price": 5390
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 36-3,0M",
-          "price": 3600
+          "price": 6695
         },
         "bitzer": {
           "name": "CD0 36-3,0M",
-          "price": 5635
+          "price": 6555
         }
       },
       "optionals": {
@@ -2060,21 +2060,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 181 B",
-          "price": 2920
+          "price": 5990
         },
         "bitzer": {
           "name": "2JSL-2Z",
-          "price": 4470
+          "price": 5390
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 36-3,0M",
-          "price": 3600
+          "price": 6695
         },
         "bitzer": {
           "name": "CD0 36-3,0M",
-          "price": 5635
+          "price": 6555
         }
       },
       "optionals": {
@@ -2124,21 +2124,21 @@
       "lt36": {
         "dorin": {
           "name": "CDS 181 B",
-          "price": 2920
+          "price": 5990
         },
         "bitzer": {
           "name": "2JSL-2Z",
-          "price": 4470
+          "price": 5390
         }
       },
       "lt60": {
         "dorin": {
           "name": "CD0 36-3,0M",
-          "price": 3600
+          "price": 6695
         },
         "bitzer": {
           "name": "CD0 36-3,0M",
-          "price": 5635
+          "price": 6555
         }
       },
       "optionals": {
@@ -2188,18 +2188,18 @@
       "lt36": {
         "dorin": {
           "name": "CDS 301 B",
-          "price": 3000
+          "price": 6080
         },
         "bitzer": {
           "name": "2HSL-3Z",
-          "price": 4550
+          "price": 5480
         }
       },
       "lt60": {
         "dorin": null,
         "bitzer": {
           "name": "",
-          "price": 5715
+          "price": 6645
         }
       },
       "optionals": {
@@ -2249,11 +2249,11 @@
       "lt36": {
         "dorin": {
           "name": "CDS 301 B",
-          "price": 3000
+          "price": 6080
         },
         "bitzer": {
           "name": "2HSL-3Z",
-          "price": 4550
+          "price": 5480
         }
       },
       "lt60": {
@@ -2263,7 +2263,7 @@
         },
         "bitzer": {
           "name": "0",
-          "price": 5715
+          "price": 6645
         }
       },
       "optionals": {
@@ -2313,11 +2313,11 @@
       "lt36": {
         "dorin": {
           "name": "CDS 301 B",
-          "price": 3000
+          "price": 6080
         },
         "bitzer": {
           "name": "2HSL-3Z",
-          "price": 4550
+          "price": 5480
         }
       },
       "lt60": {
@@ -2327,7 +2327,7 @@
         },
         "bitzer": {
           "name": "0",
-          "price": 5715
+          "price": 6645
         }
       },
       "optionals": {
@@ -2377,11 +2377,11 @@
       "lt36": {
         "dorin": {
           "name": "CDS 301 B",
-          "price": 3000
+          "price": 6080
         },
         "bitzer": {
           "name": "2HSL-3Z",
-          "price": 4550
+          "price": 5480
         }
       },
       "lt60": {
@@ -2391,7 +2391,7 @@
         },
         "bitzer": {
           "name": "0",
-          "price": 5715
+          "price": 6645
         }
       },
       "optionals": {
@@ -2441,11 +2441,11 @@
       "lt36": {
         "dorin": {
           "name": "CDS 301 B",
-          "price": 3000
+          "price": 6080
         },
         "bitzer": {
           "name": "2HSL-3Z",
-          "price": 4550
+          "price": 5480
         }
       },
       "lt60": {
@@ -2455,7 +2455,7 @@
         },
         "bitzer": {
           "name": "0",
-          "price": 5715
+          "price": 6645
         }
       },
       "optionals": {
@@ -2542,7 +2542,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -2550,7 +2550,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -2606,7 +2606,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -2614,7 +2614,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -2670,7 +2670,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -2678,7 +2678,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -2734,7 +2734,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -2742,7 +2742,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -2798,7 +2798,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -2806,7 +2806,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -2862,7 +2862,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -2870,7 +2870,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -2926,7 +2926,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -2934,7 +2934,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -2990,7 +2990,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -2998,7 +2998,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -3054,7 +3054,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -3062,7 +3062,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -3118,7 +3118,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -3126,7 +3126,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -3182,7 +3182,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -3190,7 +3190,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -3246,7 +3246,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -3254,7 +3254,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -3310,7 +3310,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -3318,7 +3318,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -3374,7 +3374,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -3382,7 +3382,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -3438,7 +3438,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -3446,7 +3446,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -3502,7 +3502,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -3510,7 +3510,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -3566,7 +3566,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -3574,7 +3574,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -3630,7 +3630,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -3638,7 +3638,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -3694,7 +3694,7 @@
         "diff_mt_lt": null,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -3702,7 +3702,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4185,
         "cabling_standard": 284
       }
     },
@@ -3731,7 +3731,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 08-0,8M",
-          "price": 2057.033728
+          "price": 2357.033728
         },
         "bitzer": {
           "name": "NA",
@@ -3758,7 +3758,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -3766,7 +3766,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -3795,7 +3795,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 08-0,8M",
-          "price": 2057.033728
+          "price": 2357.033728
         },
         "bitzer": {
           "name": "NA",
@@ -3822,7 +3822,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -3830,7 +3830,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -3859,7 +3859,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 08-0,8M",
-          "price": 2057.033728
+          "price": 2357.033728
         },
         "bitzer": {
           "name": "NA",
@@ -3886,7 +3886,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -3894,7 +3894,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -3923,7 +3923,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 08-0,8M",
-          "price": 2057.033728
+          "price": 2357.033728
         },
         "bitzer": {
           "name": "NA",
@@ -3950,7 +3950,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -3958,7 +3958,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -3987,7 +3987,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 08-0,8M",
-          "price": 2057.033728
+          "price": 2357.033728
         },
         "bitzer": {
           "name": "NA",
@@ -4014,7 +4014,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -4022,7 +4022,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -4051,7 +4051,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 08-0,8M",
-          "price": 2057.033728
+          "price": 2357.033728
         },
         "bitzer": {
           "name": "NA",
@@ -4078,7 +4078,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -4086,7 +4086,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -4115,7 +4115,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 08-0,8M",
-          "price": 2057.033728
+          "price": 2357.033728
         },
         "bitzer": {
           "name": "NA",
@@ -4142,7 +4142,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -4150,7 +4150,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -4179,7 +4179,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 08-0,8M",
-          "price": 2057.033728
+          "price": 2357.033728
         },
         "bitzer": {
           "name": "NA",
@@ -4206,7 +4206,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -4214,7 +4214,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -4243,7 +4243,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 08-0,8M",
-          "price": 2057.033728
+          "price": 2357.033728
         },
         "bitzer": {
           "name": "NA",
@@ -4270,7 +4270,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -4278,7 +4278,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -4307,7 +4307,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 08-0,8M",
-          "price": 2057.033728
+          "price": 2357.033728
         },
         "bitzer": {
           "name": "NA",
@@ -4334,7 +4334,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -4342,7 +4342,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -4371,7 +4371,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 08-0,8M",
-          "price": 2057.033728
+          "price": 2357.033728
         },
         "bitzer": {
           "name": "NA",
@@ -4398,7 +4398,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -4406,7 +4406,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -4435,7 +4435,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 08-0,8M",
-          "price": 2057.033728
+          "price": 2357.033728
         },
         "bitzer": {
           "name": "NA",
@@ -4462,7 +4462,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -4470,7 +4470,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -4499,7 +4499,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 08-0,8M",
-          "price": 2057.033728
+          "price": 2357.033728
         },
         "bitzer": {
           "name": "NA",
@@ -4526,7 +4526,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -4534,7 +4534,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -4563,7 +4563,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 08-0,8M",
-          "price": 2057.033728
+          "price": 2357.033728
         },
         "bitzer": {
           "name": "NA",
@@ -4590,7 +4590,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -4598,7 +4598,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -4627,7 +4627,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 08-0,8M",
-          "price": 2057.033728
+          "price": 2357.033728
         },
         "bitzer": {
           "name": "NA",
@@ -4654,7 +4654,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -4662,7 +4662,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -4691,7 +4691,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 08-0,8M",
-          "price": 2057.033728
+          "price": 2357.033728
         },
         "bitzer": {
           "name": "NA",
@@ -4718,7 +4718,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -4726,7 +4726,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -4755,7 +4755,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 08-0,8M",
-          "price": 2057.033728
+          "price": 2357.033728
         },
         "bitzer": {
           "name": "NA",
@@ -4782,7 +4782,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -4790,7 +4790,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -4819,7 +4819,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 15-1,1M",
-          "price": 2468.619094
+          "price": 2768.619094
         },
         "bitzer": {
           "name": "NA",
@@ -4846,7 +4846,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -4854,7 +4854,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -4883,7 +4883,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 15-1,1M",
-          "price": 2468.619094
+          "price": 2768.619094
         },
         "bitzer": {
           "name": "NA",
@@ -4910,7 +4910,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -4918,7 +4918,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -4947,7 +4947,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 15-1,1M",
-          "price": 2468.619094
+          "price": 2768.619094
         },
         "bitzer": {
           "name": "NA",
@@ -4974,7 +4974,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -4982,7 +4982,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -5011,7 +5011,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 15-1,1M",
-          "price": 2468.619094
+          "price": 2768.619094
         },
         "bitzer": {
           "name": "NA",
@@ -5038,7 +5038,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -5046,7 +5046,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -5075,7 +5075,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 15-1,1M",
-          "price": 2468.619094
+          "price": 2768.619094
         },
         "bitzer": {
           "name": "NA",
@@ -5102,7 +5102,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -5110,7 +5110,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -5139,7 +5139,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 15-1,1M",
-          "price": 2468.619094
+          "price": 2768.619094
         },
         "bitzer": {
           "name": "NA",
@@ -5166,7 +5166,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -5174,7 +5174,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -5203,7 +5203,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 15-1,1M",
-          "price": 2468.619094
+          "price": 2768.619094
         },
         "bitzer": {
           "name": "NA",
@@ -5230,7 +5230,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -5238,7 +5238,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -5267,7 +5267,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 15-1,1M",
-          "price": 2468.619094
+          "price": 2768.619094
         },
         "bitzer": {
           "name": "NA",
@@ -5294,7 +5294,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -5302,7 +5302,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -5331,7 +5331,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 15-1,1M",
-          "price": 2468.619094
+          "price": 2768.619094
         },
         "bitzer": {
           "name": "NA",
@@ -5358,7 +5358,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -5366,7 +5366,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -5395,7 +5395,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 15-1,1M",
-          "price": 2468.619094
+          "price": 2768.619094
         },
         "bitzer": {
           "name": "NA",
@@ -5422,7 +5422,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -5430,7 +5430,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -5459,7 +5459,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 15-1,1M",
-          "price": 2468.619094
+          "price": 2768.619094
         },
         "bitzer": {
           "name": "NA",
@@ -5486,7 +5486,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -5494,7 +5494,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -5523,7 +5523,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 15-1,1M",
-          "price": 2468.619094
+          "price": 2768.619094
         },
         "bitzer": {
           "name": "NA",
@@ -5550,7 +5550,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -5558,7 +5558,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -5587,7 +5587,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 15-1,1M",
-          "price": 2468.619094
+          "price": 2768.619094
         },
         "bitzer": {
           "name": "NA",
@@ -5614,7 +5614,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -5622,7 +5622,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -5651,7 +5651,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 15-1,1M",
-          "price": 2468.619094
+          "price": 2768.619094
         },
         "bitzer": {
           "name": "NA",
@@ -5678,7 +5678,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -5686,7 +5686,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -5715,7 +5715,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 15-1,1M",
-          "price": 2468.619094
+          "price": 2768.619094
         },
         "bitzer": {
           "name": "NA",
@@ -5742,7 +5742,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -5750,7 +5750,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -5779,7 +5779,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 15-1,1M",
-          "price": 2468.619094
+          "price": 2768.619094
         },
         "bitzer": {
           "name": "NA",
@@ -5806,7 +5806,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -5814,7 +5814,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -5843,7 +5843,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2763.82
+          "price": 3063.82
         },
         "bitzer": {
           "name": "NA",
@@ -5870,7 +5870,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -5878,7 +5878,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -5907,7 +5907,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2763.82
+          "price": 3063.82
         },
         "bitzer": {
           "name": "NA",
@@ -5934,7 +5934,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -5942,7 +5942,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -5971,7 +5971,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2763.82
+          "price": 3063.82
         },
         "bitzer": {
           "name": "NA",
@@ -5998,7 +5998,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -6006,7 +6006,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -6035,7 +6035,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2763.82
+          "price": 3063.82
         },
         "bitzer": {
           "name": "NA",
@@ -6062,7 +6062,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -6070,7 +6070,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -6099,7 +6099,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2763.82
+          "price": 3063.82
         },
         "bitzer": {
           "name": "NA",
@@ -6126,7 +6126,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -6134,7 +6134,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -6163,7 +6163,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2763.82
+          "price": 3063.82
         },
         "bitzer": {
           "name": "NA",
@@ -6190,7 +6190,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -6198,7 +6198,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -6227,7 +6227,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2763.82
+          "price": 3063.82
         },
         "bitzer": {
           "name": "NA",
@@ -6254,7 +6254,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -6262,7 +6262,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -6291,7 +6291,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2763.82
+          "price": 3063.82
         },
         "bitzer": {
           "name": "NA",
@@ -6318,7 +6318,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -6326,7 +6326,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -6355,7 +6355,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2763.82
+          "price": 3063.82
         },
         "bitzer": {
           "name": "NA",
@@ -6382,7 +6382,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -6390,7 +6390,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -6419,7 +6419,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2763.82
+          "price": 3063.82
         },
         "bitzer": {
           "name": "NA",
@@ -6446,7 +6446,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -6454,7 +6454,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -6483,7 +6483,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2763.82
+          "price": 3063.82
         },
         "bitzer": {
           "name": "NA",
@@ -6510,7 +6510,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -6518,7 +6518,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -6547,7 +6547,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2763.82
+          "price": 3063.82
         },
         "bitzer": {
           "name": "NA",
@@ -6574,7 +6574,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -6582,7 +6582,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -6611,7 +6611,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2763.82
+          "price": 3063.82
         },
         "bitzer": {
           "name": "NA",
@@ -6638,7 +6638,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -6646,7 +6646,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -6675,7 +6675,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 18-1,5M",
-          "price": 2763.82
+          "price": 3063.82
         },
         "bitzer": {
           "name": "NA",
@@ -6702,7 +6702,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -6710,7 +6710,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -6739,7 +6739,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 2821.27
+          "price": 3121.27
         },
         "bitzer": {
           "name": "NA",
@@ -6766,7 +6766,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -6774,7 +6774,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -6803,7 +6803,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 2821.27
+          "price": 3121.27
         },
         "bitzer": {
           "name": "NA",
@@ -6830,7 +6830,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -6838,7 +6838,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -6867,7 +6867,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 2821.27
+          "price": 3121.27
         },
         "bitzer": {
           "name": "NA",
@@ -6894,7 +6894,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -6902,7 +6902,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -6931,7 +6931,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 2821.27
+          "price": 3121.27
         },
         "bitzer": {
           "name": "NA",
@@ -6958,7 +6958,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -6966,7 +6966,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -6995,7 +6995,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 2821.27
+          "price": 3121.27
         },
         "bitzer": {
           "name": "NA",
@@ -7022,7 +7022,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -7030,7 +7030,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -7059,7 +7059,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 2821.27
+          "price": 3121.27
         },
         "bitzer": {
           "name": "NA",
@@ -7086,7 +7086,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -7094,7 +7094,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -7123,7 +7123,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 2821.27
+          "price": 3121.27
         },
         "bitzer": {
           "name": "NA",
@@ -7150,7 +7150,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -7158,7 +7158,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -7187,7 +7187,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 2821.27
+          "price": 3121.27
         },
         "bitzer": {
           "name": "NA",
@@ -7214,7 +7214,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -7222,7 +7222,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -7251,7 +7251,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 2821.27
+          "price": 3121.27
         },
         "bitzer": {
           "name": "NA",
@@ -7278,7 +7278,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -7286,7 +7286,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -7315,7 +7315,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 2821.27
+          "price": 3121.27
         },
         "bitzer": {
           "name": "NA",
@@ -7342,7 +7342,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -7350,7 +7350,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -7379,7 +7379,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 2821.27
+          "price": 3121.27
         },
         "bitzer": {
           "name": "NA",
@@ -7406,7 +7406,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -7414,7 +7414,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -7443,7 +7443,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 2821.27
+          "price": 3121.27
         },
         "bitzer": {
           "name": "NA",
@@ -7470,7 +7470,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -7478,7 +7478,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -7507,7 +7507,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 30-1,9M",
-          "price": 2821.27
+          "price": 3121.27
         },
         "bitzer": {
           "name": "NA",
@@ -7534,7 +7534,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -7542,7 +7542,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -7571,7 +7571,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 2863.7
+          "price": 3063.7
         },
         "bitzer": {
           "name": "NA",
@@ -7598,7 +7598,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -7606,7 +7606,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -7635,7 +7635,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 2863.7
+          "price": 3063.7
         },
         "bitzer": {
           "name": "NA",
@@ -7662,7 +7662,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -7670,7 +7670,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -7699,7 +7699,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 2863.7
+          "price": 3063.7
         },
         "bitzer": {
           "name": "NA",
@@ -7726,7 +7726,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -7734,7 +7734,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -7763,7 +7763,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 2863.7
+          "price": 3063.7
         },
         "bitzer": {
           "name": "NA",
@@ -7790,7 +7790,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -7798,7 +7798,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -7827,7 +7827,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 2863.7
+          "price": 3063.7
         },
         "bitzer": {
           "name": "NA",
@@ -7854,7 +7854,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -7862,7 +7862,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -7891,7 +7891,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 2863.7
+          "price": 3063.7
         },
         "bitzer": {
           "name": "NA",
@@ -7918,7 +7918,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -7926,7 +7926,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -7955,7 +7955,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 2863.7
+          "price": 3063.7
         },
         "bitzer": {
           "name": "NA",
@@ -7982,7 +7982,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -7990,7 +7990,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -8019,7 +8019,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 2863.7
+          "price": 3063.7
         },
         "bitzer": {
           "name": "NA",
@@ -8046,7 +8046,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -8054,7 +8054,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -8083,7 +8083,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 2863.7
+          "price": 3063.7
         },
         "bitzer": {
           "name": "NA",
@@ -8110,7 +8110,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -8118,7 +8118,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -8147,7 +8147,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 2863.7
+          "price": 3063.7
         },
         "bitzer": {
           "name": "NA",
@@ -8174,7 +8174,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -8182,7 +8182,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -8211,7 +8211,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 2863.7
+          "price": 3063.7
         },
         "bitzer": {
           "name": "NA",
@@ -8238,7 +8238,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -8246,7 +8246,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -8275,7 +8275,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 35-2,4M",
-          "price": 2863.7
+          "price": 3063.7
         },
         "bitzer": {
           "name": "NA",
@@ -8302,7 +8302,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -8310,7 +8310,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -8339,7 +8339,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 36-3,0M",
-          "price": 2913.09
+          "price": 3113.09
         },
         "bitzer": {
           "name": "NA",
@@ -8366,7 +8366,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -8374,7 +8374,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -8403,7 +8403,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 36-3,0M",
-          "price": 2913.09
+          "price": 3113.09
         },
         "bitzer": {
           "name": "NA",
@@ -8430,7 +8430,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -8438,7 +8438,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -8467,7 +8467,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 36-3,0M",
-          "price": 2913.09
+          "price": 3113.09
         },
         "bitzer": {
           "name": "NA",
@@ -8494,7 +8494,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -8502,7 +8502,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -8531,7 +8531,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 36-3,0M",
-          "price": 2913.09
+          "price": 3113.09
         },
         "bitzer": {
           "name": "NA",
@@ -8558,7 +8558,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -8566,7 +8566,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -8595,7 +8595,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 36-3,0M",
-          "price": 2913.09
+          "price": 3113.09
         },
         "bitzer": {
           "name": "NA",
@@ -8622,7 +8622,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -8630,7 +8630,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -8659,7 +8659,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 36-3,0M",
-          "price": 2913.09
+          "price": 3113.09
         },
         "bitzer": {
           "name": "NA",
@@ -8686,7 +8686,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -8694,7 +8694,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -8723,7 +8723,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 36-3,0M",
-          "price": 2913.09
+          "price": 3113.09
         },
         "bitzer": {
           "name": "NA",
@@ -8750,7 +8750,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -8758,7 +8758,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -8787,7 +8787,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 36-3,0M",
-          "price": 2913.09
+          "price": 3113.09
         },
         "bitzer": {
           "name": "NA",
@@ -8814,7 +8814,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -8822,7 +8822,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -8851,7 +8851,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 36-3,0M",
-          "price": 2913.09
+          "price": 3113.09
         },
         "bitzer": {
           "name": "NA",
@@ -8878,7 +8878,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -8886,7 +8886,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     },
@@ -8915,7 +8915,7 @@
       "lt60": {
         "dorin": {
           "name": "CD0 36-3,0M",
-          "price": 2913.09
+          "price": 3113.09
         },
         "bitzer": {
           "name": "NA",
@@ -8942,7 +8942,7 @@
         "diff_mt_lt": 1100,
         "mx_coil": 1350,
         "carton_572a": null,
-        "carton_300t": 905,
+        "carton_300t": null,
         "carton_782a": 1522.87,
         "probes_danfoss_mt": 785.3,
         "probes_danfoss_mtlt": 1038.02,
@@ -8950,7 +8950,7 @@
         "probes_wurm_mtlt": null,
         "probes_generic_mt": 386,
         "probes_generic_mtlt": 531,
-        "electrical_panel": 5400,
+        "electrical_panel": 4445,
         "cabling_standard": 426
       }
     }
@@ -9143,11 +9143,10 @@
     {
       "id": "carton_300t",
       "name": "300T en carton",
-      "price": 959,
+      "price": 1100,
       "category": "spare",
       "availability": [
-        "TAGO",
-        "MBS"
+        "TAGO"
       ]
     },
     {
@@ -9223,7 +9222,7 @@
     {
       "id": "electrical_panel",
       "name": "Quadro elettrico",
-      "price": 5387,
+      "price": 4663,
       "category": "electrical",
       "availability": [
         "TAGO",

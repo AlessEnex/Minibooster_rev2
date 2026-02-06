@@ -36,6 +36,7 @@ const clientNameInput = document.getElementById("clientName");
 const requestedByInput = document.getElementById("requestedBy");
 const i18nNodes = document.querySelectorAll("[data-i18n]");
 const adminPanel = document.getElementById("adminPanel");
+const adminToggleBtn = document.getElementById("adminToggle");
 const discountInput = document.getElementById("discountInput");
 const printPreviewBtn = document.getElementById("printPreviewBtn");
 const printPreviewExitBtn = document.getElementById("printPreviewExitBtn");
@@ -213,6 +214,12 @@ const initNavControls = () => {
     document.getElementById("funnel")?.scrollIntoView({ behavior: "smooth" });
   });
 
+  const adminEnabled = Number(document.body?.dataset.adminEnabled ?? "0") === 1;
+  if (!adminEnabled) {
+    adminToggleBtn?.classList.add("hidden");
+    adminPanel?.classList.add("hidden");
+  }
+
   // Export/Import progetto
   document.getElementById("exportProjectBtn")?.addEventListener("click", exportProject);
   document.getElementById("importProjectBtn")?.addEventListener("click", () => {
@@ -242,7 +249,7 @@ const initNavControls = () => {
     updateProjectFlow();
   });
 
-  document.getElementById("adminToggle")?.addEventListener("click", () => {
+  adminToggleBtn?.addEventListener("click", () => {
     adminPanel?.classList.toggle("hidden");
   });
 
