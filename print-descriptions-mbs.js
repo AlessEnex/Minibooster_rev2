@@ -20,7 +20,7 @@ export const printDescriptionsByLanguage = {
       items: [
         "Alimentazione 3x 400V / 50 Hz / 3Ph + N + PE",
         "Regime di neutro TNS (senza interruttori differenziali) e Icc max 10 kA *",
-        "*Ogni modifica del regime di neutro o dell'Icc sarà soggetta a revisione del prezzo",
+        "*Ogni modifica del regime di neutro sarà soggetta a revisione del prezzo",
         "Presa di corrente 10A - 230/1/50 Hz",
         "Illuminazione interna",
         "Uso di componenti di marche di prima qualità",
@@ -82,7 +82,7 @@ export const printDescriptionsByLanguage = {
       items: [
         "Power supply 3x 400V / 50 Hz / 3Ph + N + PE",
         "Neutral system TNS (without RCDs) and Icc max 10 kA *",
-        "*Any change to the neutral system or Icc will be subject to price revision",
+        "*Any change to the neutral system will be subject to price revision",
         "Socket outlet 10A - 230/1/50 Hz",
         "Internal lighting",
         "Use of first-quality brand components",
@@ -144,7 +144,7 @@ export const printDescriptionsByLanguage = {
       items: [
         "Alimentation 3x 400V / 50 Hz / 3Ph + N + PE",
         "Régime de neutre TNS (sans interrupteurs différentiels) et Icc max 10 kA *",
-        "*Toute modification du régime de neutre ou de l’Icc fera l’objet d’une révision de prix",
+        "*Toute modification du régime de neutre fera l’objet d’une révision de prix",
         "Prise de courant 10A - 230/1/50 Hz",
         "Éclairage intérieur",
         "Utilisation de composants de marques de première qualité",
@@ -204,7 +204,7 @@ export const printDescriptionsByLanguage = {
       items: [
         "Versorgung 3x 400V / 50 Hz / 3Ph + N + PE",
         "Netzform TNS (ohne FI/RCD) und Icc max 10 kA *",
-        "*Jede Änderung der Netzform oder des Icc unterliegt einer Preisrevision",
+        "*Jede Änderung der Netzform unterliegt einer Preisrevision",
         "Steckdose 10A - 230/1/50 Hz",
         "Innenbeleuchtung",
         "Einsatz von Komponenten führender Marken (erstklassige Qualität)",
