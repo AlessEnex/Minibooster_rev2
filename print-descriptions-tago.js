@@ -40,7 +40,7 @@ export const printDescriptionsByLanguage = {
     },
   ],
 
-  ENG: [
+  EN: [
     {
       title: "GENERAL FEATURES",
       items: [

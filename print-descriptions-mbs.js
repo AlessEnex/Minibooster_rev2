@@ -50,11 +50,11 @@ export const printDescriptionsByLanguage = {
         "Valvole di sicurezza per la protezione del sistema conformemente alla norma EN 378",
         "Manometri HP / MP / LP",
       ],
-      note: "La centrale è marcata CE cat. IV. Mod PED B + D",
+      note: "La centrale è marcata CE cat. III. Mod PED B + D",
     },
   ],
 
-  ENG: [
+  EN: [
     {
       title: "GENERAL FEATURES",
       items: [
@@ -105,7 +105,7 @@ export const printDescriptionsByLanguage = {
         "Safety relief valves for system protection in accordance with EN 378",
         "HP / MP / LP pressure gauges",
       ],
-      note: "The unit is CE marked cat. IV. PED Module B + D",
+      note: "The unit is CE marked cat. III. PED Module B + D",
     },
   ],
 
@@ -158,7 +158,7 @@ export const printDescriptionsByLanguage = {
         "Soupapes de sécurité pour la protection du système conformément à la norme EN 378",
         "Manomètres HP / MP / LP",
       ],
-      note: "La centrale est marquée CE cat. IV. Mod PED B + D",
+      note: "La centrale est marquée CE cat. III. Mod PED B + D",
     },
   ],
 
@@ -213,7 +213,7 @@ export const printDescriptionsByLanguage = {
         "Sicherheitsventile zum Schutz des Systems gemäß EN 378",
         "Manometer HP / MP / LP",
       ],
-      note: "Die Anlage ist CE-gekennzeichnet Kat. IV. PED Modul B + D",
+      note: "Die Anlage ist CE-gekennzeichnet Kat. III. PED Modul B + D",
     },
   ],
 };
