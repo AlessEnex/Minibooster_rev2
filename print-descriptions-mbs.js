@@ -43,6 +43,13 @@ export const printDescriptionsByLanguage = {
       ],
     },
     {
+      title: "INVERTER",
+      id: "inverter_mbs",
+      items: [
+        "Inverter non inclusi nell'offerta",
+      ],
+    },
+    {
       title: "TELAIO E ACCESSORI",
       items: [
         "Telaio verniciato RAL 9001",
@@ -98,6 +105,13 @@ export const printDescriptionsByLanguage = {
       ],
     },
     {
+      title: "INVERTER",
+      id: "inverter_mbs",
+      items: [
+        "Inverters not included in the offer",
+      ],
+    },
+    {
       title: "FRAME AND ACCESSORIES",
       items: [
         "Painted frame RAL 9001",
@@ -142,6 +156,13 @@ export const printDescriptionsByLanguage = {
       id: "controller_wurm_customer",
       items: [
         "Contrôleur WURM : contrôleur et schéma électrique fournis par le client",
+      ],
+    },
+    {
+      title: "ONDULEUR",
+      id: "inverter_mbs",
+      items: [
+        "Onduleurs non inclus dans l'offre",
       ],
     },
     {
@@ -196,6 +217,13 @@ export const printDescriptionsByLanguage = {
       id: "controller_wurm_customer",
       items: [
         "WURM-Regler: Regler und Schaltplan vom Kunden bereitgestellt",
+      ],
+    },
+    {
+      title: "WECHSELRICHTER",
+      id: "inverter_mbs",
+      items: [
+        "Wechselrichter nicht im Angebot enthalten",
       ],
     },
     {

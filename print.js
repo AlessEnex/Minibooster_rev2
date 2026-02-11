@@ -235,6 +235,7 @@ export const renderPrintSheet = () => {
     const hasElectricalPanel = appState.selections.electricalPanelChoice === "electrical_panel";
     const hasWurmCustomer = appState.selections.optionals.has("wurm_customer");
     const hasProbesCustomer = appState.selections.probesChoice === "probes_customer_supplied";
+    const hasInverter = appState.selections.optionals.has("inverter_fc280") || appState.selections.optionals.has("inverter_fc103");
     
     const filteredSections = sections.filter((section) => {
       if (section.requiresElectricalPanel && !hasElectricalPanel) {
@@ -247,6 +248,16 @@ export const renderPrintSheet = () => {
         return false;
       }
       return true;
+    }).map((section) => {
+      // Update inverter section text based on selection
+      if (section.id === "inverter_mbs") {
+        const updatedSection = { ...section };
+        const inverterIncludedText = dict.inverter_mbs_included || "Inverter incluso nell'offerta";
+        const inverterNotIncludedText = dict.inverter_mbs_not_included || "Inverter non inclusi nell'offerta";
+        updatedSection.items = [hasInverter ? inverterIncludedText : inverterNotIncludedText];
+        return updatedSection;
+      }
+      return section;
     });
     const hasLT = appState.selections.ltChoice && appState.selections.ltChoice !== "none";
     const isLt60 = hasLT && appState.selections.ltPressure === "60";
