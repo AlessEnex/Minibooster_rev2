@@ -256,7 +256,7 @@ export const renderPrintSheet = () => {
     const psMaxItems = [
       `${dict.psmax_hp_label || "HP"}: 120 bar`,
       `${dict.psmax_liquid_receiver_label || "Liquid receiver"}: ${
-        dict.psmax_liquid_receiver_values || "60 bar during operation, 80 bar during maintenance"
+        dict.psmax_liquid_receiver_values || "60 bar during operation"
       }`,
       `${dict.psmax_mt_suction_label || "MT suction"}: ${mtSuction} bar`,
     ];
