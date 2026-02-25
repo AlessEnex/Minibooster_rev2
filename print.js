@@ -8,7 +8,7 @@ import {
   groupMtByName,
   machineTypes,
 } from "./state.js";
-import { getDictionary } from "./i18n.js";
+import { getDictionary, translateOptionName } from "./i18n.js";
 import { getPrintDescriptions } from "./print-descriptions.js";
 import {
   getCablingExtraPrice,
@@ -21,6 +21,14 @@ import {
 
 export const renderPrintSheet = () => {
   const dict = getDictionary();
+  
+  const formatPriceLocalized = (value) => {
+    if (value === null || value === undefined) return "N/A";
+    if (value === -1) return dict.price_included || "Included";
+    if (value === -2) return dict.price_supplied_by_customer || "Supplied by customer";
+    return formatPrice(value);
+  };
+  
   const printTitle = document.getElementById("printTitle");
   const printProjectMeta = document.getElementById("printProjectMeta");
   const printSummaryList = document.getElementById("printSummaryList");
@@ -112,7 +120,7 @@ export const renderPrintSheet = () => {
 
   const optItems = getOptionalsForConfig().filter((o) => appState.selections.optionals.has(o.id));
   optItems.forEach((o) => {
-    rows.push([dict.summary_optional_label || "Optional", o.name, o.price]);
+    rows.push([dict.summary_optional_label || "Optional", translateOptionName(o.id, o.name), o.price]);
     if (o.price !== null && o.price !== undefined && o.price !== -1 && o.price !== -2) {
       total += o.price;
     }
@@ -147,7 +155,7 @@ export const renderPrintSheet = () => {
   if (probeSelectedId) {
     const probe = getOptionalsForConfig().find((o) => o.id === probeSelectedId);
     if (probe) {
-      rows.push([dict.summary_probes_label || "Sonde", probe.name, probe.price]);
+      rows.push([dict.summary_probes_label || "Sonde", translateOptionName(probe.id, probe.name), probe.price]);
       if (
         probe.price !== null &&
         probe.price !== undefined &&
@@ -204,7 +212,7 @@ export const renderPrintSheet = () => {
   const summaryHtml = rows
     .map(
       ([label, name, price]) => {
-        const priceLabel = price === null || price === undefined ? "" : formatPrice(price);
+        const priceLabel = price === null || price === undefined ? "" : formatPriceLocalized(price);
         return `<div class="summary-row"><span>${label}: ${name}</span><span>${priceLabel}</span></div>`;
       }
     )
@@ -213,21 +221,21 @@ export const renderPrintSheet = () => {
   const gascoolerHtml = gascoolerRows
     .map(
       ([label, name, price]) => {
-        const priceLabel = price === null || price === undefined ? "" : formatPrice(price);
+        const priceLabel = price === null || price === undefined ? "" : formatPriceLocalized(price);
         return `<div class="summary-row gascooler-row"><span><strong>${label}: ${name}</strong></span><span><strong>${priceLabel}</strong></span></div>`;
       }
     )
     .join("");
 
   const totalLabel = dict.print_total_label || "Totale";
-  const totalRow = `<div class="summary-row total-row"><span><strong>${totalLabel}</strong></span><span><strong>${formatPrice(total)}</strong></span></div>`;
+  const totalRow = `<div class="summary-row total-row"><span><strong>${totalLabel}</strong></span><span><strong>${formatPriceLocalized(total)}</strong></span></div>`;
 
   if (printSummaryList) {
     printSummaryList.innerHTML = summaryHtml + gascoolerHtml + totalRow;
   }
 
   if (printTotal) {
-    printTotal.textContent = formatPrice(total);
+    printTotal.textContent = formatPriceLocalized(total);
   }
 
   if (printDescriptions) {
@@ -235,6 +243,7 @@ export const renderPrintSheet = () => {
     const hasElectricalPanel = appState.selections.electricalPanelChoice === "electrical_panel";
     const hasWurmCustomer = appState.selections.optionals.has("wurm_customer");
     const hasProbesCustomer = appState.selections.probesChoice === "probes_customer_supplied";
+    const hasControlsCustomer = appState.selections.optionals.has("controls_customer_supplied");
     const hasInverter = appState.selections.optionals.has("inverter_fc280") || appState.selections.optionals.has("inverter_fc103");
     
     const filteredSections = sections.filter((section) => {
@@ -245,6 +254,9 @@ export const renderPrintSheet = () => {
         return false;
       }
       if (section.id === "probes_customer" && !hasProbesCustomer) {
+        return false;
+      }
+      if (section.id === "controls_customer_supplied" && !hasControlsCustomer) {
         return false;
       }
       return true;

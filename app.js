@@ -80,6 +80,8 @@ const initProjectInputs = () => {
     renderCatalog();
     updateProjectFlow();
     applyTranslations(i18nNodes, updateThemeToggleLabel, updateCatalogCollapseLabel);
+    renderUserPanels();
+    renderPrintPreview();
   };
 
   projectNameInput?.addEventListener("input", (e) => assign("name", e.target.value));

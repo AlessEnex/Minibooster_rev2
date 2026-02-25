@@ -6,7 +6,7 @@ import {
   getSelectedConfig,
   groupMtByName,
 } from "./state.js";
-import { getDictionary } from "./i18n.js";
+import { getDictionary, translateOptionName } from "./i18n.js";
 
 export const parseCablingMeters = (value) => {
   const parsed = parseInt(value, 10);
@@ -127,7 +127,7 @@ export const buildSummaryData = (dict = getDictionary()) => {
 
   const optItems = getOptionalsForConfig().filter((o) => appState.selections.optionals.has(o.id));
   optItems.forEach((o) => {
-    rows.push([dict.summary_optional_label || "Optional", o.name, o.price]);
+    rows.push([dict.summary_optional_label || "Optional", translateOptionName(o.id, o.name), o.price]);
     if (o.price !== null && o.price !== undefined && o.price !== -1 && o.price !== -2) {
       total += o.price;
     }
@@ -161,7 +161,7 @@ export const buildSummaryData = (dict = getDictionary()) => {
   if (probeSelectedId) {
     const probe = getOptionalsForConfig().find((o) => o.id === probeSelectedId);
     if (probe) {
-      rows.push([dict.summary_probes_label || "Sonde", probe.name, probe.price]);
+      rows.push([dict.summary_probes_label || "Sonde", translateOptionName(probe.id, probe.name), probe.price]);
       if (
         probe.price !== null &&
         probe.price !== undefined &&

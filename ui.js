@@ -107,6 +107,14 @@ const probesOptionIds = [
   "probes_included",
 ];
 
+const formatPriceLocalized = (value) => {
+  if (value === null || value === undefined) return "N/A";
+  const dict = getDictionary();
+  if (value === -1) return dict.price_included || "Included";
+  if (value === -2) return dict.price_supplied_by_customer || "Supplied by customer";
+  return formatPrice(value);
+};
+
 function getTransportPrice(km) {
   const tiers = pricingExtras.transportPricing || [];
   for (const tier of tiers) {
@@ -311,7 +319,7 @@ const renderOptionCard = (item, group, multiple, opts = {}) => {
         ${item.subtitle ? `<div class="subtitle">${item.subtitle}</div>` : ""}
       </div>
     </div>
-    ${showPrice ? `<p class="price">${formatPrice(item.price)}</p>` : ""}
+    ${showPrice ? `<p class="price">${formatPriceLocalized(item.price)}</p>` : ""}
   `;
 
   const isSelected = multiple
@@ -844,9 +852,9 @@ const renderControlOptions = () => {
     card.className = "option selected";
     card.innerHTML = `
       <div class="title-row">
-        <div><strong>${supplied?.name || "Controlli forniti dal cliente"}</strong></div>
+        <div><strong>${translateOptionName(controlsCustomerId, supplied?.name || "Controlli forniti dal cliente")}</strong></div>
       </div>
-      <p class="price">${formatPrice(supplied?.price ?? 0)}</p>
+      <p class="price">${formatPriceLocalized(supplied?.price ?? 0)}</p>
     `;
     controlOptions.appendChild(card);
     return;
@@ -1147,7 +1155,7 @@ export const updateSummary = () => {
 
   const optItems = getOptionalsForConfig().filter((o) => appState.selections.optionals.has(o.id));
   optItems.forEach((o) => {
-    rows.push([dict.summary_optional_label || "Optional", o.name, o.price]);
+    rows.push([dict.summary_optional_label || "Optional", translateOptionName(o.id, o.name), o.price]);
     // Somma al totale solo se e' un valore numerico reale (esclude null, -1, -2)
     if (o.price !== null && o.price !== undefined && o.price !== -1 && o.price !== -2) {
       total += o.price;
@@ -1185,7 +1193,7 @@ export const updateSummary = () => {
   if (probeSelectedId) {
     const probe = getOptionalsForConfig().find((o) => o.id === probeSelectedId);
     if (probe) {
-      rows.push([dict.summary_probes_label || "Sonde", probe.name, probe.price]);
+      rows.push([dict.summary_probes_label || "Sonde", translateOptionName(probe.id, probe.name), probe.price]);
       if (
         probe.price !== null &&
         probe.price !== undefined &&

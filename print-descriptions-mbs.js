@@ -36,6 +36,13 @@ export const printDescriptionsByLanguage = {
       ],
     },
     {
+      title: "CONTROLLI FORNITI DAL CLIENTE",
+      id: "controls_customer_supplied",
+      items: [
+        "Controlli e schemi elettrici forniti dal cliente",
+      ],
+    },
+    {
       title: "SONDE",
       id: "probes_customer",
       items: [
@@ -95,6 +102,13 @@ export const printDescriptionsByLanguage = {
       id: "controller_wurm_customer",
       items: [
         "WURM controller: controller and electrical diagram supplied by customer",
+      ],
+    },
+    {
+      title: "CONTROLS SUPPLIED BY CUSTOMER",
+      id: "controls_customer_supplied",
+      items: [
+        "Controls and electrical diagrams supplied by customer",
       ],
     },
     {
@@ -159,6 +173,13 @@ export const printDescriptionsByLanguage = {
       ],
     },
     {
+      title: "COMMANDES FOURNIES PAR LE CLIENT",
+      id: "controls_customer_supplied",
+      items: [
+        "Commandes et schémas électriques fournis par le client",
+      ],
+    },
+    {
       title: "ONDULEUR",
       id: "inverter_mbs",
       items: [
@@ -220,6 +241,13 @@ export const printDescriptionsByLanguage = {
       ],
     },
     {
+      title: "STEUERUNGEN VOM KUNDEN BEREITGESTELLT",
+      id: "controls_customer_supplied",
+      items: [
+        "Steuerungen und Schaltpläne vom Kunden bereitgestellt",
+      ],
+    },
+    {
       title: "WECHSELRICHTER",
       id: "inverter_mbs",
       items: [
@@ -242,6 +270,75 @@ export const printDescriptionsByLanguage = {
         "Manometer HP / MP / LP",
       ],
       note: "Die Anlage ist CE-gekennzeichnet Kat. III. PED Modul B + D",
+    },
+  ],
+
+  ES: [
+    {
+      title: "CARACTERÍSTICAS GENERALES",
+      items: [
+        "Depósito de líquido: 50 litros",
+        "Control de alta presión con válvula electrónica Danfoss CCMT",
+        "Control de presión en el depósito de líquido con válvula electrónica Danfoss CCMT",
+        "Intercambiador regenerativo entre línea HP y flash gas",
+        "Depósito de aspiración / depósito de aceite 20L + 1 sensor de nivel máximo",
+        "Barrera de vapor en el depósito de líquido y aislamiento en frío Armaflex aplicado por personal especializado",
+        "Indicador de nivel mínimo de líquido con alarma y luces en el depósito de líquido",
+        "Válvulas de seguridad dobles instaladas con válvula de inversión en el depósito de líquido",
+        "Todas las tuberías INOX",
+      ],
+    },
+    {
+      title: "CUADRO ELÉCTRICO",
+      requiresElectricalPanel: true,
+      items: [
+        "Alimentación 3x 400V / 50 Hz / 3Ph + N + PE",
+        "Sistema neutro TNS (sin diferenciales) e Icc máx 10 kA *",
+        "*Cualquier cambio en el sistema neutro estará sujeto a revisión de precio",
+        "Toma de corriente 10A - 230/1/50 Hz",
+        "Iluminación interna",
+        "Uso de componentes de marcas de primera calidad",
+        "Etiquetado de cada cable y componente en la central y dentro del cuadro eléctrico para permitir una identificación fácil y rápida en caso de fallo",
+        "Componentes instalados en un solo nivel y correctamente espaciados para facilitar cualquier tipo de intervención",
+      ],
+    },
+    {
+      title: "CONTROLADOR WURM",
+      id: "controller_wurm_customer",
+      items: [
+        "Controlador WURM: controlador y esquema eléctrico suministrados por el cliente",
+      ],
+    },
+    {
+      title: "CONTROLES SUMINISTRADOS POR EL CLIENTE",
+      id: "controls_customer_supplied",
+      items: [
+        "Controles y esquemas eléctricos suministrados por el cliente",
+      ],
+    },
+    {
+      title: "SONDAS",
+      id: "probes_customer",
+      items: [
+        "Sondas suministradas por el cliente",
+      ],
+    },
+    {
+      title: "INVERSOR",
+      id: "inverter_mbs",
+      items: [
+        "Inversores no incluidos en la oferta",
+      ],
+    },
+    {
+      title: "BASTIDOR Y ACCESORIOS",
+      items: [
+        "Bastidor pintado RAL 9001",
+        "Juego de presostatos según los requisitos de la norma EN378",
+        "Válvulas de seguridad para la protección del sistema conforme a la norma EN 378",
+        "Manómetros HP / MP / LP",
+      ],
+      note: "La central está marcada CE cat. III. Mod PED B + D",
     },
   ],
 };
