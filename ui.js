@@ -885,7 +885,7 @@ const renderControlOptions = () => {
       const optionEl = renderOptionCard(
         {
           id: opt.id,
-          name: translateOptionName(opt.id, opt.name),
+          name: translateOptionName(opt.id, opt.name, appState.selections.machineType),
           price: opt.price,
           badge: opt.category === "onboard" ? "On-board" : "Spare",
         },
@@ -1155,7 +1155,7 @@ export const updateSummary = () => {
 
   const optItems = getOptionalsForConfig().filter((o) => appState.selections.optionals.has(o.id));
   optItems.forEach((o) => {
-    rows.push([dict.summary_optional_label || "Optional", translateOptionName(o.id, o.name), o.price]);
+    rows.push([dict.summary_optional_label || "Optional", translateOptionName(o.id, o.name, appState.selections.machineType), o.price]);
     // Somma al totale solo se e' un valore numerico reale (esclude null, -1, -2)
     if (o.price !== null && o.price !== undefined && o.price !== -1 && o.price !== -2) {
       total += o.price;
@@ -1193,7 +1193,7 @@ export const updateSummary = () => {
   if (probeSelectedId) {
     const probe = getOptionalsForConfig().find((o) => o.id === probeSelectedId);
     if (probe) {
-      rows.push([dict.summary_probes_label || "Sonde", translateOptionName(probe.id, probe.name), probe.price]);
+      rows.push([dict.summary_probes_label || "Sonde", translateOptionName(probe.id, probe.name, appState.selections.machineType), probe.price]);
       if (
         probe.price !== null &&
         probe.price !== undefined &&
