@@ -1058,12 +1058,14 @@ const renderOptionalOptions = () => {
 const renderProjectMeta = () => {
   if (!projectMetaView) return;
   const dict = getDictionary();
-  const { name, date, owner, language } = appState.selections.project;
+  const { name, date, owner, language, offerNumber } = appState.selections.project;
   projectMetaView.innerHTML = `
+    <div><strong>${dict.meta_offer_number || "Offerta N°"}:</strong> ${offerNumber || "—"}</div>
     <div><strong>${dict.summary_project_label || "Progetto"}:</strong> ${name || "—"}</div>
     <div><strong>${dict.summary_request_date_label || "Data richiesta"}:</strong> ${formatDate(date) || "—"}</div>
     <div><strong>${dict.summary_owner_label || "Owner"}:</strong> ${owner || "—"}</div>
     <div><strong>${dict.summary_language_label || "Lingua"}:</strong> ${language || "—"}</div>
+    <div><strong>DP2026</strong></div>
   `;
   if (printProjectMeta) {
     printProjectMeta.innerHTML = projectMetaView.innerHTML;
