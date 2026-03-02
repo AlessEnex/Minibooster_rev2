@@ -53,6 +53,7 @@ const cablingExtraHint = document.getElementById("cablingExtraHint");
 const summaryList = document.getElementById("summaryList");
 const projectMetaView = document.getElementById("projectMetaView");
 const printSummaryList = document.getElementById("printSummaryList");
+const printUnitImage = document.getElementById("printUnitImage");
 const printTotal = document.getElementById("printTotal");
 const printProjectMeta = document.getElementById("printProjectMeta");
 const totalPriceEl = document.getElementById("totalPrice");
@@ -1058,18 +1059,42 @@ const renderOptionalOptions = () => {
 const renderProjectMeta = () => {
   if (!projectMetaView) return;
   const dict = getDictionary();
-  const { name, date, owner, language, offerNumber } = appState.selections.project;
+  const { name, date, owner, language, offerNumber, revision, client, requestedBy, preparedBy } = appState.selections.project;
   projectMetaView.innerHTML = `
     <div><strong>${dict.meta_offer_number || "Offerta N°"}:</strong> ${offerNumber || "—"}</div>
+    <div><strong>${dict.meta_revision || "Revisione"}:</strong> ${revision || "—"}</div>
+    <div><strong>${dict.meta_client || "Cliente"}:</strong> ${client || "—"}</div>
+    <div><strong>${dict.meta_requested_by || "Richiesto da"}:</strong> ${requestedBy || "—"}</div>
+    <div><strong>${dict.meta_prepared_by || "Preparata da"}:</strong> ${preparedBy || "—"}</div>
     <div><strong>${dict.summary_project_label || "Progetto"}:</strong> ${name || "—"}</div>
-    <div><strong>${dict.summary_request_date_label || "Data richiesta"}:</strong> ${formatDate(date) || "—"}</div>
-    <div><strong>${dict.summary_owner_label || "Owner"}:</strong> ${owner || "—"}</div>
-    <div><strong>${dict.summary_language_label || "Lingua"}:</strong> ${language || "—"}</div>
+    <div><strong>${dict.summary_request_date_label || "Data Offerta"}:</strong> ${formatDate(date) || "—"}</div>
+    <div><strong>${dict.summary_owner_label || "Commerciale di riferimento"}:</strong> ${owner || "—"}</div>
     <div><strong>DP2026</strong></div>
   `;
   if (printProjectMeta) {
     printProjectMeta.innerHTML = projectMetaView.innerHTML;
   }
+};
+
+const renderUnitImage = () => {
+  if (!printUnitImage) return;
+  const machineType = appState.selections.machineType;
+  
+  if (!machineType) {
+    printUnitImage.innerHTML = "";
+    return;
+  }
+  
+  const imagePath = `immagini/${machineType}.jpg`;
+  printUnitImage.innerHTML = `
+    <div style="text-align: center; margin-bottom: 1rem;">
+      <img src="${imagePath}" alt="${machineType}" class="unit-image" style="max-width: 34%; height: auto; display: inline-block;">
+      <p style="font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.4;">
+        The above picture is only a reference image (Electrical panel expected to be inside of frame)<br>
+        Every technical specification here listed must be checked with the above picture.
+      </p>
+    </div>
+  `;
 };
 
 export const renderUserPanels = () => {
@@ -1283,6 +1308,7 @@ export const updateSummary = () => {
     printTotal.textContent = formatPrice(total);
   }
   renderProjectMeta();
+  renderUnitImage();
 };
 
 const getOptionalCounts = () =>

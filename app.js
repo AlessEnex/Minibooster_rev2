@@ -34,6 +34,7 @@ const offerNumberInput = document.getElementById("offerNumber");
 const revisionNumberInput = document.getElementById("revisionNumber");
 const clientNameInput = document.getElementById("clientName");
 const requestedByInput = document.getElementById("requestedBy");
+const preparedByInput = document.getElementById("preparedBy");
 const i18nNodes = document.querySelectorAll("[data-i18n]");
 const adminPanel = document.getElementById("adminPanel");
 const adminToggleBtn = document.getElementById("adminToggle");
@@ -60,6 +61,7 @@ const initProjectInputs = () => {
   if (revisionNumberInput) revisionNumberInput.value = appState.selections.project.revision;
   if (clientNameInput) clientNameInput.value = appState.selections.project.client;
   if (requestedByInput) requestedByInput.value = appState.selections.project.requestedBy;
+  if (preparedByInput) preparedByInput.value = appState.selections.project.preparedBy;
 
   const checkRequiredFields = () => {
     const hint = document.querySelector('.meta-required-hint');
@@ -92,6 +94,7 @@ const initProjectInputs = () => {
   revisionNumberInput?.addEventListener("input", (e) => assign("revision", e.target.value));
   clientNameInput?.addEventListener("input", (e) => assign("client", e.target.value));
   requestedByInput?.addEventListener("input", (e) => assign("requestedBy", e.target.value));
+  preparedByInput?.addEventListener("input", (e) => assign("preparedBy", e.target.value));
   
   // Check on init
   checkRequiredFields();
@@ -186,6 +189,7 @@ const importProject = (event) => {
       if (revisionNumberInput) revisionNumberInput.value = appState.selections.project.revision;
       if (clientNameInput) clientNameInput.value = appState.selections.project.client;
       if (requestedByInput) requestedByInput.value = appState.selections.project.requestedBy;
+      if (preparedByInput) preparedByInput.value = appState.selections.project.preparedBy;
       if (discountInput) discountInput.value = appState.selections.discount || 0;
       
       // Applica traduzioni
@@ -235,6 +239,7 @@ const initNavControls = () => {
     if (revisionNumberInput) revisionNumberInput.value = "Rev. 1";
     if (clientNameInput) clientNameInput.value = "Acme Corporation S.p.A.";
     if (requestedByInput) requestedByInput.value = "Mario Rossi";
+    if (preparedByInput) preparedByInput.value = "Luigi Bianchi";
     if (projectNameInput) projectNameInput.value = "Revamp impianto refrigerazione centro commerciale";
     if (projectOwnerInput) projectOwnerInput.value = "Giuseppe Verdi";
     
@@ -243,6 +248,7 @@ const initNavControls = () => {
     appState.selections.project.revision = "Rev. 1";
     appState.selections.project.client = "Acme Corporation S.p.A.";
     appState.selections.project.requestedBy = "Mario Rossi";
+    appState.selections.project.preparedBy = "Luigi Bianchi";
     appState.selections.project.name = "Revamp impianto refrigerazione centro commerciale";
     appState.selections.project.owner = "Giuseppe Verdi";
     

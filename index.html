@@ -83,11 +83,15 @@
             <input id="requestedBy" type="text" placeholder="Nome richiedente" required>
           </label>
           <label class="field">
+            <span data-i18n="meta_prepared_by">Preparata da</span>
+            <input id="preparedBy" type="text" placeholder="Nome preparatore">
+          </label>
+          <label class="field">
             <span data-i18n="meta_project_name">Nome progetto</span>
             <input id="projectName" type="text" placeholder="Es. Revamp centro commerciale">
           </label>
           <label class="field">
-            <span data-i18n="meta_request_date">Data richiesta</span>
+            <span data-i18n="meta_request_date">Data Offerta</span>
             <input id="requestDate" type="date">
           </label>
           <label class="field">
@@ -389,7 +393,7 @@
             <div class="print-logos">
               <img src="loghi/Logo_ENEX_2022_Black.png" alt="ENEX" class="print-logo print-logo-enex">
               <div class="print-logos-right">
-                <img src="loghi/ECOVADIS.jpg" alt="ECOVADIS" class="print-logo">
+                <img src="loghi/ECOVADIS.png" alt="ECOVADIS" class="print-logo">
                 <img src="loghi/SISCERT1.jpg" alt="SISCERT1" class="print-logo">
                 <img src="loghi/SISCERT2.jpg" alt="SISCERT2" class="print-logo">
                 <img src="loghi/ACCREDIA.jpg" alt="ACCREDIA" class="print-logo">
@@ -421,6 +425,7 @@
         <div class="print-body">
           <div class="print-config">
             <h4 data-i18n="print_config">Configurazione</h4>
+            <div id="printUnitImage" class="print-unit-image"></div>
             <div id="printSummaryList" class="summary-list"></div>
             <div id="printDescriptions" class="print-description-tago"></div>
             <div class="print-total">

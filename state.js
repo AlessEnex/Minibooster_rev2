@@ -40,6 +40,7 @@ export const appState = {
       revision: "",
       client: "",
       requestedBy: "",
+      preparedBy: "",
     },
   },
   ui: {
