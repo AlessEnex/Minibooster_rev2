@@ -1299,8 +1299,22 @@ export const updateSummary = () => {
       row.classList.remove('added');
     });
   }, 500);
+  
   if (printSummaryList) {
-    printSummaryList.innerHTML = summaryHtml;
+    // For print preview, hide individual item prices
+    const printSummaryHtml = rows
+      .map(
+        ([label, name, price, isGascooler]) => {
+          const classes = ['summary-row'];
+          if (isGascooler) classes.push('gascooler-row');
+          const content = isGascooler 
+            ? `<span><strong>${label}: ${name}</strong></span><span><strong></strong></span>`
+            : `<span>${label}: ${name}</span><span></span>`;
+          return `<div class="${classes.join(' ')}">${content}</div>`;
+        }
+      )
+      .join("");
+    printSummaryList.innerHTML = printSummaryHtml;
   }
 
   totalPriceEl.textContent = formatPrice(total);

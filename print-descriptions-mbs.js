@@ -16,6 +16,7 @@ export const printDescriptionsByLanguage = {
     },
     {
       title: "QUADRO ELETTRICO",
+      id: "electrical_panel_mbs",
       requiresElectricalPanel: true,
       items: [
         "Alimentazione 3x 400V / 50 Hz / 3Ph + N + PE",
@@ -85,6 +86,7 @@ export const printDescriptionsByLanguage = {
     },
     {
       title: "ELECTRICAL PANEL",
+      id: "electrical_panel_mbs",
       requiresElectricalPanel: true,
       items: [
         "Power supply 3x 400V / 50 Hz / 3Ph + N + PE",
@@ -154,6 +156,7 @@ export const printDescriptionsByLanguage = {
     },
     {
       title: "ARMOIRE ÉLECTRIQUE",
+      id: "electrical_panel_mbs",
       requiresElectricalPanel: true,
       items: [
         "Alimentation 3x 400V / 50 Hz / 3Ph + N + PE",
@@ -221,6 +224,7 @@ export const printDescriptionsByLanguage = {
     },
     {
       title: "SCHALTSCHRANK",
+      id: "electrical_panel_mbs",
       requiresElectricalPanel: true,
       items: [
         "Versorgung 3x 400V / 50 Hz / 3Ph + N + PE",
@@ -290,6 +294,7 @@ export const printDescriptionsByLanguage = {
     },
     {
       title: "CUADRO ELÉCTRICO",
+      id: "electrical_panel_mbs",
       requiresElectricalPanel: true,
       items: [
         "Alimentación 3x 400V / 50 Hz / 3Ph + N + PE",

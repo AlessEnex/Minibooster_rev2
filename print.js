@@ -212,8 +212,7 @@ export const renderPrintSheet = () => {
   const summaryHtml = rows
     .map(
       ([label, name, price]) => {
-        const priceLabel = price === null || price === undefined ? "" : formatPriceLocalized(price);
-        return `<div class="summary-row"><span>${label}: ${name}</span><span>${priceLabel}</span></div>`;
+        return `<div class="summary-row"><span>${label}: ${name}</span><span></span></div>`;
       }
     )
     .join("");
@@ -221,8 +220,7 @@ export const renderPrintSheet = () => {
   const gascoolerHtml = gascoolerRows
     .map(
       ([label, name, price]) => {
-        const priceLabel = price === null || price === undefined ? "" : formatPriceLocalized(price);
-        return `<div class="summary-row gascooler-row"><span><strong>${label}: ${name}</strong></span><span><strong>${priceLabel}</strong></span></div>`;
+        return `<div class="summary-row gascooler-row"><span><strong>${label}: ${name}</strong></span><span><strong></strong></span></div>`;
       }
     )
     .join("");
@@ -267,6 +265,23 @@ export const renderPrintSheet = () => {
         const inverterIncludedText = dict.inverter_mbs_included || "Inverter incluso nell'offerta";
         const inverterNotIncludedText = dict.inverter_mbs_not_included || "Inverter non inclusi nell'offerta";
         updatedSection.items = [hasInverter ? inverterIncludedText : inverterNotIncludedText];
+        return updatedSection;
+      }
+      // Update electrical panel to include selected controller (but only for non-WURM)
+      if (section.id === "electrical_panel_mbs") {
+        const updatedSection = { ...section, items: [...section.items] };
+        
+        // Find selected controller (excluding wurm_customer as it has its own section)
+        const controllerOptions = ["danfoss_572a", "danfoss_782", "carel", "wurm"];
+        const selectedController = controllerOptions.find(ctrl => appState.selections.optionals.has(ctrl));
+        
+        if (selectedController) {
+          const controllerName = translateOptionName(selectedController, dict[`opt_${selectedController}`], appState.selections.machineType);
+          const controllerItem = dict.electrical_panel_controller_label 
+            ? `${dict.electrical_panel_controller_label}: ${controllerName}`
+            : `Controller: ${controllerName}`;
+          updatedSection.items = [...updatedSection.items, controllerItem];
+        }
         return updatedSection;
       }
       return section;
