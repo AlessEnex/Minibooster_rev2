@@ -338,7 +338,7 @@ export const printDescriptionsByLanguage = {
     {
       title: "BASTIDOR Y ACCESORIOS",
       items: [
-        "Bastidor pintado RAL 9001",
+        "Bastidor pintado RAL 5005",
         "Juego de presostatos según los requisitos de la norma EN378",
         "Válvulas de seguridad para la protección del sistema conforme a la norma EN 378",
         "Manómetros HP / MP / LP",
