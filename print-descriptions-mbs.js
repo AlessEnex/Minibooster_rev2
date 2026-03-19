@@ -60,7 +60,7 @@ export const printDescriptionsByLanguage = {
     {
       title: "TELAIO E ACCESSORI",
       items: [
-        "Telaio verniciato RAL 9001",
+        "Telaio verniciato RAL 5005",
         "Set di pressostati secondo le prescrizioni della norma EN378",
         "Valvole di sicurezza per la protezione del sistema conformemente alla norma EN 378",
         "Manometri HP / MP / LP",
@@ -130,7 +130,7 @@ export const printDescriptionsByLanguage = {
     {
       title: "FRAME AND ACCESSORIES",
       items: [
-        "Painted frame RAL 9001",
+        "Painted frame RAL 5005",
         "Set of pressure switches according to EN 378 requirements",
         "Safety relief valves for system protection in accordance with EN 378",
         "HP / MP / LP pressure gauges",
