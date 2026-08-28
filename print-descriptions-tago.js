@@ -31,7 +31,7 @@ export const printDescriptionsByLanguage = {
     {
       title: "TELAIO E ACCESSORI",
       items: [
-        "Telaio verniciato RAL 9001",
+        "Telaio verniciato RAL 7001",
         "Set di pressostati secondo le prescrizioni della norma EN378",
         "Valvole di sicurezza per la protezione del sistema conformemente alla norma EN 378",
         "Manometri HP / MP / LP",
@@ -72,7 +72,7 @@ export const printDescriptionsByLanguage = {
     {
       title: "FRAME AND ACCESSORIES",
       items: [
-        "Painted frame RAL 9001",
+        "Painted frame RAL 7001",
         "Set of pressure switches according to EN 378 requirements",
         "Safety relief valves for system protection in accordance with EN 378",
         "HP / MP / LP pressure gauges",
@@ -113,7 +113,7 @@ export const printDescriptionsByLanguage = {
     {
       title: "CHÂSSIS ET ACCESSOIRES",
       items: [
-        "Châssis peint RAL 9001",
+        "Châssis peint RAL 7001",
         "Ensemble de pressostats selon les prescriptions de la norme EN 378",
         "Soupapes de sécurité pour la protection du système conformément à la norme EN 378",
         "Manomètres HP / MP / LP",
@@ -154,7 +154,7 @@ export const printDescriptionsByLanguage = {
     {
       title: "RAHMEN UND ZUBEHÖR",
       items: [
-        "Rahmen lackiert RAL 9001",
+        "Rahmen lackiert RAL 7001",
         "Druckschalter-Set gemäß den Anforderungen der EN 378",
         "Sicherheitsventile zum Schutz des Systems gemäß EN 378",
         "Manometer HP / MP / LP",
@@ -195,7 +195,7 @@ export const printDescriptionsByLanguage = {
     {
       title: "BASTIDOR Y ACCESORIOS",
       items: [
-        "Bastidor pintado RAL 9001",
+        "Bastidor pintado RAL 7001",
         "Juego de presostatos según los requisitos de la norma EN378",
         "Válvulas de seguridad para la protección del sistema conforme a la norma EN 378",
         "Manómetros HP / MP / LP",
